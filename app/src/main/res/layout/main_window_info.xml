@@ -2,24 +2,78 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-    android:background="#000000">
+              android:layout_height="180dp"
+    android:background="#ffffff">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="#ffffff"
-        android:elevation="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp">
-
-        <RelativeLayout
+        android:layout_height="180dp"
+        android:background="#ffffff">
+        <LinearLayout
+            android:id="@+id/window_info_window"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:elevation="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
 
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#33aaff">
+                <Button
+                    android:id="@+id/window_info_menu"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/ham"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp">
+
+                </Button>
+
+
+                <RelativeLayout
+                    android:id="@+id/window_info_logo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/cau"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp">
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/window_info_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:lines="1"
+                    android:text="empty title"
+                    android:textSize="20dp"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"/>
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/window_info_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:lines="5"
+                android:text="fdsa"
+                android:textSize="16dp"
+                android:textColor="#115588"/>
+
+        </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>

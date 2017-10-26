@@ -33,6 +33,13 @@ public class FoundInfoCollector {
 	}
 
 	public void findInfo(){
+		for(int i = 0 ; i < 2000 ; i ++) {
+			list.add(new WindowInfo());
+		}
+		list.add(new WindowInfo());
+		list.add(new WindowInfo());
+		list.add(new WindowInfo());
+		list.add(new WindowInfo());
 		// TODO: 2017-10-25 여기에서 list 에 정보들을 채워 넣는다. 
 	}
 
