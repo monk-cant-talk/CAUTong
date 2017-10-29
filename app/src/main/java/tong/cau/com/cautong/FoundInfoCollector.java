@@ -3,26 +3,17 @@ package tong.cau.com.cautong;
 
 import android.util.Log;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -31,6 +22,17 @@ import javax.net.ssl.HttpsURLConnection;
 public class FoundInfoCollector {
 
     private ArrayList<WindowInfo> list;
+
+    private static final String TAG = "FoundInfoCollector";
+    private static final String CAU_URL = "https://www.cau.ac.kr:443";
+    private static final String SSO_URL = "https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx";
+    private static final String CAU_NOTICE = "https://www.cau.ac.kr:443/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice";
+    private static final String CAU_NOTICE_BBS = "/ajax/bbs_list.php?isNoti=Y&pageSize=50&";
+    private static final String ENCODE = "EUC-KR";
+    private static final String USER_AGENT = "Mozilla/5.0";
+
+    private static String cookies = "";
+    private static boolean session = false;
 
     private static FoundInfoCollector instance = null;
 
@@ -67,15 +69,6 @@ public class FoundInfoCollector {
         // TODO: 2017-10-25 여기에서 list 에 정보들을 채워 넣는다.
     }
 
-    static final String TAG = "FoundInfoCollector";
-    static final String CAU_URL = "https://www.cau.ac.kr:443";
-    static final String SSO_URL = "https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx";
-    static final String CAU_NOTICE = "https://www.cau.ac.kr:443/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice";
-    static final String ENCODE = "EUC-KR";
-
-    private static String cookies = "";
-    private static boolean session = false;
-
     private static void saveCookie(HttpURLConnection conn) {
         Map<String, List<String>> imap = conn.getHeaderFields();
         if (imap.containsKey("Set-Cookie")) {
@@ -91,100 +84,30 @@ public class FoundInfoCollector {
     }
 
     public static void getCAUNotice() {
-        URL url = null;
-        try {
-            url = new URL(SSO_URL);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        HttpURLConnection con = null;
-        try {
-            con = (HttpURLConnection) url.openConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        requestSSOCookies(CAU_NOTICE);
 
         try {
-            con.setRequestMethod("POST");
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        }
-        con.setConnectTimeout(5000);
-        con.setReadTimeout(5000);
-        con.setDoInput(true);
-        con.setDoOutput(true);
-
-        Map<String, String> parameters = new HashMap<>();
-        parameters.put("retURL", CAU_NOTICE);
-        parameters.put("ssosite", "www.cau.ac.kr");
-        parameters.put("AUTHERR", "0");
-        parameters.put("mode", "set");
-        parameters.put("NCAUPOLICYNUM", "67");
-
-        DataOutputStream out = null;
-        try {
-            out = new DataOutputStream(con.getOutputStream());
-            out.writeBytes(getParamsString(parameters));
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String getUrl = "";
-        BufferedReader in = null;
-        try {
-            int status = con.getResponseCode();
-            in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer content = new StringBuffer();
-            while ((inputLine = in.readLine()) != null) {
-                content.append(inputLine);
-            }
-            Log.d(TAG, content.toString());
-            in.close();
-
-            Document doc = Jsoup.parse(content.toString());
-            String first = doc.head().children().first().html();
-            Pattern pattern = Pattern.compile("'(.*?)'");
-            Matcher matcher = pattern.matcher(first);
-            if (matcher.find()) {
-                Log.d(TAG, matcher.group(1));
-                getUrl = matcher.group(1);
-            } else {
-                Log.d(TAG, "No URL.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        saveCookie(con);
-        con.disconnect();
-
-        try {
-            Log.d(TAG, "Send start!");
-//            sendGet(getUrl);
-            sendGet(CAU_URL + "/ajax/bbs_list.php?isNoti=Y&pageSize=50&");
+            sendGet(CAU_URL + CAU_NOTICE_BBS);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static String getParamsString(Map<String, String> params) throws UnsupportedEncodingException {
-        StringBuilder result = new StringBuilder();
+    private static void requestSSOCookies(String url) {
 
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            result.append(URLEncoder.encode(entry.getKey(), ENCODE));
-            result.append("=");
-            result.append(URLEncoder.encode(entry.getValue(), ENCODE));
-            result.append("&");
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("retURL", url);
+        parameters.put("ssosite", "www.cau.ac.kr");
+        parameters.put("AUTHERR", "0");
+        parameters.put("mode", "set");
+        parameters.put("NCAUPOLICYNUM", "67");
+
+        try {
+            sendPost(SSO_URL, parameters, true);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        String resultString = result.toString();
-        return resultString.length() > 0 ? resultString.substring(0, resultString.length() - 1) : resultString;
     }
-
-    private static final String USER_AGENT = "Mozilla/5.0";
 
     // HTTP GET request
     private static void sendGet(String url) throws Exception {
@@ -219,29 +142,30 @@ public class FoundInfoCollector {
     }
 
     // HTTP POST request
-    private void sendPost() throws Exception {
+    private static void sendPost(String url, Map<String, String> parameters, boolean isSaveCookie) throws Exception {
 
-        String url = "https://selfsolve.apple.com/wcResults.do";
         URL obj = new URL(url);
         HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
-        //add reuqest header
+        // set timeout
+        con.setConnectTimeout(5000);
+        con.setReadTimeout(5000);
+
+        // add reuqest header
         con.setRequestMethod("POST");
         con.setRequestProperty("User-Agent", USER_AGENT);
-        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-
-        String urlParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
 
         // Send post request
         con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(urlParameters);
-        wr.flush();
-        wr.close();
+        DataOutputStream out = new DataOutputStream(con.getOutputStream());
+        out.writeBytes(getParamsString(parameters));
+        out.flush();
+        out.close();
 
+        con.setDoInput(true);
         int responseCode = con.getResponseCode();
         System.out.println("\nSending 'POST' request to URL : " + url);
-        System.out.println("Post parameters : " + urlParameters);
+        System.out.println("Post parameters : " + parameters.toString());
         System.out.println("Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(
@@ -254,8 +178,26 @@ public class FoundInfoCollector {
         }
         in.close();
 
+        if (isSaveCookie) {
+            saveCookie(con);
+        }
+
         //print result
         System.out.println(response.toString());
+    }
+
+    private static String getParamsString(Map<String, String> params) throws UnsupportedEncodingException {
+        StringBuilder result = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            result.append(URLEncoder.encode(entry.getKey(), ENCODE));
+            result.append("=");
+            result.append(URLEncoder.encode(entry.getValue(), ENCODE));
+            result.append("&");
+        }
+
+        String resultString = result.toString();
+        return resultString.length() > 0 ? resultString.substring(0, resultString.length() - 1) : resultString;
     }
 
     private static String unicodeParser(String str) {
