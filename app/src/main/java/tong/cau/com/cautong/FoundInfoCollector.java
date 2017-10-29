@@ -3,6 +3,11 @@ package tong.cau.com.cautong;
 
 import android.util.Log;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -21,6 +26,7 @@ import javax.net.ssl.HttpsURLConnection;
 //단 하나만 존재해야 하므로 싱글턴패턴 사용
 public class FoundInfoCollector {
 
+    public static final int INITIAL_WINDOW_SIZE = 50;
     private ArrayList<WindowInfo> list;
 
     private static final String TAG = "FoundInfoCollector";
@@ -45,7 +51,9 @@ public class FoundInfoCollector {
 
     private FoundInfoCollector() {
         list = new ArrayList<>();
-        findInfo();
+        for(int i=0; i<INITIAL_WINDOW_SIZE; ++i) {
+            list.add(new WindowInfo());
+        }
     }
 
     public WindowInfo getInfo(int index) throws NullPointerException {
@@ -59,14 +67,15 @@ public class FoundInfoCollector {
     }
 
     public void findInfo() {
-        for (int i = 0; i < 2000; i++) {
-            list.add(new WindowInfo());
+        JsonArray dataList = getCAUNotice();
+
+        if (dataList != null) {
+            int minSize = Math.min(dataList.size(), getInfoSize());
+            for(int i=0; i<minSize; ++i) {
+                String title = dataList.get(i).getAsJsonObject().get("TITLE").getAsString();
+                getInfo(i).setTitle(title);
+            }
         }
-        list.add(new WindowInfo());
-        list.add(new WindowInfo());
-        list.add(new WindowInfo());
-        list.add(new WindowInfo());
-        // TODO: 2017-10-25 여기에서 list 에 정보들을 채워 넣는다.
     }
 
     private static void saveCookie(HttpURLConnection conn) {
@@ -83,18 +92,19 @@ public class FoundInfoCollector {
         }
     }
 
-    public static void getCAUNotice() {
+    public static JsonArray getCAUNotice() {
         requestSSOCookies(CAU_NOTICE);
 
         try {
-            sendGet(CAU_URL + CAU_NOTICE_BBS);
+            String response = sendGet(CAU_URL + CAU_NOTICE_BBS);
+            return parseData(response);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     private static void requestSSOCookies(String url) {
-
         Map<String, String> parameters = new HashMap<>();
         parameters.put("retURL", url);
         parameters.put("ssosite", "www.cau.ac.kr");
@@ -110,7 +120,7 @@ public class FoundInfoCollector {
     }
 
     // HTTP GET request
-    private static void sendGet(String url) throws Exception {
+    private static String sendGet(String url) throws Exception {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
@@ -137,8 +147,8 @@ public class FoundInfoCollector {
 
         //print result
 
-        Log.d(TAG, unicodeParser(response.toString()));
-
+//        Log.d(TAG, unicodeParser(response.toString()));
+        return response.toString();
     }
 
     // HTTP POST request
@@ -162,7 +172,6 @@ public class FoundInfoCollector {
         out.flush();
         out.close();
 
-        con.setDoInput(true);
         int responseCode = con.getResponseCode();
         System.out.println("\nSending 'POST' request to URL : " + url);
         System.out.println("Post parameters : " + parameters.toString());
@@ -181,9 +190,6 @@ public class FoundInfoCollector {
         if (isSaveCookie) {
             saveCookie(con);
         }
-
-        //print result
-        System.out.println(response.toString());
     }
 
     private static String getParamsString(Map<String, String> params) throws UnsupportedEncodingException {
@@ -203,6 +209,14 @@ public class FoundInfoCollector {
     private static String unicodeParser(String str) {
 //        return str.replaceAll("\\\\u.{4}", "$1");
         return str;
+    }
+
+    private static JsonArray parseData(String jsonString) {
+        JsonParser parser = new JsonParser();
+        JsonObject element = parser.parse(jsonString).getAsJsonObject();
+        JsonArray data = element.get("data").getAsJsonArray();
+
+        return data;
     }
 }
 

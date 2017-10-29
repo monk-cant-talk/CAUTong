@@ -2,7 +2,7 @@ package tong.cau.com.cautong;
 
 
 import android.app.Activity;
-import android.content.Context;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -11,17 +11,18 @@ import android.widget.TextView;
 //전체 뷰 중에서 기사를 하나 찾게 되면 기사에 관련한 윈도우를 띄워야 하는데 그 정보를 아래에 채워 넣는다.
 public class WindowInfo {
 
+	private static final String TAG = "WindowInfo";
 	//윈도우에 띄울 로고 이미지
-	public Logo logo;
+	private Logo logo;
 
 	//윈도우에 띄울 제목
-	public String title;
+	private String title;
 
 	//윈도우에 띄울 컨텐츠
-	public String content;
+	private String content;
 
 	//소스정보 (ex. https://www.cau.ac.kr/)
-	public String link;
+	private String link;
 
 	public enum Logo {
 		main, unknown
@@ -34,19 +35,35 @@ public class WindowInfo {
 		link = "https://www.cau.ac.kr";
 	}
 
+	LinearLayout layout = null;
+	Button info_menu = null;
+	RelativeLayout info_logo = null;
+	LinearLayout info_window = null;
+	TextView info_title = null;
+	TextView info_content = null;
+
+	public void refresh() {
+		info_title.setText(title);
+		info_content.setText(content);
+		info_logo.setBackgroundResource(getLogoImage());
+	}
+
 	public LinearLayout getLayout(Activity activity){
-		LinearLayout ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
-		Button info_menu = (Button)ret.findViewById(R.id.window_info_menu);
-		RelativeLayout info_logo = (RelativeLayout) ret.findViewById(R.id.window_info_logo);
-		LinearLayout info_window = (LinearLayout) ret.findViewById(R.id.window_info_window);
-		TextView info_title = (TextView)ret.findViewById(R.id.window_info_title);
-		TextView info_content = (TextView) ret.findViewById(R.id.window_info_content);
+		if (layout == null) {
+			Log.d(TAG, "inflate layout");
+			layout = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
+		}
+		info_menu = layout.findViewById(R.id.window_info_menu);
+		info_logo = layout.findViewById(R.id.window_info_logo);
+		info_window = layout.findViewById(R.id.window_info_window);
+		info_title = layout.findViewById(R.id.window_info_title);
+		info_content = layout.findViewById(R.id.window_info_content);
 
 		info_title.setText(title);
 		info_content.setText(content);
 		info_logo.setBackgroundResource(getLogoImage());
 
-		return ret;
+		return layout;
 	}
 
 	private int getLogoImage(){
@@ -57,5 +74,37 @@ public class WindowInfo {
 				return R.drawable.cau;
 		}
 		return R.drawable.cau;
+	}
+
+	public Logo getLogo() {
+		return logo;
+	}
+
+	public void setLogo(Logo logo) {
+		this.logo = logo;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String newTitle) {
+		title = newTitle;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 }

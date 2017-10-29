@@ -19,28 +19,32 @@ public class MainActivity extends AppCompatActivity {
         main_layout = (LinearLayout) findViewById(R.id.main_linear_layout);
         button = (RelativeLayout) findViewById(R.id.requestButton);
 
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < FoundInfoCollector.INITIAL_WINDOW_SIZE; i++) {
             main_layout.addView(FoundInfoCollector.getInstance().getInfo(i).getLayout(this));
         }
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Thread(new Runnable() {
+                Thread crawler = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        FoundInfoCollector.getCAUNotice();
+                        FoundInfoCollector.getInstance().findInfo();
                     }
-                }).start();
+                });
+                crawler.start();
+                try {
+                    crawler.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < FoundInfoCollector.INITIAL_WINDOW_SIZE; i++) {
+                    FoundInfoCollector.getInstance().getInfo(i).refresh();
+                }
             }
         });
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                FoundInfoCollector.getCAUNotice();
-            }
-        }).start();
 
+        button.callOnClick();
 
     }
 }
