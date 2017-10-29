@@ -1,10 +1,10 @@
+
 package tong.cau.com.cautong;
 
 
 import android.util.Log;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -16,6 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,22 +27,7 @@ import javax.net.ssl.HttpsURLConnection;
 //단 하나만 존재해야 하므로 싱글턴패턴 사용
 public class FoundInfoCollector {
 
-    public static final int INITIAL_WINDOW_SIZE = 50;
-    private ArrayList<WindowInfo> list;
-
-    private static final String TAG = "FoundInfoCollector";
-    private static final String CAU_URL = "https://www.cau.ac.kr:443";
-    private static final String SSO_URL = "https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx";
-    private static final String CAU_NOTICE = "https://www.cau.ac.kr:443/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice";
-    private static final String CAU_NOTICE_BBS = "/ajax/bbs_list.php?isNoti=Y&pageSize=50&";
-    private static final String ENCODE = "EUC-KR";
-    private static final String USER_AGENT = "Mozilla/5.0";
-
-    private static String cookies = "";
-    private static boolean session = false;
-
     private static FoundInfoCollector instance = null;
-
     public static FoundInfoCollector getInstance() {
         if (instance == null) {
             instance = new FoundInfoCollector();
@@ -49,9 +35,25 @@ public class FoundInfoCollector {
         return instance;
     }
 
+    public static final int INITIAL_WINDOW_SIZE = 50;
+    private ArrayList<WindowInfo> list;
+
+    private final String TAG = "FoundInfoCollector";
+    private final String CAU_URL = "https://www.cau.ac.kr:443";
+    private final String SSO_URL = "https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx";
+    private final String CAU_NOTICE = "https://www.cau.ac.kr:443/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice";
+    private final String CAU_NOTICE_BBS = "/ajax/bbs_list.php?isNoti=Y&pageSize=50&";
+    private final String ENCODE = "EUC-KR";
+    private final String USER_AGENT = "Mozilla/5.0";
+
+    private String cookies = "";
+    private boolean session = false;
+
+    private String getBoardList();
+
     private FoundInfoCollector() {
         list = new ArrayList<>();
-        for(int i=0; i<INITIAL_WINDOW_SIZE; ++i) {
+        for (int i = 0; i < INITIAL_WINDOW_SIZE; ++i) {
             list.add(new WindowInfo());
         }
     }
@@ -71,14 +73,28 @@ public class FoundInfoCollector {
 
         if (dataList != null) {
             int minSize = Math.min(dataList.size(), getInfoSize());
-            for(int i=0; i<minSize; ++i) {
-                String title = dataList.get(i).getAsJsonObject().get("TITLE").getAsString();
-                getInfo(i).setTitle(title);
+            for (int i = 0; i < minSize; ++i) {
+                getInfo(i).setTitle(dataList.get(i).getAsJsonObject().get("TITLE").getAsString());
+                getInfo(i).setAuthor(dataList.get(i).getAsJsonObject().get("NAME").getAsString());
+//                getInfo(i).setLink();
+                getInfo(i).setDate(new Date(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong()));
             }
         }
     }
 
-    private static void saveCookie(HttpURLConnection conn) {
+    public JsonArray getCAUNotice() {
+        requestSSO(CAU_NOTICE);
+
+        try {
+            String response = sendGet(CAU_URL + CAU_NOTICE_BBS);
+            return parseData(response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private void saveCookie(HttpURLConnection conn) {
         Map<String, List<String>> imap = conn.getHeaderFields();
         if (imap.containsKey("Set-Cookie")) {
             List<String> lString = imap.get("Set-Cookie");
@@ -92,19 +108,7 @@ public class FoundInfoCollector {
         }
     }
 
-    public static JsonArray getCAUNotice() {
-        requestSSOCookies(CAU_NOTICE);
-
-        try {
-            String response = sendGet(CAU_URL + CAU_NOTICE_BBS);
-            return parseData(response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private static void requestSSOCookies(String url) {
+    private void requestSSO(String url) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("retURL", url);
         parameters.put("ssosite", "www.cau.ac.kr");
@@ -120,7 +124,7 @@ public class FoundInfoCollector {
     }
 
     // HTTP GET request
-    private static String sendGet(String url) throws Exception {
+    private String sendGet(String url) throws Exception {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
@@ -152,7 +156,7 @@ public class FoundInfoCollector {
     }
 
     // HTTP POST request
-    private static void sendPost(String url, Map<String, String> parameters, boolean isSaveCookie) throws Exception {
+    private void sendPost(String url, Map<String, String> parameters, boolean isSaveCookie) throws Exception {
 
         URL obj = new URL(url);
         HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
@@ -192,7 +196,7 @@ public class FoundInfoCollector {
         }
     }
 
-    private static String getParamsString(Map<String, String> params) throws UnsupportedEncodingException {
+    private String getParamsString(Map<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
 
         for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -206,12 +210,12 @@ public class FoundInfoCollector {
         return resultString.length() > 0 ? resultString.substring(0, resultString.length() - 1) : resultString;
     }
 
-    private static String unicodeParser(String str) {
+    private String unicodeParser(String str) {
 //        return str.replaceAll("\\\\u.{4}", "$1");
         return str;
     }
 
-    private static JsonArray parseData(String jsonString) {
+    private JsonArray parseData(String jsonString) {
         JsonParser parser = new JsonParser();
         JsonObject element = parser.parse(jsonString).getAsJsonObject();
         JsonArray data = element.get("data").getAsJsonArray();
