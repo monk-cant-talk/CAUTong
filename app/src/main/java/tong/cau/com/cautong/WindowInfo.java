@@ -2,8 +2,6 @@ package tong.cau.com.cautong;
 
 
 import android.app.Activity;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -11,134 +9,136 @@ import android.widget.TextView;
 
 //전체 뷰 중에서 기사를 하나 찾게 되면 기사에 관련한 윈도우를 띄워야 하는데 그 정보를 아래에 채워 넣는다.
 public class WindowInfo {
+    //윈도우에 띄울 로고 이미지
+    private Logo logo;
 
-	//윈도우에 띄울 로고 이미지
-	private Logo logo;
+    //윈도우에 띄울 제목
+    private String title;
 
-	//윈도우에 띄울 제목
-	private String title;
+    //윈도우에 띄울 컨텐츠
+    private String content;
 
-	//윈도우에 띄울 컨텐츠
-	private String content;
+    //소스정보 (ex. https://www.cau.ac.kr/)
+    private String link;
 
-	//소스정보 (ex. https://www.cau.ac.kr/)
-	private String link;
+    //날짜
+    private MyDate date;
 
-	//날짜
-	private MyDate date;
+    //작성자
+    private String author;
 
-	//작성자
-	private String writer;
+    public enum Logo {
+        main, unknown
+    }
 
-	public enum Logo {
-		main, unknown
-	}
+    public void setLogo(Activity activity, Logo logo) {
+        this.logo = logo;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                info_logo.setBackgroundResource(getLogoImage());
+            }
+        });
+    }
 
-	public void setLogo(Activity activity, Logo logo){
-		this.logo = logo;
-		activity.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				info_logo.setBackgroundResource(getLogoImage());
-			}
-		});
-	}
-	public void setTitle(Activity activity, String title){
-		this.title = title;
-		activity.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				info_title.setText(WindowInfo.this.title);
-			}
-		});
-	}
-	public void setContent(Activity activity, String content){
-		this.content = content;
-		activity.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				info_content.setText(WindowInfo.this.content);
-			}
-		});
-	}
-	public void setDate(Activity activity, MyDate date){
-		this.date = date;
-		activity.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				info_date.setText(WindowInfo.this.date.toString());
-			}
-		});
-	}
-	public void setWriter(Activity activity, String writer){
-		this.writer = writer;
-		activity.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				info_writer.setText(WindowInfo.this.writer);
-			}
-		});
-	}
+    public void setTitle(Activity activity, String title) {
+        this.title = title;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                info_title.setText(WindowInfo.this.title);
+            }
+        });
+    }
 
-	LinearLayout info_window;
-	RelativeLayout info_logo;
-	TextView info_content;
-	TextView info_writer;
-	TextView info_title;
-	TextView info_date;
-	Button info_menu;
-	LinearLayout ret;
+    public void setContent(Activity activity, String content) {
+        this.content = content;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                info_content.setText(WindowInfo.this.content);
+            }
+        });
+    }
 
-	public void init(Logo logo, String title, String content, String link, MyDate date, String writer){
-		this.logo = logo;
-		this.title = title;
-		this.content = content;
-		this.link = link;
-		this.date = date;
-		this.writer = writer;
-	}
+    public void setDate(Activity activity, MyDate date) {
+        this.date = date;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                info_date.setText(WindowInfo.this.date.toString());
+            }
+        });
+    }
 
-	public WindowInfo(Activity activity){
-		logo = Logo.unknown;
-		title = "no title";
-		content = "no content";
-		link = "https://www.cau.ac.kr";
-		date = new MyDate("yyyy-mm-dd");
-		writer = "cauTong";
+    public void setAuthor(Activity activity, String author) {
+        this.author = author;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                info_writer.setText(WindowInfo.this.author);
+            }
+        });
+    }
 
-		ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
-		info_window = ret.findViewById(R.id.window_info_window);
-		info_logo = ret.findViewById(R.id.window_info_logo);
-		info_content = ret.findViewById(R.id.window_info_content);
-		info_writer = ret.findViewById(R.id.window_info_writer);
-		info_title = ret.findViewById(R.id.window_info_title);
-		info_date = ret.findViewById(R.id.window_info_date);
-		info_menu = ret.findViewById(R.id.window_info_menu);
+    LinearLayout info_window;
+    RelativeLayout info_logo;
+    TextView info_content;
+    TextView info_writer;
+    TextView info_title;
+    TextView info_date;
+    Button info_menu;
+    LinearLayout ret;
 
-	}
+    public void init(Logo logo, String title, String content, String link, MyDate date, String author) {
+        this.logo = logo;
+        this.title = title;
+        this.content = content;
+        this.link = link;
+        this.date = date;
+        this.author = author;
+    }
 
-	//변수값이 변했으면 적용한다.
-	public void print(){
-		info_title.setText(title);
-		info_content.setText(content);
-		info_writer.setText(writer);
-		info_date.setText(date.toString());
-		info_logo.setBackgroundResource(getLogoImage());
-	}
+    public WindowInfo(Activity activity) {
+        logo = Logo.unknown;
+        title = "no title";
+        content = "no content";
+        link = "https://www.cau.ac.kr";
+        date = new MyDate("yyyy-mm-dd");
+        author = "cauTong";
 
-	public LinearLayout getLayout(){
-		print();
+        ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
+        info_window = ret.findViewById(R.id.window_info_window);
+        info_logo = ret.findViewById(R.id.window_info_logo);
+        info_content = ret.findViewById(R.id.window_info_content);
+        info_writer = ret.findViewById(R.id.window_info_writer);
+        info_title = ret.findViewById(R.id.window_info_title);
+        info_date = ret.findViewById(R.id.window_info_date);
+        info_menu = ret.findViewById(R.id.window_info_menu);
 
-		return ret;
-	}
+    }
 
-	private int getLogoImage(){
-		switch (logo){
-			case main:
-				return R.drawable.cau;
-			case unknown:
-				return R.drawable.cau;
-		}
-		return R.drawable.cau;
-	}
+    //변수값이 변했으면 적용한다.
+    public void print() {
+        info_title.setText(title);
+        info_content.setText(content);
+        info_writer.setText(author);
+        info_date.setText(date.toString());
+        info_logo.setBackgroundResource(getLogoImage());
+    }
+
+    public LinearLayout getLayout() {
+        print();
+        return ret;
+    }
+
+    private int getLogoImage() {
+        switch (logo) {
+            case main:
+                return R.drawable.cau;
+            case unknown:
+                return R.drawable.cau;
+        }
+        return R.drawable.cau;
+    }
 }
