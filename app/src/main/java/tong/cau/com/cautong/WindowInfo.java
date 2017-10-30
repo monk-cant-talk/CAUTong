@@ -7,6 +7,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 //전체 뷰 중에서 기사를 하나 찾게 되면 기사에 관련한 윈도우를 띄워야 하는데 그 정보를 아래에 채워 넣는다.
 public class WindowInfo {
     //윈도우에 띄울 로고 이미지
@@ -104,7 +107,7 @@ public class WindowInfo {
         title = "no title";
         content = "no content";
         link = "https://www.cau.ac.kr";
-        date = new MyDate("yyyy-mm-dd");
+        date = new MyDate(new SimpleDateFormat("yyyy-MM-dd-HH-mm"), "2017-03-09-09-40");
         author = "cauTong";
 
         ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
