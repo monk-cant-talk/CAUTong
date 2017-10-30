@@ -31,15 +31,6 @@ public class MyDate {
     public String toString(){
 		if(ss != null)	return ss;
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        int y = ret.getYear();
-        if(y < 1000){
-            if(y < 50) {
-                y += 2000;
-            }else {
-                y += 1000;
-            }
-        }
-        ret.setYear(y);
         return format.format(ret);
     }
 

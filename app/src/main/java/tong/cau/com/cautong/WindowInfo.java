@@ -8,7 +8,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 //전체 뷰 중에서 기사를 하나 찾게 되면 기사에 관련한 윈도우를 띄워야 하는데 그 정보를 아래에 채워 넣는다.
 public class WindowInfo {
@@ -30,9 +29,7 @@ public class WindowInfo {
     //작성자
     private String author;
 
-    public enum Logo {
-        main, unknown
-    }
+
 
     public void setLogo(Activity activity, Logo logo) {
         this.logo = logo;
@@ -86,6 +83,7 @@ public class WindowInfo {
 
     LinearLayout info_window;
     RelativeLayout info_logo;
+    RelativeLayout info_title_board;
     TextView info_content;
     TextView info_writer;
     TextView info_title;
@@ -103,7 +101,7 @@ public class WindowInfo {
     }
 
     public WindowInfo(Activity activity) {
-        logo = Logo.unknown;
+        logo = Logo.notice;
         title = "no title";
         content = "no content";
         link = "https://www.cau.ac.kr";
@@ -113,6 +111,7 @@ public class WindowInfo {
         ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
         info_window = ret.findViewById(R.id.window_info_window);
         info_logo = ret.findViewById(R.id.window_info_logo);
+        info_title_board = ret.findViewById(R.id.window_info_title_board);
         info_content = ret.findViewById(R.id.window_info_content);
         info_writer = ret.findViewById(R.id.window_info_writer);
         info_title = ret.findViewById(R.id.window_info_title);
@@ -128,6 +127,7 @@ public class WindowInfo {
         info_writer.setText(author);
         info_date.setText(date.toString());
         info_logo.setBackgroundResource(getLogoImage());
+        info_title_board.setBackgroundResource(getLogoColor());
     }
 
     public LinearLayout getLayout() {
@@ -135,13 +135,43 @@ public class WindowInfo {
         return ret;
     }
 
+    public enum Logo {
+        notice, unknown, social, caucse, ict, cauie
+    }
+
     private int getLogoImage() {
         switch (logo) {
-            case main:
-                return R.drawable.cau;
+            case notice:
+                return R.drawable.logo_cau;
             case unknown:
-                return R.drawable.cau;
+                return R.drawable.c;
+            case social:
+                return R.drawable.logo_social;
+            case caucse:
+                return R.drawable.logo_cse;
+            case cauie:
+                return R.drawable.logo_cauie;
+            case ict:
+                return R.drawable.logo_ict;
         }
-        return R.drawable.cau;
+        return R.drawable.c;
+    }
+
+    private int getLogoColor() {
+        switch (logo) {
+            case notice:
+                return R.drawable.window_board_title_caunotice;
+            case unknown:
+                return R.drawable.window_board_title_unknown;
+            case social:
+                return R.drawable.window_board_title_social;
+            case caucse:
+                return R.drawable.window_board_title_caucse;
+            case cauie:
+                return R.drawable.window_board_title_cauie;
+            case ict:
+                return R.drawable.window_board_title_ict;
+        }
+        return R.drawable.c;
     }
 }
