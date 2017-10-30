@@ -9,9 +9,8 @@ import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout main_layout;
+    public static LinearLayout main_layout;
     RelativeLayout button;
-    Activity _this = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,22 +21,15 @@ public class MainActivity extends AppCompatActivity {
         button = (RelativeLayout) findViewById(R.id.requestButton);
 
         for (int i = 0; i < FoundInfoCollector.INITIAL_WINDOW_SIZE; i++) {
-            main_layout.addView(FoundInfoCollector.getInstance(_this).getInfo(i).getLayout());
+            main_layout.addView(FoundInfoCollector.getInstance(MainActivity.this).getInfo(i).getLayout());
         }
 
-        button.setOnClickListener(new View.OnClickListener() {
+        Thread crawler = new Thread(new Runnable() {
             @Override
-            public void onClick(View view) {
-                Thread crawler = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        FoundInfoCollector.getInstance(_this).findInfo();
-                    }
-                });
-                crawler.start();
+            public void run() {
+                FoundInfoCollector.getInstance(MainActivity.this).findInfo();
             }
         });
-
-        button.callOnClick();
+        crawler.start();
     }
 }

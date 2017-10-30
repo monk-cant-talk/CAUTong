@@ -2,6 +2,7 @@ package tong.cau.com.cautong;
 
 
 import android.app.Activity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -28,6 +29,7 @@ public class WindowInfo {
 
     //작성자
     private String author;
+
 
 
 
@@ -90,6 +92,7 @@ public class WindowInfo {
     TextView info_date;
     Button info_menu;
     LinearLayout ret;
+    Activity activity;
 
     public void init(Logo logo, String title, String content, String link, MyDate date, String author) {
         this.logo = logo;
@@ -101,7 +104,8 @@ public class WindowInfo {
     }
 
     public WindowInfo(Activity activity) {
-        logo = Logo.notice;
+        this.activity = activity;
+        logo = Logo.ict;
         title = "no title";
         content = "no content";
         link = "https://www.cau.ac.kr";
@@ -117,6 +121,14 @@ public class WindowInfo {
         info_title = ret.findViewById(R.id.window_info_title);
         info_date = ret.findViewById(R.id.window_info_date);
         info_menu = ret.findViewById(R.id.window_info_menu);
+
+        info_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                WindowMenuDialog dialog = new WindowMenuDialog(WindowInfo.this.activity);
+                dialog.show();
+            }
+        });
 
     }
 
