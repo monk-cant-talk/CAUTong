@@ -2,13 +2,16 @@ package tong.cau.com.cautong;
 
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 //전체 뷰 중에서 기사를 하나 찾게 되면 기사에 관련한 윈도우를 띄워야 하는데 그 정보를 아래에 채워 넣는다.
 public class WindowInfo {
@@ -30,9 +33,21 @@ public class WindowInfo {
     //작성자
     private String author;
 
-    public enum Logo {
-        main, unknown
+
+
+    public void rePrint(Activity activity){
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                info_logo.setBackgroundResource(getLogoImage());
+                info_title.setText(WindowInfo.this.title);
+                info_content.setText(WindowInfo.this.content);
+                info_date.setText(WindowInfo.this.date.toString());
+                info_writer.setText(WindowInfo.this.author);
+            }
+        });
     }
+
 
     public void setLogo(Activity activity, Logo logo) {
         this.logo = logo;
@@ -86,12 +101,14 @@ public class WindowInfo {
 
     LinearLayout info_window;
     RelativeLayout info_logo;
+    RelativeLayout info_title_board;
     TextView info_content;
     TextView info_writer;
     TextView info_title;
     TextView info_date;
     Button info_menu;
     LinearLayout ret;
+    Activity activity;
 
     public void init(Logo logo, String title, String content, String link, MyDate date, String author) {
         this.logo = logo;
@@ -103,7 +120,8 @@ public class WindowInfo {
     }
 
     public WindowInfo(Activity activity) {
-        logo = Logo.unknown;
+        this.activity = activity;
+        logo = Logo.ict;
         title = "no title";
         content = "no content";
         link = "https://www.cau.ac.kr";
@@ -113,11 +131,46 @@ public class WindowInfo {
         ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
         info_window = ret.findViewById(R.id.window_info_window);
         info_logo = ret.findViewById(R.id.window_info_logo);
+        info_title_board = ret.findViewById(R.id.window_info_title_board);
         info_content = ret.findViewById(R.id.window_info_content);
         info_writer = ret.findViewById(R.id.window_info_writer);
         info_title = ret.findViewById(R.id.window_info_title);
         info_date = ret.findViewById(R.id.window_info_date);
         info_menu = ret.findViewById(R.id.window_info_menu);
+
+        info_window.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(WindowInfo.this.link != null) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(WindowInfo.this.link));
+                    WindowInfo.this.activity.startActivity(intent);
+                }
+            }
+        });
+
+        info_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                WindowMenuDialog dialog = new WindowMenuDialog(WindowInfo.this.activity,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(WindowInfo.this.activity, "첫번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                    }
+                }, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(WindowInfo.this.activity, "두번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                    }
+                }, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(WindowInfo.this.activity, "세번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                dialog.show();
+            }
+        });
 
     }
 
@@ -128,6 +181,7 @@ public class WindowInfo {
         info_writer.setText(author);
         info_date.setText(date.toString());
         info_logo.setBackgroundResource(getLogoImage());
+        info_title_board.setBackgroundResource(getLogoColor());
     }
 
     public LinearLayout getLayout() {
@@ -135,13 +189,43 @@ public class WindowInfo {
         return ret;
     }
 
+    public enum Logo {
+        notice, unknown, social, caucse, ict, cauie
+    }
+
     private int getLogoImage() {
         switch (logo) {
-            case main:
-                return R.drawable.cau;
+            case notice:
+                return R.drawable.logo_cau;
             case unknown:
-                return R.drawable.cau;
+                return R.drawable.c;
+            case social:
+                return R.drawable.logo_social;
+            case caucse:
+                return R.drawable.logo_cse;
+            case cauie:
+                return R.drawable.logo_cauie;
+            case ict:
+                return R.drawable.logo_ict;
         }
-        return R.drawable.cau;
+        return R.drawable.c;
+    }
+
+    private int getLogoColor() {
+        switch (logo) {
+            case notice:
+                return R.drawable.window_board_title_caunotice;
+            case unknown:
+                return R.drawable.window_board_title_unknown;
+            case social:
+                return R.drawable.window_board_title_social;
+            case caucse:
+                return R.drawable.window_board_title_caucse;
+            case cauie:
+                return R.drawable.window_board_title_cauie;
+            case ict:
+                return R.drawable.window_board_title_ict;
+        }
+        return R.drawable.c;
     }
 }
