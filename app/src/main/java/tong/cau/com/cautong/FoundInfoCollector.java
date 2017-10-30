@@ -81,7 +81,7 @@ public class FoundInfoCollector {
                 getInfo(i).setAuthor(myActivity, dataList.get(i).getAsJsonObject().get("NAME").getAsString());
 //                getInfo(i).setLink();
                 Log.d(TAG, "REGDATE " + dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong());
-                //getInfo(i).setDate(myActivity, new MyDate(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong()));
+                getInfo(i).setDate(myActivity, new MyDate(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong()));
             }
         }
     }
