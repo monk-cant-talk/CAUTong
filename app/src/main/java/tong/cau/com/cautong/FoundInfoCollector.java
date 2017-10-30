@@ -77,11 +77,16 @@ public class FoundInfoCollector {
         if (dataList != null) {
             int minSize = Math.min(dataList.size(), getInfoSize());
             for (int i = 0; i < minSize; ++i) {
-                getInfo(i).setTitle(myActivity, dataList.get(i).getAsJsonObject().get("TITLE").getAsString());
-                getInfo(i).setAuthor(myActivity, dataList.get(i).getAsJsonObject().get("NAME").getAsString());
-//                getInfo(i).setLink();
-                Log.d(TAG, "REGDATE " + dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong());
-                getInfo(i).setDate(myActivity, new MyDate(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong()));
+                getInfo(i).init(
+                        WindowInfo.Logo.notice
+                        , dataList.get(i).getAsJsonObject().get("TITLE").getAsString()
+                        , "준비중입니다"
+                        , CAU_NOTICE
+                        , new MyDate(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong())
+                        , dataList.get(i).getAsJsonObject().get("NAME").getAsString()
+                );
+                getInfo(i).rePrint(myActivity);
+                //Log.d(TAG, "REGDATE " + dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong());
             }
         }
     }

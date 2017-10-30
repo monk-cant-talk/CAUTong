@@ -35,6 +35,19 @@ public class WindowInfo {
 
 
 
+    public void rePrint(Activity activity){
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                info_logo.setBackgroundResource(getLogoImage());
+                info_title.setText(WindowInfo.this.title);
+                info_content.setText(WindowInfo.this.content);
+                info_date.setText(WindowInfo.this.date.toString());
+                info_writer.setText(WindowInfo.this.author);
+            }
+        });
+    }
+
 
     public void setLogo(Activity activity, Logo logo) {
         this.logo = logo;
