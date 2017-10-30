@@ -17,12 +17,7 @@ import android.widget.TextView;
 
 public class WindowMenuDialog extends Dialog{
 
-	private Button button1;
-	private Button button2;
-	private Button button3;
-	private RelativeLayout backButton;
-
-	private Context context;
+	private View.OnClickListener btn1, btn2, btn3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +28,34 @@ public class WindowMenuDialog extends Dialog{
 		LinearLayout layout1 = findViewById(R.id.main_window_menu_dialog_layout_1);
 
 
-		button1 = findViewById(R.id.main_window_menu_dialog_button_1);
-		button2 = findViewById(R.id.main_window_menu_dialog_button_2);
-		button3 = findViewById(R.id.main_window_menu_dialog_button_3);
-		backButton = findViewById(R.id.main_window_menu_dialog_button_back);
+		Button button1 = findViewById(R.id.main_window_menu_dialog_button_1);
+		Button button2 = findViewById(R.id.main_window_menu_dialog_button_2);
+		Button button3 = findViewById(R.id.main_window_menu_dialog_button_3);
+		RelativeLayout backButton = findViewById(R.id.main_window_menu_dialog_button_back);
+
+		button1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				btn1.onClick(view);
+				dismiss();
+			}
+		});
+
+		button2.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				btn2.onClick(view);
+				dismiss();
+			}
+		});
+
+		button3.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				btn3.onClick(view);
+				dismiss();
+			}
+		});
 
 		backButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -54,8 +73,10 @@ public class WindowMenuDialog extends Dialog{
 	}
 
 	// 클릭버튼이 하나일때 생성자 함수로 클릭이벤트를 받는다.
-	public WindowMenuDialog(Context context) {
+	public WindowMenuDialog(Context context, View.OnClickListener btn1, View.OnClickListener btn2, View.OnClickListener btn3) {
 		super(context, android.R.style.Theme_Translucent_NoTitleBar);
-		this.context = context;
+		this.btn1 = btn1;
+		this.btn2 = btn2;
+		this.btn3 = btn3;
 	}
 }

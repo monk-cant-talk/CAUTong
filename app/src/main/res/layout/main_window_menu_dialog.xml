@@ -15,7 +15,6 @@
         android:id="@+id/main_window_menu_dialog_layout_2"
         android:layout_marginBottom="30dp">
         <RelativeLayout
-            android:id="@+id/window_info_window"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/window_board_big_round"

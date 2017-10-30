@@ -2,11 +2,14 @@ package tong.cau.com.cautong;
 
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 
@@ -122,10 +125,36 @@ public class WindowInfo {
         info_date = ret.findViewById(R.id.window_info_date);
         info_menu = ret.findViewById(R.id.window_info_menu);
 
+        info_window.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(WindowInfo.this.link != null) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(WindowInfo.this.link));
+                    WindowInfo.this.activity.startActivity(intent);
+                }
+            }
+        });
+
         info_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WindowMenuDialog dialog = new WindowMenuDialog(WindowInfo.this.activity);
+                WindowMenuDialog dialog = new WindowMenuDialog(WindowInfo.this.activity,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(WindowInfo.this.activity, "첫번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                    }
+                }, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(WindowInfo.this.activity, "두번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                    }
+                }, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(WindowInfo.this.activity, "세번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 dialog.show();
             }
         });
