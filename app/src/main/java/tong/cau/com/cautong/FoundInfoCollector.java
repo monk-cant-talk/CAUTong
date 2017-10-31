@@ -32,6 +32,7 @@ public class FoundInfoCollector {
         }
         return instance;
     }
+
     private FoundInfoCollector() {
 
     }
@@ -49,8 +50,15 @@ public class FoundInfoCollector {
             if (dataList != null) {
                 int minSize = Math.min(dataList.size(), getInfoSize());
                 for (int i = 0; i < minSize; ++i) {
-                    getInfo(i).init(WindowInfo.Logo.caucse, dataList.get(i).getAsJsonObject().get("TITLE").getAsString(), "준비중입니다", "www.naver.com", new MyDate(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong()), dataList.get(i).getAsJsonObject().get("NAME").getAsString());
-                    getInfo(i).rePrint(myActivity);
+                    WindowInfo wf = new WindowInfo(myActivity);
+                    wf.init(WindowInfo.Logo.caucse,
+                            dataList.get(i).getAsJsonObject().get("TITLE").getAsString(),
+                            "준비중입니다",
+                            "www.naver.com",
+                            new MyDate(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong()),
+                            dataList.get(i).getAsJsonObject().get("NAME").getAsString());
+                    list.add(wf);
+                    MainActivity.instance.addWindow(wf);
                 }
             }
         }

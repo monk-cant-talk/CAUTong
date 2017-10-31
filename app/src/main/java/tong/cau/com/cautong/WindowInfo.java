@@ -127,6 +127,19 @@ public class WindowInfo {
         link = "https://www.cau.ac.kr";
         date = new MyDate(new SimpleDateFormat("yyyy-MM-dd-HH-mm"), "2017-03-09-09-40");
         author = "cauTong";
+    }
+
+    //변수값이 변했으면 적용한다.
+    public void print() {
+        info_title.setText(title);
+        info_content.setText(content);
+        info_writer.setText(author);
+        info_date.setText(date.toString());
+        info_logo.setBackgroundResource(getLogoImage());
+        info_title_board.setBackgroundResource(getLogoColor());
+    }
+
+    public LinearLayout getLayout() {
 
         ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
         info_window = ret.findViewById(R.id.window_info_window);
@@ -152,12 +165,12 @@ public class WindowInfo {
             @Override
             public void onClick(View view) {
                 WindowMenuDialog dialog = new WindowMenuDialog(WindowInfo.this.activity,
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(WindowInfo.this.activity, "첫번째 버튼 터치", Toast.LENGTH_SHORT).show();
-                    }
-                }, new View.OnClickListener() {
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(WindowInfo.this.activity, "첫번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                            }
+                        }, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(WindowInfo.this.activity, "두번째 버튼 터치", Toast.LENGTH_SHORT).show();
@@ -172,19 +185,6 @@ public class WindowInfo {
             }
         });
 
-    }
-
-    //변수값이 변했으면 적용한다.
-    public void print() {
-        info_title.setText(title);
-        info_content.setText(content);
-        info_writer.setText(author);
-        info_date.setText(date.toString());
-        info_logo.setBackgroundResource(getLogoImage());
-        info_title_board.setBackgroundResource(getLogoColor());
-    }
-
-    public LinearLayout getLayout() {
         print();
         return ret;
     }
