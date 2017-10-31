@@ -3,19 +3,26 @@ package tong.cau.com.cautong;
 import android.content.res.Resources;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import tong.cau.com.cautong.model.Board;
 import tong.cau.com.cautong.model.Site;
 
 /**
@@ -23,66 +30,35 @@ import tong.cau.com.cautong.model.Site;
  */
 
 public class SiteXmlParser {
+    private static final String TAG = "SiteParser";
+
     public static Map<String, Site> parseSiteMap(Resources resources) {
         InputStream is = resources.openRawResource(R.raw.site);
 
-        Map<String, Site> siteMap = new HashMap<>();
-        // xmlPullParser
-        Log.d("parserTest", "testStart");
+        Writer writer = new StringWriter();
+        char[] buffer = new char[1024];
         try {
-
-            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-            XmlPullParser parser = factory.newPullParser();
-            parser.setInput(new InputStreamReader(is, "UTF-8"));
-            int eventType = parser.getEventType();
-            Site site = null;
-            String siteName = null;
-            while (eventType != XmlPullParser.END_DOCUMENT) {
-                switch (eventType) {
-                    case XmlPullParser.START_TAG:
-                        String startTag = parser.getName();
-                        if (startTag.equals("site")) {
-                            site = new Site();
-                            siteName = parser.getAttributeValue(0);
-                            Log.d("parserTest", siteName);
-                        }
-                        if(startTag.equals("site_url")){
-                            site.setSiteUrl(parser.nextText());
-                        }
-                        if (startTag.equals("sso_url")) {
-                            site.setSsoUrl(parser.nextText());
-                        }
-                        if (startTag.equals("notice_url")) {
-                            site.setNoticeUrl(parser.nextText());
-                        }
-                        if (startTag.equals("notice_bbs_url")) {
-                            site.setNoticeBbsUrl(parser.nextText());
-                        }
-                        if(startTag.equals("page")){
-                            site.getBbsInfo().setPage(parser.nextText());
-                        }
-                        if(startTag.equals("author")){
-                            site.getBbsInfo().setAuthor(parser.nextText());
-                        }
-                        break;
-                    case XmlPullParser.END_TAG:
-                        String endTag = parser.getName();
-                        if (endTag.equals("site")) {
-                            siteMap.put(siteName, site);
-                        }
-                        break;
-                }
-                eventType = parser.next();
+            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            int n;
+            while ((n = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, n);
             }
-
-
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            is.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return siteMap;
+
+        String jsonString = writer.toString();
+        Gson gson = new Gson();
+        Site[] siteList = gson.fromJson(jsonString, Site[].class);
+
+        HashMap<String, Site> map = new HashMap<>();
+        for (Site site : siteList) {
+            map.put(site.getName(), site);
+            for (Board board : site.getBoardList()) {
+            }
+        }
+
+        return map;
     }
 }

@@ -39,8 +39,6 @@ public class FindInfoCollectorTest {
 
         Site site = siteMap.get("CAU");
         JsonArray dataList = BoardMapper.getArticleInfo(site);
-        Log.d("ficTest", site.getSiteUrl()+ URLDecoder.decode(site.getNoticeBbsUrl())   );
-        Log.d("ficTest", String.valueOf(dataList.size()));
         if (dataList != null) {
             int minSize = dataList.size();
             for (int i = 0; i < minSize; ++i) {

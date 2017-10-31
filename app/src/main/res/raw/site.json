@@ -1,0 +1,47 @@
+[
+  {
+    "name": "CAU",
+    "ssoEnabled": true,
+    "parseType": "json",
+    "ssoUrl": "https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx",
+    "baseUrl": "https://www.cau.ac.kr",
+    "bbsListParams": "/ajax/bbs_list.php?bbsId=cau_notice&pageSize=30&category1=",
+    "bbsBaseUrl": "/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice",
+    "encode": "EUC_KR",
+    "bbsInfo": {
+      "page": "page",
+      "author": "author"
+    },
+    "boardList": [
+      {
+        "name": "전체",
+        "category": ""
+      },
+      {
+        "name": "학사",
+        "category": "학사"
+      },
+      {
+        "name": "학점교류",
+        "category": "학점교류"
+      },
+      {
+        "name": "모집",
+        "category": "모집"
+      },
+      {
+        "name": "장학",
+        "category": "장학"
+      },
+      {
+        "name": "행사",
+        "category": "행사"
+      },
+      {
+        "name": "일반",
+        "category": "일반"
+      }
+    ],
+    "testUrl": "https://www.cau.ac.kr/ajax/bbs_list.php?isNoti=Y&pageSize=50&bbsId=cau_notice"
+  }
+]

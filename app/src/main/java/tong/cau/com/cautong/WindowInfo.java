@@ -34,8 +34,7 @@ public class WindowInfo {
     private String author;
 
 
-
-    public void rePrint(Activity activity){
+    public void rePrint(Activity activity) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -141,7 +140,7 @@ public class WindowInfo {
         info_window.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(WindowInfo.this.link != null) {
+                if (WindowInfo.this.link != null) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(WindowInfo.this.link));
                     WindowInfo.this.activity.startActivity(intent);
                 }
@@ -152,12 +151,12 @@ public class WindowInfo {
             @Override
             public void onClick(View view) {
                 WindowMenuDialog dialog = new WindowMenuDialog(WindowInfo.this.activity,
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(WindowInfo.this.activity, "첫번째 버튼 터치", Toast.LENGTH_SHORT).show();
-                    }
-                }, new View.OnClickListener() {
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(WindowInfo.this.activity, "첫번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                            }
+                        }, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(WindowInfo.this.activity, "두번째 버튼 터치", Toast.LENGTH_SHORT).show();
