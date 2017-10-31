@@ -7,24 +7,15 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import tong.cau.com.cautong.model.Site;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     LinearLayout main_layout;
     RelativeLayout button;
     Activity _this = this;
@@ -42,13 +33,12 @@ public class MainActivity extends AppCompatActivity {
             main_layout.addView(FoundInfoCollector.getInstance(_this).getInfo(i).getLayout());
         }
 
-
         //MainActivity Context의 리소스를 이용하여 xml로 파싱한 Site 정보 리스트를 가져옴
         Map<String, Site> siteMap = SiteXmlParser.parseSiteMap(getResources());
 
         //TODO 유저의 즐겨찾기 리스트에 등록되어 있는 사이트 리스트를 받아옴
         final List favoriteList = new ArrayList();
-        for(String key : siteMap.keySet()){
+        for (String key : siteMap.keySet()) {
             favoriteList.add(siteMap.get(key));
         }
 

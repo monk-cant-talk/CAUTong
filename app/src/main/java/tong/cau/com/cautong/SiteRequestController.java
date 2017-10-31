@@ -28,7 +28,7 @@ public class SiteRequestController {
     private static final String CAU_URL = "https://www.cau.ac.kr:443";
     private static final String SSO_URL = "https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx";
     private static final String CAU_NOTICE = "https://www.cau.ac.kr:443/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice";
-    private static final String CAU_NOTICE_BBS = "/ajax/bbs_list.php?isNoti=Y&pageSize=50&";
+    private static final String CAU_NOTICE_BBS = "/ajax/bbs_list.php?isNoti=Y&pageSize=50&bbsId=cau_notice";
     private static final String ENCODE = "EUC-KR";
     private static final String USER_AGENT = "Mozilla/5.0";
     private static String cookies = "";
@@ -77,8 +77,6 @@ public class SiteRequestController {
         in.close();
 
         //print result
-
-//        Log.d(TAG, unicodeParser(response.toString()));
         return response.toString();
     }
 
