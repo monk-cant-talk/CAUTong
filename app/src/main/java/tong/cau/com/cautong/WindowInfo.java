@@ -108,7 +108,6 @@ public class WindowInfo {
     TextView info_date;
     Button info_menu;
     LinearLayout ret;
-    Activity activity;
 
     public void init(Logo logo, String title, String content, String link, MyDate date, String author) {
         this.logo = logo;
@@ -119,8 +118,7 @@ public class WindowInfo {
         this.author = author;
     }
 
-    public WindowInfo(Activity activity) {
-        this.activity = activity;
+    public WindowInfo() {
         logo = Logo.ict;
         title = "no title";
         content = "no content";
@@ -139,9 +137,10 @@ public class WindowInfo {
         info_title_board.setBackgroundResource(getLogoColor());
     }
 
+
     public LinearLayout getLayout() {
 
-        ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
+        ret = (LinearLayout) MainActivity.instance.getLayoutInflater().inflate(R.layout.main_window_info, null);
         info_window = ret.findViewById(R.id.window_info_window);
         info_logo = ret.findViewById(R.id.window_info_logo);
         info_title_board = ret.findViewById(R.id.window_info_title_board);
@@ -156,7 +155,7 @@ public class WindowInfo {
             public void onClick(View view) {
                 if(WindowInfo.this.link != null) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(WindowInfo.this.link));
-                    WindowInfo.this.activity.startActivity(intent);
+                    MainActivity.instance.startActivity(intent);
                 }
             }
         });
@@ -164,21 +163,21 @@ public class WindowInfo {
         info_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WindowMenuDialog dialog = new WindowMenuDialog(WindowInfo.this.activity,
+                WindowMenuDialog dialog = new WindowMenuDialog(MainActivity.instance,
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Toast.makeText(WindowInfo.this.activity, "첫번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.instance, "첫번째 버튼 터치", Toast.LENGTH_SHORT).show();
                             }
                         }, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(WindowInfo.this.activity, "두번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.instance, "두번째 버튼 터치", Toast.LENGTH_SHORT).show();
                     }
                 }, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(WindowInfo.this.activity, "세번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.instance, "세번째 버튼 터치", Toast.LENGTH_SHORT).show();
                     }
                 });
                 dialog.show();
