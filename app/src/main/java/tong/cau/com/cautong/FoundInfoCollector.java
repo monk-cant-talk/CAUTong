@@ -43,23 +43,21 @@ public class FoundInfoCollector {
         else return null;
     }
 
-    public void findInfo(List<Site> siteList) {
-        for(Site site : siteList){
-            JsonArray dataList = BoardMapper.getArticleInfo(site);
+    public void findInfo(Site site, String boardName) {
+        JsonArray dataList = BoardMapper.getArticleInfo(site, boardName);
 
-            if (dataList != null) {
-                int minSize = Math.min(dataList.size(), getInfoSize());
-                for (int i = 0; i < minSize; ++i) {
-                    WindowInfo wf = new WindowInfo();
-                    wf.init(WindowInfo.Logo.caucse,
-                            dataList.get(i).getAsJsonObject().get("TITLE").getAsString(),
-                            "준비중입니다",
-                            "www.naver.com",
-                            new MyDate(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong()),
-                            dataList.get(i).getAsJsonObject().get("NAME").getAsString());
-                    list.add(wf);
-                    MainActivity.instance.addWindow(wf);
-                }
+        if (dataList != null) {
+            int minSize = Math.min(dataList.size(), getInfoSize());
+            for (int i = 0; i < minSize; ++i) {
+                WindowInfo wf = new WindowInfo();
+                wf.init(WindowInfo.Logo.caucse,
+                        dataList.get(i).getAsJsonObject().get("TITLE").getAsString(),
+                        "준비중입니다",
+                        "www.naver.com",
+                        new MyDate(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong()),
+                        dataList.get(i).getAsJsonObject().get("NAME").getAsString());
+                list.add(wf);
+                MainActivity.instance.addWindow(wf);
             }
         }
     }

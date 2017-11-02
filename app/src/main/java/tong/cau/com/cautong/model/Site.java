@@ -32,6 +32,16 @@ public class Site {
         return getBaseUrl() + getBbsListParams() + boardList[index].getCategory();
     }
 
+    public String getBoardUrl(String boardName) {
+        for (Board board : boardList) {
+            if (board.getCategory().equals(boardName)) {
+                return getBaseUrl() + getBbsListParams() + board.getCategory();
+
+            }
+        }
+        return null;
+    }
+
     public String getName() {
         return name;
     }

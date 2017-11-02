@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import tong.cau.com.cautong.alarm.AlarmService;
+import tong.cau.com.cautong.model.Board;
 import tong.cau.com.cautong.model.Site;
 import tong.cau.com.cautong.model.WindowInfo;
 import tong.cau.com.cautong.utility.SiteXmlParser;
@@ -35,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity);
         instance = this;
 
-
         main_layout = (LinearLayout) findViewById(R.id.main_linear_layout);
         button = (RelativeLayout) findViewById(R.id.requestButton);
         testbutton = (RelativeLayout) findViewById(R.id.test_button);
@@ -44,11 +44,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     //이전 액티비티(StartActivity) 에서 검색키워드를 넣게 되면 자동으로 이 액티비티로 넘어오면서 이 함수가 실행된다.
     private void startActivity(String search_key) {
 
-        getRequestSite();
+        Map<String, Site> siteMap = SiteXmlParser.parseSiteMap(getResources());
+        Site site = null;
+        for (String key : siteMap.keySet()) {
+            site = siteMap.get(key);
+            break;
+        }
+
+        getRequestSite(site);
 
         testbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,28 +82,30 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //MainActivity Context의 리소스를 이용하여 xml로 파싱한 Site 정보 리스트를 가져옴
-    private void getRequestSite() {
+    private void getRequestSite(Site site) {
+        for (Board board : site.getBoardList()) {
+            new Thread(new FavoriteRunnable(site, board.getName())).start();
+        }
+    }
+
+    private void getFavoriteSite() {
+        //TODO 유저의 즐겨찾기 리스트에 등록되어 있는 사이트 리스트를 받아옴
         Map<String, Site> siteMap = SiteXmlParser.parseSiteMap(getResources());
 
-        //TODO 유저의 즐겨찾기 리스트에 등록되어 있는 사이트 리스트를 받아옴
-        ArrayList<Site> favoriteList = new ArrayList<>();
-        for (String key : siteMap.keySet())
-            favoriteList.add(siteMap.get(key));
-
-        new Thread(new FavoriteRunnable(favoriteList)).start();
     }
 
     private class FavoriteRunnable implements Runnable {
-        List favoriteList;
+        Site site;
+        String boardName;
 
-        public FavoriteRunnable(List favoriteList) {
-            this.favoriteList = favoriteList;
+        public FavoriteRunnable(Site site, String boardName) {
+            this.site = site;
+            this.boardName = boardName;
         }
 
         @Override
         public void run() {
-            FoundInfoCollector.getInstance().findInfo(favoriteList);
+            FoundInfoCollector.getInstance().findInfo(site, boardName);
         }
     }
 

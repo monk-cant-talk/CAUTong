@@ -2,8 +2,6 @@ package tong.cau.com.cautong.utility;
 
 import android.util.Log;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -13,8 +11,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import java.net.URLDecoder;
 
 import tong.cau.com.cautong.SiteRequestController;
 import tong.cau.com.cautong.model.Site;
@@ -27,20 +23,18 @@ public class BoardMapper {
 
     private static final String TAG = "BoardMapper";
 
-    public static JsonArray getArticleInfo(Site site) {
+    public static JsonArray getArticleInfo(Site site, String boardName) {
         Log.d("BoardMapper", "유홍석S");
         if (site.getSsoEnabled()) {
             SiteRequestController.requestSSO(site.getBaseUrl());
         }
         try {
-
-            String response = SiteRequestController.sendGet(site.getBaseUrl() + site.getBbsListParams(), site.getEncodeType());
+            String response = SiteRequestController.sendGet(site.getBoardUrl(boardName), site.getEncodeType());
             Log.d("BoardMapper", response);
             Log.d("BoardMapper", "FLAG");
             if (site.getParseType().equals("json"))
                 return parseData(response);
             else {
-                Log.d("Noru", "노루는 한번 운다");
                 return htmlToJson(response);
             }
         } catch (Exception e) {
