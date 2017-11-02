@@ -49,10 +49,10 @@
     "ssoEnabled": false,
     "parseType": "html",
     "ssoUrl": "",
-    "baseUrl": "https://ie.cau.ac.kr",
-    "bbsListParams": "",
-    "bbsBaseUrl": "/20141101/sub07/",
-    "encode": "UTF-8",
+    "baseUrl": "http://ie.cau.ac.kr",
+    "bbsListParams": "/20141101/sub07/",
+    "bbsBaseUrl": "",
+    "encodeType": "UTF-8",
     "bbsInfo": {
       "page": "page",
       "author": "author"

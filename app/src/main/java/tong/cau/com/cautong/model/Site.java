@@ -34,7 +34,7 @@ public class Site {
 
     public String getBoardUrl(String boardName) {
         for (Board board : boardList) {
-            if (board.getCategory().equals(boardName)) {
+            if (board.getName().equals(boardName)) {
                 return getBaseUrl() + getBbsListParams() + board.getCategory();
 
             }

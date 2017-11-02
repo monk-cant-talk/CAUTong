@@ -24,11 +24,14 @@ public class BoardMapper {
     private static final String TAG = "BoardMapper";
 
     public static JsonArray getArticleInfo(Site site, String boardName) {
-        Log.d("BoardMapper", "유홍석S");
+        Log.d(TAG, "board: " + boardName);
         if (site.getSsoEnabled()) {
+
             SiteRequestController.requestSSO(site.getBaseUrl());
         }
         try {
+            Log.d(TAG, site.getBoardUrl(boardName));
+            Log.d(TAG, site.getEncodeType());
             String response = SiteRequestController.sendGet(site.getBoardUrl(boardName), site.getEncodeType());
             Log.d("BoardMapper", response);
             Log.d("BoardMapper", "FLAG");

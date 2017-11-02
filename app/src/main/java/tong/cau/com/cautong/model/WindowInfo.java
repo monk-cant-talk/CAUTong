@@ -197,8 +197,15 @@ public class WindowInfo {
             @Override
             public void onClick(View view) {
                 if (WindowInfo.this.link != null) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(WindowInfo.this.link));
-                    MainActivity.instance.startActivity(intent);
+                    if(MainActivity.instance != null) {
+                        MainActivity.instance.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(WindowInfo.this.link));
+                                MainActivity.instance.startActivity(intent);
+                            }
+                        });
+                    }
                 }
             }
         });
