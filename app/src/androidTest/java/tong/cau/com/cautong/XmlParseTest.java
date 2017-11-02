@@ -26,8 +26,9 @@ public class XmlParseTest {
     private static final String SSO_URL = "https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx";
     private static final String CAU_NOTICE = "https://www.cau.ac.kr:443/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice";
     private static final String CAU_NOTICE_BBS = "%2fajax%2fbbs_list.php%3fisNoti%3dY%26pageSize%3d50%26";
+
     @Test
-    public void parseTest(){
+    public void parseTest() {
         Context appContext = InstrumentationRegistry.getTargetContext();
         assertNotNull(appContext.getResources());
 
@@ -37,9 +38,9 @@ public class XmlParseTest {
         assertThat(site.getBaseUrl(), is(CAU_URL));
         assertThat(site.getBbsBaseUrl(), is(CAU_NOTICE));
         assertThat(site.getBbsListParams(), is(CAU_NOTICE_BBS));
-        assertThat(site.getParseType(),is("json"));
+        assertThat(site.getParseType(), is("json"));
 
         Site site2 = siteMap.get("Integrative");
-        assertThat(site2.getParseType(),is("html"));
+        assertThat(site2.getParseType(), is("html"));
     }
 }

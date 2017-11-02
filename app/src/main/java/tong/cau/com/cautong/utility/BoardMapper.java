@@ -29,15 +29,15 @@ public class BoardMapper {
 
     public static JsonArray getArticleInfo(Site site) {
         Log.d("BoardMapper", "유홍석S");
-        if(site.getSsoEnabled()) {
+        if (site.getSsoEnabled()) {
             SiteRequestController.requestSSO(site.getBaseUrl());
         }
         try {
 
-            String response = SiteRequestController.sendGet(site.getBaseUrl() + site.getBbsListParams() ,site.getEncodeType());
+            String response = SiteRequestController.sendGet(site.getBaseUrl() + site.getBbsListParams(), site.getEncodeType());
             Log.d("BoardMapper", response);
             Log.d("BoardMapper", "FLAG");
-            if(site.getParseType()=="json")
+            if (site.getParseType() == "json")
                 return parseData(response);
             else {
                 Log.d("Noru", "노루는 한번 운다");
@@ -49,38 +49,38 @@ public class BoardMapper {
         return null;
     }
 
-    private static JsonArray htmlToJson(String response){
+    private static JsonArray htmlToJson(String response) {
         Log.d("BoardMapper", "htmlToJsonStart");
         Log.d("BoardMapper", response);
         Document doc = Jsoup.parse(response);
         Element content = doc.getElementById("cont_right");
         Element table = content.select("table").get(2);
         Element tbody = table.select("tbody").get(0);
-        Elements tr = tbody.getElementsByAttributeValue("width","718");
+        Elements tr = tbody.getElementsByAttributeValue("width", "718");
         tr = tr.select("tbody");
         tr = tr.select("tr");
         Elements tr2 = new Elements();
-        int count=0;
-        for(int i=0;i<tr.size();i=i+2){
+        int count = 0;
+        for (int i = 0; i < tr.size(); i = i + 2) {
             tr2.add(tr.get(i));
             count++;
         }
-        Log.d("whywhy",tr2.text());
-        Log.d("wer",Integer.toString(count));
+        Log.d("whywhy", tr2.text());
+        Log.d("wer", Integer.toString(count));
         JsonArray parentJsonObject = new JsonArray();
-        for(Element row : tr2){
-            Log.d("wer","rnenene");
-            Log.d("wer",row.text());
+        for (Element row : tr2) {
+            Log.d("wer", "rnenene");
+            Log.d("wer", row.text());
             JsonObject jsonObject = new JsonObject();
             Elements tds = row.select("td");
             String number = tds.get(0).text();
             String title = tds.get(2).getElementsByTag("a").get(0).text();
             String author = tds.get(4).text();
             String date = tds.get(6).text();
-            Log.d("whywhy",date);
-            jsonObject.addProperty("number",number);
+            Log.d("whywhy", date);
+            jsonObject.addProperty("number", number);
             jsonObject.addProperty("TITLE", title);
-            jsonObject.addProperty("NAME",author);
+            jsonObject.addProperty("NAME", author);
             jsonObject.addProperty("REGDATE", 20171102);
             //jsonObject.addProperty("REGDATE",date);
             parentJsonObject.add(jsonObject);
