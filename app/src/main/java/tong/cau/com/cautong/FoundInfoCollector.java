@@ -54,7 +54,7 @@ public class FoundInfoCollector {
                     wf.init(WindowInfo.Logo.caucse,
                             dataList.get(i).getAsJsonObject().get("TITLE").getAsString(),
                             "준비중입니다",
-                            "www.naver.com",
+                            "https://www.cau.ac.kr",
                             new MyDate(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong()),
                             dataList.get(i).getAsJsonObject().get("NAME").getAsString());
                     list.add(wf);
