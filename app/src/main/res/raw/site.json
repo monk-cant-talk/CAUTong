@@ -43,5 +43,30 @@
       }
     ],
     "testUrl": "https://www.cau.ac.kr/ajax/bbs_list.php?isNoti=Y&pageSize=50&bbsId=cau_notice"
+  },
+  {
+    "name": "Integrative",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "ssoUrl": "",
+    "baseUrl": "https://ie.cau.ac.kr",
+    "bbsListParams": "",
+    "bbsBaseUrl": "/20141101/sub07/",
+    "encode": "UTF-8",
+    "bbsInfo": {
+      "page": "page",
+      "author": "author"
+    },
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "sub01.php"
+      },
+      {
+        "name":"취업정보게시판",
+        "category":"sub03.php"
+      }
+    ],
+    "testUrl": "http://ie.cau.ac.kr/20141101/sub07/sub01.php"
   }
 ]
