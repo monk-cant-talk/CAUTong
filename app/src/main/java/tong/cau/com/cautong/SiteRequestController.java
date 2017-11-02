@@ -63,6 +63,12 @@ public class SiteRequestController {
         Log.d(TAG, "\nSending 'GET' request to URL : " + url);
         Log.d(TAG, "Response Code : " + responseCode);
 
+        if(url == null){
+            throw new NullPointerException("url is null");
+        }
+        if(encodeType == null){
+            throw new NullPointerException("encode Type is null : " +url);
+        }
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream(), encodeType));
         String inputLine;

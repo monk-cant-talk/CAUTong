@@ -34,7 +34,6 @@ public class StarHelper {
 
         idList.add(windowInfo);
         PlayerPrefs.getInstance().setString("star", gson.toJson(idList));
-        String s =gson.toJson(idList, new TypeToken<List<WindowInfo>>(){}.getType());
 
         PlayerPrefs.getInstance().save();
     }

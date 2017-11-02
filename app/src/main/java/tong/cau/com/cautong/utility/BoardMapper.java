@@ -43,6 +43,7 @@ public class BoardMapper {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Log.d(TAG, "null response : " + boardName);
         return null;
     }
 
