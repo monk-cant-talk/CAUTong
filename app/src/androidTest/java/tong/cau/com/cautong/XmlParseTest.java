@@ -34,9 +34,9 @@ public class XmlParseTest {
         Map<String, Site> siteMap = SiteXmlParser.parseSiteMap(appContext.getResources());
         Site site = siteMap.get("CAU");
 
-        assertThat(site.getSiteUrl(), is(CAU_URL));
+        assertThat(site.getBaseUrl(), is(CAU_URL));
         assertThat(site.getSsoUrl(), is(SSO_URL));
-        assertThat(site.getNoticeUrl(), is(CAU_NOTICE));
-        assertThat(site.getNoticeBbsUrl(), is(CAU_NOTICE_BBS));
+        assertThat(site.getBbsBaseUrl(), is(CAU_NOTICE));
+        assertThat(site.getBbsListParams(), is(CAU_NOTICE_BBS));
     }
 }

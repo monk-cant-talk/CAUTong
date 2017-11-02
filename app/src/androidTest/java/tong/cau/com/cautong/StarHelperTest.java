@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -13,6 +14,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import tong.cau.com.cautong.model.MyDate;
@@ -30,23 +33,27 @@ public class StarHelperTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
             MainActivity.class);
-    public Activity activity;
+    public MainActivity activity;
 
     @Before
-    public void setUp(){
-        PlayerPrefs.getInstance(mActivityRule.getActivity()).removeKey("star");
-        activity = (Activity)mActivityRule.getActivity();
+    public void setUp() {
+        PlayerPrefs.getTestInstance(activity).removeKey("star");
+        PlayerPrefs.getInstance().save();
+        activity = mActivityRule.getActivity();
     }
 
     @Test
-    public void initialStarWindowInfo(){
+    public void initialStarWindowInfo() {
         WindowInfo sampleWindowInfo = new WindowInfo();
         sampleWindowInfo.init(WindowInfo.Logo.caucse, "유홍석 찐따", "준비중입니다", "www.naver.com", new MyDate("20171031"), "운영자");
-        StarHelper.starWindowInfo((Activity)activity, sampleWindowInfo);
+        StarHelper.starWindowInfo(sampleWindowInfo);
 
-        Gson gson = new Gson();
-        String starredWindowInfoList = PlayerPrefs.getInstance(activity).getString("star");
-        List<WindowInfo> windowInfoList = gson.fromJson(starredWindowInfoList, new TypeToken<List<WindowInfo>>(){}.getType());
+        String starredWindowInfoListStr = PlayerPrefs.getInstance().getString("star");
+        Log.d("StartHelperTest", starredWindowInfoListStr);
+
+
+        List<WindowInfo> windowInfoList = new Gson().fromJson(starredWindowInfoListStr, new TypeToken<List<WindowInfo>>() {
+        }.getType());
 
         assertThat(windowInfoList.get(0).getTitle(), is("유홍석 찐따"));
         assertThat(windowInfoList.get(0).getContent(), is("준비중입니다"));

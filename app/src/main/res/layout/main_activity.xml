@@ -36,8 +36,18 @@
                     <RelativeLayout
                         android:id="@+id/requestButton"
                         android:background="#FFFFFF"
-                        android:layout_width="100dp"
+                        android:layout_width="50dp"
                         android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Button" />
+
+                    <RelativeLayout
+                        android:id="@+id/test_button"
+                        android:background="#FFFFFF"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="60dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:text="Button" />
