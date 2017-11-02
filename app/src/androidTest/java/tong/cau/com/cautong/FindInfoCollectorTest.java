@@ -13,10 +13,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.Map;
 
 import tong.cau.com.cautong.model.Site;
+import tong.cau.com.cautong.utility.BoardMapper;
+import tong.cau.com.cautong.utility.SiteXmlParser;
 
 import static android.app.PendingIntent.getActivity;
 import static junit.framework.Assert.assertNotNull;
@@ -39,8 +40,6 @@ public class FindInfoCollectorTest {
 
         Site site = siteMap.get("CAU");
         JsonArray dataList = BoardMapper.getArticleInfo(site);
-        Log.d("ficTest", site.getSiteUrl()+ URLDecoder.decode(site.getNoticeBbsUrl())   );
-        Log.d("ficTest", String.valueOf(dataList.size()));
         if (dataList != null) {
             int minSize = dataList.size();
             for (int i = 0; i < minSize; ++i) {

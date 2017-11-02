@@ -2,23 +2,15 @@ package tong.cau.com.cautong;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.util.Log;
 
 import tong.cau.com.cautong.model.Site;
+import tong.cau.com.cautong.utility.SiteXmlParser;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
@@ -42,9 +34,9 @@ public class XmlParseTest {
         Map<String, Site> siteMap = SiteXmlParser.parseSiteMap(appContext.getResources());
         Site site = siteMap.get("CAU");
 
-        assertThat(site.getSiteUrl(), is(CAU_URL));
+        assertThat(site.getBaseUrl(), is(CAU_URL));
         assertThat(site.getSsoUrl(), is(SSO_URL));
-        assertThat(site.getNoticeUrl(), is(CAU_NOTICE));
-        assertThat(site.getNoticeBbsUrl(), is(CAU_NOTICE_BBS));
+        assertThat(site.getBbsBaseUrl(), is(CAU_NOTICE));
+        assertThat(site.getBbsListParams(), is(CAU_NOTICE_BBS));
     }
 }

@@ -1,4 +1,6 @@
-package tong.cau.com.cautong;
+package tong.cau.com.cautong.utility;
+
+import android.util.Log;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -6,6 +8,7 @@ import com.google.gson.JsonParser;
 
 import java.net.URLDecoder;
 
+import tong.cau.com.cautong.SiteRequestController;
 import tong.cau.com.cautong.model.Site;
 
 /**
@@ -14,11 +17,14 @@ import tong.cau.com.cautong.model.Site;
 
 public class BoardMapper {
 
+    private static final String TAG = "BoardMapper";
+
     public static JsonArray getArticleInfo(Site site) {
-        SiteRequestController.requestSSO(site.getNoticeUrl());
+        SiteRequestController.requestSSO(site.getBbsBaseUrl());
 
         try {
-            String response = SiteRequestController.sendGet(site.getSiteUrl() + URLDecoder.decode(site.getNoticeBbsUrl()) );
+            final int testBoardId = 1;
+            String response = SiteRequestController.sendGet(site.getBoardUrl(testBoardId));
             return parseData(response);
         } catch (Exception e) {
             e.printStackTrace();

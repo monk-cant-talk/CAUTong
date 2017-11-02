@@ -1,4 +1,4 @@
-package tong.cau.com.cautong;
+package tong.cau.com.cautong.model;
 
 
 import android.app.Activity;
@@ -12,6 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+
+import tong.cau.com.cautong.MainActivity;
+import tong.cau.com.cautong.R;
+import tong.cau.com.cautong.WindowMenuDialog;
 
 //전체 뷰 중에서 기사를 하나 찾게 되면 기사에 관련한 윈도우를 띄워야 하는데 그 정보를 아래에 채워 넣는다.
 public class WindowInfo {
@@ -33,6 +37,40 @@ public class WindowInfo {
     //작성자
     private String author;
 
+    transient LinearLayout  info_window;
+    transient RelativeLayout info_logo;
+    transient RelativeLayout info_title_board;
+    transient TextView info_content;
+    transient TextView info_writer;
+    transient TextView info_title;
+    transient TextView info_date;
+    transient Button info_menu;
+    transient LinearLayout ret;
+
+
+    public Logo getLogo() {
+        return logo;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public MyDate getDate() {
+        return date;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
 
 
     public void rePrint(Activity activity){
@@ -48,8 +86,11 @@ public class WindowInfo {
         });
     }
 
+    public void setLogo(Logo logo){
+        this.logo = logo;
+    }
 
-    public void setLogo(Activity activity, Logo logo) {
+    public void updateLogo(Activity activity, Logo logo) {
         this.logo = logo;
         activity.runOnUiThread(new Runnable() {
             @Override
@@ -59,7 +100,11 @@ public class WindowInfo {
         });
     }
 
-    public void setTitle(Activity activity, String title) {
+    public void setTitle(String title){
+        this.title = title;
+    }
+
+    public void updateTitle(Activity activity, String title) {
         this.title = title;
         activity.runOnUiThread(new Runnable() {
             @Override
@@ -69,7 +114,11 @@ public class WindowInfo {
         });
     }
 
-    public void setContent(Activity activity, String content) {
+    public void setContent(String content){
+        this.content = content;
+    }
+
+    public void updateContent(Activity activity, String content) {
         this.content = content;
         activity.runOnUiThread(new Runnable() {
             @Override
@@ -89,7 +138,11 @@ public class WindowInfo {
         });
     }
 
-    public void setAuthor(Activity activity, String author) {
+    public void setAuthor(String author){
+        this.author =author;
+    }
+
+    public void updateAuthor(Activity activity, String author) {
         this.author = author;
         activity.runOnUiThread(new Runnable() {
             @Override
@@ -98,17 +151,6 @@ public class WindowInfo {
             }
         });
     }
-
-    LinearLayout info_window;
-    RelativeLayout info_logo;
-    RelativeLayout info_title_board;
-    TextView info_content;
-    TextView info_writer;
-    TextView info_title;
-    TextView info_date;
-    Button info_menu;
-    LinearLayout ret;
-    Activity activity;
 
     public void init(Logo logo, String title, String content, String link, MyDate date, String author) {
         this.logo = logo;
@@ -119,59 +161,13 @@ public class WindowInfo {
         this.author = author;
     }
 
-    public WindowInfo(Activity activity) {
-        this.activity = activity;
+    public WindowInfo() {
         logo = Logo.ict;
         title = "no title";
         content = "no content";
         link = "https://www.cau.ac.kr";
         date = new MyDate(new SimpleDateFormat("yyyy-MM-dd-HH-mm"), "2017-03-09-09-40");
         author = "cauTong";
-
-        ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
-        info_window = ret.findViewById(R.id.window_info_window);
-        info_logo = ret.findViewById(R.id.window_info_logo);
-        info_title_board = ret.findViewById(R.id.window_info_title_board);
-        info_content = ret.findViewById(R.id.window_info_content);
-        info_writer = ret.findViewById(R.id.window_info_writer);
-        info_title = ret.findViewById(R.id.window_info_title);
-        info_date = ret.findViewById(R.id.window_info_date);
-        info_menu = ret.findViewById(R.id.window_info_menu);
-
-        info_window.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(WindowInfo.this.link != null) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(WindowInfo.this.link));
-                    WindowInfo.this.activity.startActivity(intent);
-                }
-            }
-        });
-
-        info_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                WindowMenuDialog dialog = new WindowMenuDialog(WindowInfo.this.activity,
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(WindowInfo.this.activity, "첫번째 버튼 터치", Toast.LENGTH_SHORT).show();
-                    }
-                }, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(WindowInfo.this.activity, "두번째 버튼 터치", Toast.LENGTH_SHORT).show();
-                    }
-                }, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(WindowInfo.this.activity, "세번째 버튼 터치", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                dialog.show();
-            }
-        });
-
     }
 
     //변수값이 변했으면 적용한다.
@@ -184,7 +180,53 @@ public class WindowInfo {
         info_title_board.setBackgroundResource(getLogoColor());
     }
 
+
     public LinearLayout getLayout() {
+
+        ret = (LinearLayout) MainActivity.instance.getLayoutInflater().inflate(R.layout.main_window_info, null);
+        info_window = ret.findViewById(R.id.window_info_window);
+        info_logo = ret.findViewById(R.id.window_info_logo);
+        info_title_board = ret.findViewById(R.id.window_info_title_board);
+        info_content = ret.findViewById(R.id.window_info_content);
+        info_writer = ret.findViewById(R.id.window_info_writer);
+        info_title = ret.findViewById(R.id.window_info_title);
+        info_date = ret.findViewById(R.id.window_info_date);
+        info_menu = ret.findViewById(R.id.window_info_menu);
+
+        info_window.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (WindowInfo.this.link != null) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(WindowInfo.this.link));
+                    MainActivity.instance.startActivity(intent);
+                }
+            }
+        });
+
+        info_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                WindowMenuDialog dialog = new WindowMenuDialog(MainActivity.instance,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(MainActivity.instance, "첫번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                            }
+                        }, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.instance, "두번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                    }
+                }, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.instance, "세번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                dialog.show();
+            }
+        });
+
         print();
         return ret;
     }

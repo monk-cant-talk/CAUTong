@@ -15,14 +15,26 @@ public class PlayerPrefs {
 	private SharedPreferences.Editor editor = null;
 
 	private static PlayerPrefs instance = null;
-	public static PlayerPrefs getInstance(Activity activity){
+
+	public static PlayerPrefs getTestInstance(MainActivity activity){
 		if(instance == null)
 			instance = new PlayerPrefs(activity);
 		return instance;
 	}
 
-	private PlayerPrefs(Activity activity) {
-		if(setting == null) setting = activity.getSharedPreferences("dialogSetting", 0);
+	private PlayerPrefs(MainActivity activity) {
+		if(setting == null) setting = activity.instance.getSharedPreferences("dialogSetting", 0);
+		if(editor == null) editor = setting.edit();
+	}
+
+	public static PlayerPrefs getInstance(){
+		if(instance == null)
+			instance = new PlayerPrefs();
+		return instance;
+	}
+
+	private PlayerPrefs() {
+		if(setting == null) setting = MainActivity.instance.getSharedPreferences("dialogSetting", 0);
 		if(editor == null) editor = setting.edit();
 	}
 

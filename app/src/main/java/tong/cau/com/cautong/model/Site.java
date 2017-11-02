@@ -1,26 +1,54 @@
 package tong.cau.com.cautong.model;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+
 /**
  * Created by Velmont on 2017-10-30.
  */
 
 public class Site {
-    private String siteUrl;
+    private String name;
+    private boolean ssoEnabled;
+    private String parseType;
     private String ssoUrl;
-    private String noticeUrl;
-    private String noticeBbsUrl;
+    private String baseUrl;
+    private String bbsBaseUrl;
+
+    private String bbsListParams;
     private String encode;
     private BbsInfo bbsInfo;
-    public Site(){
-        this.bbsInfo = new BbsInfo();
+    private Board[] boardList;
+
+    private String testUrl;
+
+    public String getBoardUrl(int index) {
+        return getBaseUrl() + getBbsListParams() + boardList[index].getCategory();
     }
 
-    public String getSiteUrl() {
-        return siteUrl;
+    public String getName() {
+        return name;
     }
 
-    public void setSiteUrl(String siteUrl) {
-        this.siteUrl = siteUrl;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isSsoEnabled() {
+        return ssoEnabled;
+    }
+
+    public void setSsoEnabled(boolean ssoEnabled) {
+        this.ssoEnabled = ssoEnabled;
+    }
+
+    public String getParseType() {
+        return parseType;
+    }
+
+    public void setParseType(String parseType) {
+        this.parseType = parseType;
     }
 
     public String getSsoUrl() {
@@ -31,12 +59,28 @@ public class Site {
         this.ssoUrl = ssoUrl;
     }
 
-    public String getNoticeUrl() {
-        return noticeUrl;
+    public String getBaseUrl() {
+        return baseUrl;
     }
 
-    public void setNoticeUrl(String noticeUrl) {
-        this.noticeUrl = noticeUrl;
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
+
+    public String getBbsBaseUrl() {
+        return bbsBaseUrl;
+    }
+
+    public void setBbsBaseUrl(String bbsBaseUrl) {
+        this.bbsBaseUrl = bbsBaseUrl;
+    }
+
+    public String getBbsListParams() {
+        return bbsListParams;
+    }
+
+    public void setBbsListParams(String bbsListParams) {
+        this.bbsListParams = bbsListParams;
     }
 
     public String getEncode() {
@@ -55,13 +99,23 @@ public class Site {
         this.bbsInfo = bbsInfo;
     }
 
-    public String getNoticeBbsUrl() {
-        return noticeBbsUrl;
+    public Board getBoard(int index) {
+        return boardList[index];
     }
 
-    public void setNoticeBbsUrl(String noticeBbsUrl) {
-        this.noticeBbsUrl = noticeBbsUrl;
+    public Board[] getBoardList() {
+        return boardList;
     }
 
+    public void setBoardList(Board[] boardList) {
+        this.boardList = boardList;
+    }
 
+    public String getTestUrl() {
+        return testUrl;
+    }
+
+    public void setTestUrl(String testUrl) {
+        this.testUrl = testUrl;
+    }
 }
