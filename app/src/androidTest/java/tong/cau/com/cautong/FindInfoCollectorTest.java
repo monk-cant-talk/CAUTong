@@ -21,6 +21,8 @@ import tong.cau.com.cautong.utility.SiteXmlParser;
 
 import static android.app.PendingIntent.getActivity;
 import static junit.framework.Assert.assertNotNull;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by Velmont on 2017-10-30.
@@ -38,7 +40,9 @@ public class FindInfoCollectorTest {
 
         Map<String, Site> siteMap = SiteXmlParser.parseSiteMap(appContext.getResources());
 
-        Site site = siteMap.get("CAU");
+        Site site = siteMap.get("Integrative");
+        assertThat(site.getParseType(), is("html"));
+
         JsonArray dataList = BoardMapper.getArticleInfo(site);
         if (dataList != null) {
             int minSize = dataList.size();

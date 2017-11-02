@@ -35,6 +35,7 @@ public class SiteRequestController {
     private static boolean session = false;
 
 
+
     public static void requestSSO(String url) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("retURL", url);
@@ -51,7 +52,7 @@ public class SiteRequestController {
     }
 
     // HTTP GET request
-    public static String sendGet(String url) throws Exception {
+    public static String sendGet(String url, String encodeType) throws Exception {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
@@ -67,7 +68,7 @@ public class SiteRequestController {
         Log.d(TAG, "Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), "EUC-KR"));
+                new InputStreamReader(con.getInputStream(), encodeType));
         String inputLine;
         StringBuffer response = new StringBuffer();
 
@@ -76,6 +77,7 @@ public class SiteRequestController {
         }
         in.close();
 
+        Log.d(TAG, "Response : " + response);
         //print result
         return response.toString();
     }

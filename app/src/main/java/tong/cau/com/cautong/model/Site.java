@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class Site {
     private String name;
     private boolean ssoEnabled;
-    private String parseType;
     private String ssoUrl;
     private String baseUrl;
     private String bbsBaseUrl;
@@ -21,7 +20,13 @@ public class Site {
     private BbsInfo bbsInfo;
     private Board[] boardList;
 
+    private String encodeType;
+    private String parseType;
     private String testUrl;
+
+    public Site(){
+        this.bbsInfo = new BbsInfo();
+    }
 
     public String getBoardUrl(int index) {
         return getBaseUrl() + getBbsListParams() + boardList[index].getCategory();
@@ -40,6 +45,14 @@ public class Site {
     }
 
     public void setSsoEnabled(boolean ssoEnabled) {
+        this.ssoEnabled = ssoEnabled;
+    }
+
+    public Boolean getSsoEnabled() {
+        return ssoEnabled;
+    }
+
+    public void setSsoEnabled(Boolean ssoEnabled) {
         this.ssoEnabled = ssoEnabled;
     }
 
@@ -83,12 +96,12 @@ public class Site {
         this.bbsListParams = bbsListParams;
     }
 
-    public String getEncode() {
-        return encode;
+    public String getEncodeType() {
+        return encodeType;
     }
 
-    public void setEncode(String encode) {
-        this.encode = encode;
+    public void setEncodeType(String encodeType) {
+        this.encodeType = encodeType;
     }
 
     public BbsInfo getBbsInfo() {
