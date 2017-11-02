@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import tong.cau.com.cautong.R;
 import tong.cau.com.cautong.model.Board;
 import tong.cau.com.cautong.model.Site;
@@ -32,9 +33,42 @@ import tong.cau.com.cautong.model.Site;
 public class SiteXmlParser {
     private static final String TAG = "SiteParser";
 
+    private static Gson gson = new Gson();
+    private static Map<String, Site> map = null;
+
+    public static Map<String, Site> getSiteMap(Resources resources) {
+        if (map == null) {
+            map = parseSiteMap(resources);
+        }
+
+        return map;
+    }
+
     public static Map<String, Site> parseSiteMap(Resources resources) {
         InputStream is = resources.openRawResource(R.raw.site);
 
+        String jsonString = streamToString(is);
+
+
+        Site[] siteList = gson.fromJson(jsonString, Site[].class);
+
+        map = new HashMap<>();
+        for (Site site : siteList) {
+            map.put(site.getName(), site);
+        }
+
+        return map;
+    }
+
+    public static FavoriteItem[] parseFavorite(Resources resources) {
+        InputStream is = resources.openRawResource(R.raw.favorite);
+
+        String jsonString = streamToString(is);
+
+        return gson.fromJson(jsonString, FavoriteItem[].class);
+    }
+
+    private static String streamToString(InputStream is) {
         Writer writer = new StringWriter();
         char[] buffer = new char[1024];
         try {
@@ -48,17 +82,11 @@ public class SiteXmlParser {
             e.printStackTrace();
         }
 
-        String jsonString = writer.toString();
-        Gson gson = new Gson();
-        Site[] siteList = gson.fromJson(jsonString, Site[].class);
+        return writer.toString();
+    }
 
-        HashMap<String, Site> map = new HashMap<>();
-        for (Site site : siteList) {
-            map.put(site.getName(), site);
-            for (Board board : site.getBoardList()) {
-            }
-        }
-
-        return map;
+    private class FavoriteItem {
+        String siteName;
+        String cagegoryName;
     }
 }

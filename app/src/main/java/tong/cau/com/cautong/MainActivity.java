@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import tong.cau.com.cautong.alarm.AlarmService;
+import tong.cau.com.cautong.model.Board;
 import tong.cau.com.cautong.model.Site;
 import tong.cau.com.cautong.model.WindowInfo;
 import tong.cau.com.cautong.utility.SiteXmlParser;
@@ -38,20 +39,27 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout testbutton = (RelativeLayout) findViewById(R.id.test_button);
 
 
-        getRequestSite();
+        Map<String, Site> siteMap = SiteXmlParser.parseSiteMap(getResources());
+        Site site = null;
+        for (String key : siteMap.keySet()) {
+            site = siteMap.get(key);
+            break;
+        }
+
+        getRequestSite(site);
 
 
         testbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 Notification notifi = new Notification.Builder(getApplicationContext())
-                    .setContentTitle("Content Title")
-                    .setContentText("Content Text")
-                    .setSmallIcon(R.drawable.c)
-                    .setTicker("알림!!!")
-                    //.setContentIntent(intent)
-                    .build();
+                        .setContentTitle("Content Title")
+                        .setContentText("Content Text")
+                        .setSmallIcon(R.drawable.c)
+                        .setTicker("알림!!!")
+                        //.setContentIntent(intent)
+                        .build();
 
                 nm.notify(10, notifi);
                 Toast.makeText(MainActivity.this, "fdsa", Toast.LENGTH_SHORT).show();
@@ -62,42 +70,52 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void startAlarmService(){
+    private void startAlarmService() {
         Intent intent = new Intent(MainActivity.this, AlarmService.class);
         startService(intent);
 
     }
 
-    private void getRequestSite(){
-        //MainActivity Context의 리소스를 이용하여 xml로 파싱한 Site 정보 리스트를 가져옴
-        Map<String, Site> siteMap = SiteXmlParser.parseSiteMap(getResources());
-
-        //TODO 유저의 즐겨찾기 리스트에 등록되어 있는 사이트 리스트를 받아옴
-        ArrayList<Site> favoriteList = new ArrayList<>();
-        for(String key : siteMap.keySet())
-            favoriteList.add(siteMap.get(key));
-
-        new Thread(new FavoriteRunnable(favoriteList)).start();
-    }
-
-    private class FavoriteRunnable implements Runnable{
-        List favoriteList;
-        public FavoriteRunnable(List favoriteList){this.favoriteList = favoriteList;}
-        @Override
-        public void run(){
-            FoundInfoCollector.getInstance().findInfo(favoriteList);
+    private void getRequestSite(Site site) {
+        for (Board board : site.getBoardList()) {
+            new Thread(new FavoriteRunnable(site, board.getName())).start();
         }
     }
 
-    public void addWindow(WindowInfo info){
+    private void getFavoriteSite() {
+        //TODO 유저의 즐겨찾기 리스트에 등록되어 있는 사이트 리스트를 받아옴
+        Map<String, Site> siteMap = SiteXmlParser.parseSiteMap(getResources());
+
+    }
+
+    private class FavoriteRunnable implements Runnable {
+        Site site;
+        String boardName;
+
+        public FavoriteRunnable(Site site, String boardName) {
+            this.site = site;
+            this.boardName = boardName;
+        }
+
+        @Override
+        public void run() {
+            FoundInfoCollector.getInstance().findInfo(site, boardName);
+        }
+    }
+
+    public void addWindow(WindowInfo info) {
         runOnUiThread(new AddWindowInfo(info));
     }
 
-    private class AddWindowInfo implements Runnable{
+    private class AddWindowInfo implements Runnable {
         WindowInfo info;
-        public AddWindowInfo(WindowInfo info){this.info = info;}
+
+        public AddWindowInfo(WindowInfo info) {
+            this.info = info;
+        }
+
         @Override
-        public void run(){
+        public void run() {
             main_layout.addView(info.getLayout());
         }
     }

@@ -37,7 +37,7 @@ public class WindowInfo {
     //작성자
     private String author;
 
-    transient LinearLayout  info_window;
+    transient LinearLayout info_window;
     transient RelativeLayout info_logo;
     transient RelativeLayout info_title_board;
     transient TextView info_content;
@@ -73,7 +73,7 @@ public class WindowInfo {
     }
 
 
-    public void rePrint(Activity activity){
+    public void rePrint(Activity activity) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -86,7 +86,7 @@ public class WindowInfo {
         });
     }
 
-    public void setLogo(Logo logo){
+    public void setLogo(Logo logo) {
         this.logo = logo;
     }
 
@@ -100,7 +100,7 @@ public class WindowInfo {
         });
     }
 
-    public void setTitle(String title){
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -114,7 +114,7 @@ public class WindowInfo {
         });
     }
 
-    public void setContent(String content){
+    public void setContent(String content) {
         this.content = content;
     }
 
@@ -138,8 +138,8 @@ public class WindowInfo {
         });
     }
 
-    public void setAuthor(String author){
-        this.author =author;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public void updateAuthor(Activity activity, String author) {
