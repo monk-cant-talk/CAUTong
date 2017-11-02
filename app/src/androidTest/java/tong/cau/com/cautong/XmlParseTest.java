@@ -46,5 +46,9 @@ public class XmlParseTest {
         assertThat(site.getSsoUrl(), is(SSO_URL));
         assertThat(site.getNoticeUrl(), is(CAU_NOTICE));
         assertThat(site.getNoticeBbsUrl(), is(CAU_NOTICE_BBS));
+        assertThat(site.getParseType(),is("json"));
+
+        Site site2 = siteMap.get("Integrative");
+        assertThat(site2.getParseType(),is("html"));
     }
 }

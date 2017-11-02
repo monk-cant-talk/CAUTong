@@ -9,8 +9,24 @@ public class Site {
     private String ssoUrl;
     private String noticeUrl;
     private String noticeBbsUrl;
-    private String encode;
+    private String encodeType;
     private BbsInfo bbsInfo;
+    private String parseType;
+
+    public Boolean getSsoEnabled() {
+        return ssoEnabled;
+    }
+
+    public void setSsoEnabled(Boolean ssoEnabled) {
+        this.ssoEnabled = ssoEnabled;
+    }
+
+    private Boolean ssoEnabled;
+
+    public String getParseType() { return parseType; }
+
+    public void setParseType(String parseType) {this.parseType = parseType;}
+
     public Site(){
         this.bbsInfo = new BbsInfo();
     }
@@ -39,12 +55,12 @@ public class Site {
         this.noticeUrl = noticeUrl;
     }
 
-    public String getEncode() {
-        return encode;
+    public String getEncodeType() {
+        return encodeType;
     }
 
-    public void setEncode(String encode) {
-        this.encode = encode;
+    public void setEncodeType(String encodeType) {
+        this.encodeType = encodeType;
     }
 
     public BbsInfo getBbsInfo() {

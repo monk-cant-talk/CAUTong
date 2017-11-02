@@ -11,9 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import tong.cau.com.cautong.model.Site;
@@ -46,8 +44,17 @@ public class SiteXmlParser {
                             siteName = parser.getAttributeValue(0);
                             Log.d("parserTest", siteName);
                         }
+                        if(startTag.equals("encode_type")){
+                            site.setEncodeType(parser.nextText());
+                        }
                         if(startTag.equals("site_url")){
                             site.setSiteUrl(parser.nextText());
+                        }
+                        if(startTag.equals("parse_type")){
+                            site.setParseType(parser.nextText());
+                        }
+                        if(startTag.equals("sso_enabled")){
+                            site.setSsoEnabled(Boolean.valueOf(parser.nextText()));
                         }
                         if (startTag.equals("sso_url")) {
                             site.setSsoUrl(parser.nextText());

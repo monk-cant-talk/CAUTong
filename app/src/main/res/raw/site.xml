@@ -2,10 +2,23 @@
 <siteList>
     <site name="CAU">
         <site_url>https://www.cau.ac.kr:443</site_url>
+        <parse_type>json</parse_type>
+        <sso_enabled>true</sso_enabled>
         <sso_url>https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx</sso_url>
         <notice_url>https://www.cau.ac.kr:443/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice</notice_url>
         <notice_bbs_url>%2fajax%2fbbs_list.php%3fisNoti%3dY%26pageSize%3d50%26</notice_bbs_url>
-        <encode>EUC_KR</encode>
+        <encode_type>EUC_KR</encode_type>
+        <bbs_info>
+            <page>page</page>
+            <author>author</author>
+        </bbs_info>
+    </site>
+    <site name ="Integrative">
+        <site_url>http://ie.cau.ac.kr</site_url>
+        <parse_type>html</parse_type>
+        <sso_enabled>false</sso_enabled>
+        <notice_bbs_url>/20141101/sub07/sub01.php</notice_bbs_url>
+        <encode_type>UTF-8</encode_type>
         <bbs_info>
             <page>page</page>
             <author>author</author>

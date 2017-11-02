@@ -94,6 +94,18 @@ Thumbs.db
 # Legacy Eclipse project files
 .classpath
 .project
+*.pydevproject
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
