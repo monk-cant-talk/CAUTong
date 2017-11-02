@@ -1,4 +1,4 @@
-package tong.cau.com.cautong;
+package tong.cau.com.cautong.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

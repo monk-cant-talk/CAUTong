@@ -3,14 +3,16 @@ package tong.cau.com.cautong;
 
 
 import android.app.Activity;
-import android.util.Log;
 
 import com.google.gson.JsonArray;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import tong.cau.com.cautong.model.MyDate;
 import tong.cau.com.cautong.model.Site;
+import tong.cau.com.cautong.model.WindowInfo;
+import tong.cau.com.cautong.utility.BoardMapper;
 
 //찾은 정보들을 다 갖고있을 클래스
 //단 하나만 존재해야 하므로 싱글턴패턴 사용

@@ -1,4 +1,4 @@
-package tong.cau.com.cautong;
+package tong.cau.com.cautong.model;
 
 
 import android.app.Activity;
@@ -13,8 +13,14 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 
+import tong.cau.com.cautong.R;
+import tong.cau.com.cautong.WindowMenuDialog;
+
 //전체 뷰 중에서 기사를 하나 찾게 되면 기사에 관련한 윈도우를 띄워야 하는데 그 정보를 아래에 채워 넣는다.
 public class WindowInfo {
+    public WindowInfo(){
+
+    }
     //윈도우에 띄울 로고 이미지
     private Logo logo;
 
@@ -34,6 +40,30 @@ public class WindowInfo {
     private String author;
 
 
+    public Logo getLogo() {
+        return logo;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public MyDate getDate() {
+        return date;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
 
     public void rePrint(Activity activity){
         activity.runOnUiThread(new Runnable() {
@@ -47,6 +77,7 @@ public class WindowInfo {
             }
         });
     }
+
 
 
     public void setLogo(Activity activity, Logo logo) {

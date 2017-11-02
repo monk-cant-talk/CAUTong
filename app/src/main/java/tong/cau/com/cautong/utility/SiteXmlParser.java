@@ -1,4 +1,4 @@
-package tong.cau.com.cautong;
+package tong.cau.com.cautong.utility;
 
 import android.content.res.Resources;
 import android.util.Log;
@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import tong.cau.com.cautong.R;
 import tong.cau.com.cautong.model.Site;
 
 /**

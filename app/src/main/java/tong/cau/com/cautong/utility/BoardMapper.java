@@ -1,4 +1,4 @@
-package tong.cau.com.cautong;
+package tong.cau.com.cautong.utility;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -6,6 +6,7 @@ import com.google.gson.JsonParser;
 
 import java.net.URLDecoder;
 
+import tong.cau.com.cautong.SiteRequestController;
 import tong.cau.com.cautong.model.Site;
 
 /**
