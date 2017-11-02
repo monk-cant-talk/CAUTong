@@ -17,12 +17,14 @@ import java.util.Map;
 
 import tong.cau.com.cautong.Alarm.AlarmService;
 import tong.cau.com.cautong.model.Site;
+import tong.cau.com.cautong.start.StartActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     LinearLayout main_layout;
     RelativeLayout button;
+    RelativeLayout testbutton;
     public static MainActivity instance;
 
     @Override
@@ -31,25 +33,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity);
         instance = this;
 
+
         main_layout = (LinearLayout) findViewById(R.id.main_linear_layout);
         button = (RelativeLayout) findViewById(R.id.requestButton);
-        RelativeLayout testbutton = (RelativeLayout) findViewById(R.id.test_button);
+        testbutton = (RelativeLayout) findViewById(R.id.test_button);
 
+        startActivity(StartActivity.search_key);
+
+    }
+
+
+    //이전 액티비티(StartActivity) 에서 검색키워드를 넣게 되면 자동으로 이 액티비티로 넘어오면서 이 함수가 실행된다.
+    private void startActivity(String search_key){
 
         getRequestSite();
-
 
         testbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
                 Notification notifi = new Notification.Builder(getApplicationContext())
-                    .setContentTitle("Content Title")
-                    .setContentText("Content Text")
-                    .setSmallIcon(R.drawable.c)
-                    .setTicker("알림!!!")
-                    //.setContentIntent(intent)
-                    .build();
+                        .setContentTitle("Content Title")
+                        .setContentText("Content Text")
+                        .setSmallIcon(R.drawable.c)
+                        .setTicker("알림!!!")
+                        //.setContentIntent(intent)
+                        .build();
 
                 nm.notify(10, notifi);
                 Toast.makeText(MainActivity.this, "fdsa", Toast.LENGTH_SHORT).show();
@@ -57,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         startAlarmService();
-
     }
 
     private void startAlarmService(){
@@ -66,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //MainActivity Context의 리소스를 이용하여 xml로 파싱한 Site 정보 리스트를 가져옴
     private void getRequestSite(){
-        //MainActivity Context의 리소스를 이용하여 xml로 파싱한 Site 정보 리스트를 가져옴
         Map<String, Site> siteMap = SiteXmlParser.parseSiteMap(getResources());
 
         //TODO 유저의 즐겨찾기 리스트에 등록되어 있는 사이트 리스트를 받아옴
