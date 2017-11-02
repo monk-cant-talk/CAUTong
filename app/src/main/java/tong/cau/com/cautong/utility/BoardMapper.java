@@ -37,7 +37,7 @@ public class BoardMapper {
             String response = SiteRequestController.sendGet(site.getBaseUrl() + site.getBbsListParams(), site.getEncodeType());
             Log.d("BoardMapper", response);
             Log.d("BoardMapper", "FLAG");
-            if (site.getParseType() == "json")
+            if (site.getParseType().equals("json"))
                 return parseData(response);
             else {
                 Log.d("Noru", "노루는 한번 운다");

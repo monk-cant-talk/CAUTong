@@ -7,7 +7,7 @@
     "baseUrl": "https://www.cau.ac.kr",
     "bbsListParams": "/ajax/bbs_list.php?bbsId=cau_notice&pageSize=30&category1=",
     "bbsBaseUrl": "/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice",
-    "encode": "EUC_KR",
+    "encodeType": "EUC_KR",
     "bbsInfo": {
       "page": "page",
       "author": "author"
