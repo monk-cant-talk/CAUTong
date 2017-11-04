@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         for (String key : siteMap.keySet()) {
             site = siteMap.get(key);
             getRequestSite(site);
+            break;
         }
 
         testbutton.setOnClickListener(new View.OnClickListener() {

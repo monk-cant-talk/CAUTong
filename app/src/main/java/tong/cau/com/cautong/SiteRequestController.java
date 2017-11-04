@@ -25,14 +25,13 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class SiteRequestController {
     private static final String TAG = "SiteRequestController";
-    private static final String ENCODE = "EUC-KR";
     private static final String USER_AGENT = "Mozilla/5.0";
     private static String cookies = "";
     private static boolean session = false;
 
 
 
-    public static void requestSSO(String url) {
+    public static void requestSSO(String url, String encodeType) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("retURL", url);
         parameters.put("ssosite", "www.cau.ac.kr");
@@ -41,7 +40,7 @@ public class SiteRequestController {
         parameters.put("NCAUPOLICYNUM", "67");
 
         try {
-            sendPost(url, parameters, true);
+            sendPost(url, parameters, encodeType, true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -85,7 +84,7 @@ public class SiteRequestController {
     }
 
     // HTTP POST request
-    private static void sendPost(String url, Map<String, String> parameters, boolean isSaveCookie) throws Exception {
+    private static void sendPost(String url, Map<String, String> parameters, String encodeType, boolean isSaveCookie) throws Exception {
 
         URL obj = new URL(url);
         HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
@@ -93,7 +92,6 @@ public class SiteRequestController {
         // set timeout
         con.setConnectTimeout(5000);
         con.setReadTimeout(5000);
-
         // add reuqest header
         con.setRequestMethod("POST");
         con.setRequestProperty("User-Agent", USER_AGENT);
@@ -101,7 +99,7 @@ public class SiteRequestController {
         // Send post request
         con.setDoOutput(true);
         DataOutputStream out = new DataOutputStream(con.getOutputStream());
-        out.writeBytes(getParamsString(parameters));
+        out.writeBytes(getParamsString(parameters, encodeType));
         out.flush();
         out.close();
 
@@ -139,13 +137,13 @@ public class SiteRequestController {
         }
     }
 
-    private static String getParamsString(Map<String, String> params) throws UnsupportedEncodingException {
+    private static String getParamsString(Map<String, String> params, String encodeType) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
 
         for (Map.Entry<String, String> entry : params.entrySet()) {
-            result.append(URLEncoder.encode(entry.getKey(), ENCODE));
+            result.append(URLEncoder.encode(entry.getKey(), encodeType));
             result.append("=");
-            result.append(URLEncoder.encode(entry.getValue(), ENCODE));
+            result.append(URLEncoder.encode(entry.getValue(), encodeType));
             result.append("&");
         }
 

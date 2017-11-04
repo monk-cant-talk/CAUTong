@@ -27,7 +27,7 @@ public class BoardMapper {
         Log.d(TAG, "board: " + boardName);
         if (site.getSsoEnabled()) {
 
-            SiteRequestController.requestSSO(site.getBaseUrl());
+            SiteRequestController.requestSSO(site.getBaseUrl(), site.getEncodeType());
         }
         try {
             Log.d(TAG, site.getBoardUrl(boardName));
@@ -36,9 +36,9 @@ public class BoardMapper {
             Log.d("BoardMapper", response);
             Log.d("BoardMapper", "FLAG");
             if (site.getParseType().equals("json"))
-                return parseData(response);
+                return parseData(site, response);
             else {
-                return htmlToJson(response);
+                return htmlToJson(site, response);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class BoardMapper {
         return null;
     }
 
-    private static JsonArray htmlToJson(String response) {
+    public static JsonArray htmlToJson(Site site, String response) {
         Log.d("BoardMapper", "htmlToJsonStart");
         Log.d("BoardMapper", response);
         Document doc = Jsoup.parse(response);
@@ -72,26 +72,35 @@ public class BoardMapper {
             JsonObject jsonObject = new JsonObject();
             Elements tds = row.select("td");
             String number = tds.get(0).text();
-            String title = tds.get(2).getElementsByTag("a").get(0).text();
-            String author = tds.get(4).text();
-            String date = tds.get(6).text();
-            Log.d("whywhy", date);
-            jsonObject.addProperty("number", number);
-            jsonObject.addProperty("TITLE", title);
-            jsonObject.addProperty("NAME", author);
-            jsonObject.addProperty("REGDATE", 20171102);
-            //jsonObject.addProperty("REGDATE",date);
-            parentJsonObject.add(jsonObject);
-            Gson gson = new Gson();
-            String print = gson.toJson(parentJsonObject);
-            Log.d("BoardMapper2", print);
+            if(tds.size() > 6) {
+                String title = tds.get(2).getElementsByTag("a").get(0).text();
+                String link = tds.get(2).getElementsByTag("a").get(0).attr("href");
+                String author = tds.get(4).text();
+                String date = tds.get(6).text();
+                Log.d("whywhy", date);
+                jsonObject.addProperty("number", number);
+                jsonObject.addProperty("title", title);
+                jsonObject.addProperty("name", author);
+                jsonObject.addProperty("regdate", 20171102);
+                jsonObject.addProperty("link", link);
+                if (!link.startsWith("http")) {
+                    link = site.getBaseUrl() + site.getBbsListParams() + link;
+                }
+                String contentStr = extractContent(site, link);
+                jsonObject.addProperty("content", contentStr);
+                //jsonObject.addProperty("REGDATE",date);
+                parentJsonObject.add(jsonObject);
+                Gson gson = new Gson();
+                String print = gson.toJson(parentJsonObject);
+                Log.d("BoardMapper2", print);
+            }
         }
 
         return parentJsonObject;
 
     }
 
-    private static JsonArray parseData(String jsonString) {
+    public static JsonArray parseData(Site site, String jsonString) {
         JsonParser parser = new JsonParser();
         JsonObject element = parser.parse(jsonString).getAsJsonObject();
         JsonArray data = element.get("data").getAsJsonArray();
@@ -99,4 +108,26 @@ public class BoardMapper {
         return data;
     }
 
+    public static String extractContent(Site site, String url) {
+        if (site.getSsoEnabled()) {
+            SiteRequestController.requestSSO(site.getBaseUrl(), site.getEncodeType());
+        }
+        try {
+            Log.d(TAG, url);
+            String response = SiteRequestController.sendGet(url, site.getEncodeType());
+            if (site.getParseType().equals("json"))
+                return null;
+            else {
+                Document doc = Jsoup.parse(response);
+                Element content = doc.getElementById(site.getContent());
+                Log.d("RealStory", site.getContent());
+                String contentStr = content.text();
+                Log.d("RealStory", contentStr);
+                return contentStr;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

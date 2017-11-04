@@ -48,14 +48,15 @@ public class FoundInfoCollector {
 
         if (dataList != null) {
             int minSize = Math.min(dataList.size(), getInfoSize());
+            minSize = 50; //버퍼 오버플로우 문제로 임시 설정
             for (int i = 0; i < minSize; ++i) {
                 WindowInfo wf = new WindowInfo();
                 wf.init(WindowInfo.Logo.caucse,
-                        dataList.get(i).getAsJsonObject().get("TITLE").getAsString(),
-                        "준비중입니다",
+                        dataList.get(i).getAsJsonObject().get("title").getAsString(),
+                        dataList.get(i).getAsJsonObject().get("content").getAsString(),
                         "https://www.cau.ac.kr",
-                        new MyDate(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong()),
-                        dataList.get(i).getAsJsonObject().get("NAME").getAsString());
+                        new MyDate(dataList.get(i).getAsJsonObject().get("regdate").getAsLong()),
+                        dataList.get(i).getAsJsonObject().get("name").getAsString());
                 list.add(wf);
                 MainActivity.instance.addWindow(wf);
             }

@@ -16,14 +16,23 @@ public class Site {
     private String bbsBaseUrl;
 
     private String bbsListParams;
-    private String encode;
     private BbsInfo bbsInfo;
     private Board[] boardList;
+
+
+    private String content;
 
     private String encodeType;
     private String parseType;
     private String testUrl;
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getContent() {
+        return content;
+    }
     public Site(){
         this.bbsInfo = new BbsInfo();
     }

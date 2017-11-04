@@ -53,6 +53,7 @@
     "bbsListParams": "/20141101/sub07/",
     "bbsBaseUrl": "",
     "encodeType": "UTF-8",
+    "content" : "idContents",
     "bbsInfo": {
       "page": "page",
       "author": "author"
