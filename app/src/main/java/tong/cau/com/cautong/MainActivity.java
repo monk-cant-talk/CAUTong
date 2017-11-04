@@ -46,20 +46,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //이전 액티비티(StartActivity) 에서 검색키워드를 넣게 되면 자동으로 이 액티비티로 넘어오면서 이 함수가 실행된다.
-    private void startActivity(String search_key) {
+    private void startActivity(String searchKey) {
 
+        // 크롤링 할 정보 로드
         Map<String, Site> siteMap = MapDataParser.getSiteMap();
         ArrayList<Site> siteList = new ArrayList<>();
         for (String key : siteMap.keySet()) {
             siteList.add(siteMap.get(key));
         }
 
+        // 크롤링 시작
         for (Site site : siteList) {
             if (site.isEnabled()) {
                 getRequestSite(site);
             }
         }
 
+        // 게시물 시간 순으로 정렬
         Collections.sort(finalList, new Comparator<WindowInfo>() {
             @Override
             public int compare(WindowInfo o1, WindowInfo o2) {
@@ -68,8 +71,17 @@ public class MainActivity extends AppCompatActivity {
         });
         Collections.reverse(finalList);
 
-        for (WindowInfo wf : finalList) {
-            MainActivity.instance.addWindow(wf);
+        if (searchKey.equals("")) {
+            for (WindowInfo wf : finalList) {
+                MainActivity.instance.addWindow(wf);
+            }
+        }
+        else {
+            for (WindowInfo wf : finalList) {
+                if (wf.getTitle().toLowerCase().contains(searchKey.toLowerCase())) {
+                    MainActivity.instance.addWindow(wf);
+                }
+            }
         }
 
         testbutton.setOnClickListener(new View.OnClickListener() {
