@@ -7,6 +7,8 @@ import java.util.Date;
 public class MyDate {
     private final String TAG = "MyDate";
 
+    final long DATE_CRITERIA = 1000000000000L;
+
     private Date ret;
     private String ss = null;
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -25,7 +27,7 @@ public class MyDate {
     }
 
     public MyDate(long numberDate) {
-        if (numberDate < 1000000000) {
+        if (numberDate < DATE_CRITERIA) {
             numberDate *= 1000;
         }
         ss = sdf.format(new Date(numberDate));
