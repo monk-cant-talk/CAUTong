@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import tong.cau.com.cautong.MainActivity;
@@ -276,5 +277,14 @@ public class WindowInfo {
                 return R.drawable.window_board_title_ict;
         }
         return R.drawable.c;
+    }
+
+    public long getDateValue() {
+        try {
+            return getDate().getDateValue();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

@@ -8,29 +8,36 @@ public class MyDate {
     private final String TAG = "MyDate";
 
     private Date ret;
-	private String ss = null;
+    private String ss = null;
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    public MyDate(SimpleDateFormat yyyy_MM_dd_HH_mm, String date){
-        try{
+    public MyDate(SimpleDateFormat yyyy_MM_dd_HH_mm, String date) {
+        try {
             ret = yyyy_MM_dd_HH_mm.parse(date);
-        }catch (ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
             ret = new Date();
         }
     }
 
-    public MyDate(String test){
-		ss = test;
-	}
+    public MyDate(String test) {
+        ss = test;
+    }
 
-	public MyDate(long numberDate){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        ss = format.format(new Date(numberDate*1000));
+    public MyDate(long numberDate) {
+        if (numberDate < 1000000000) {
+            numberDate *= 1000;
+        }
+        ss = sdf.format(new Date(numberDate));
+    }
+
+    public long getDateValue() throws ParseException {
+        return sdf.parse(ss).getTime();
     }
 
     @Override
-    public String toString(){
-		if(ss != null)	return ss;
+    public String toString() {
+        if (ss != null) return ss;
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         return format.format(ret);
     }

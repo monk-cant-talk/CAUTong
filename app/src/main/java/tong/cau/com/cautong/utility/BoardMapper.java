@@ -12,6 +12,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import tong.cau.com.cautong.SiteRequestController;
 import tong.cau.com.cautong.model.ParseRule;
 import tong.cau.com.cautong.model.Site;
@@ -72,7 +76,13 @@ public class BoardMapper {
                 JsonObject jsonObject = new JsonObject();
                 jsonObject.addProperty("TITLE", parseMeta(row, rule.getTitleMeta()));
                 jsonObject.addProperty("NAME", parseMeta(row, rule.getAuthorMeta()));
-                jsonObject.addProperty("REGDATE", 20171102); //parseMeta(row, rule.getDateMeta())
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat(rule.getDateMeta().getEtc());
+                    long val = sdf.parse(parseMeta(row, rule.getDateMeta())).getTime();
+                    jsonObject.addProperty("REGDATE", val);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
                 parentJsonObject.add(jsonObject);
             }
@@ -99,5 +109,4 @@ public class BoardMapper {
         }
         return td.text();
     }
-
 }

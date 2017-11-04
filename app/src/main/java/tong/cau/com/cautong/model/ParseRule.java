@@ -21,6 +21,7 @@ public class ParseRule {
     public class Meta {
         private int tdIndex;
         private List<String> hierarchy;
+        private String etc;
 
         public int getTdIndex() {
             return tdIndex;
@@ -36,6 +37,14 @@ public class ParseRule {
 
         public void setHierarchy(List<String> hierarchy) {
             this.hierarchy = hierarchy;
+        }
+
+        public String getEtc() {
+            return etc;
+        }
+
+        public void setEtc(String etc) {
+            this.etc = etc;
         }
     }
 

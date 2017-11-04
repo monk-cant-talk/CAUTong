@@ -3,6 +3,7 @@ package tong.cau.com.cautong;
 
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
@@ -37,12 +38,13 @@ public class FoundInfoCollector {
             }
 
             for (int i = 0; i < dataList.size(); ++i) {
+                JsonObject dataObject = dataList.get(i).getAsJsonObject();
                 list.get(i).init(WindowInfo.Logo.caucse,
-                        dataList.get(i).getAsJsonObject().get("TITLE").getAsString(),
+                        dataObject.get("TITLE").getAsString(),
                         "준비중입니다",
                         "https://www.cau.ac.kr",
-                        new MyDate(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong()),
-                        dataList.get(i).getAsJsonObject().get("NAME").getAsString());
+                        new MyDate(dataObject.get("REGDATE").getAsLong()),
+                        dataObject.get("NAME").getAsString());
             }
         }
 

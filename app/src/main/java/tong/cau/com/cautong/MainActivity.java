@@ -6,12 +6,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 
 import tong.cau.com.cautong.alarm.AlarmService;
@@ -57,6 +61,18 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        Collections.sort(finalList, new Comparator<WindowInfo>() {
+            @Override
+            public int compare(WindowInfo o1, WindowInfo o2) {
+                return Long.compare(o1.getDateValue(), o2.getDateValue());
+            }
+        });
+        Collections.reverse(finalList);
+
+        for (WindowInfo wf : finalList) {
+            MainActivity.instance.addWindow(wf);
+        }
+
         testbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,8 +100,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getRequestSite(Site site) {
+        List<Thread> threadList = new ArrayList<>();
         for (Board board : site.getBoardList()) {
-            new Thread(new FavoriteRunnable(site, board.getName())).start();
+            threadList.add(new Thread(new FavoriteRunnable(site, board.getName())));
+            threadList.get(threadList.size() - 1).start();
+        }
+
+        // 모든 스레드가 끝날 때까지 기달린다.
+        for (Thread thread : threadList) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -94,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
 //        Map<String, Site> siteMap = MapDataParser.parseSiteMap(getResources());
 
     }
+
+    final List<WindowInfo> finalList = Collections.synchronizedList(new ArrayList<WindowInfo>());
 
     private class FavoriteRunnable implements Runnable {
         Site site;
@@ -108,9 +137,7 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             ArrayList<WindowInfo> foundList = FoundInfoCollector.getInstance().findInfo(site, boardName);
             if (foundList != null) {
-                for (WindowInfo wf : foundList) {
-                    MainActivity.instance.addWindow(wf);
-                }
+                finalList.addAll(foundList);
             }
         }
     }

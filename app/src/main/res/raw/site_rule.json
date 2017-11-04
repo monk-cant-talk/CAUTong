@@ -22,7 +22,8 @@
     },
     "dateMeta": {
       "tdIndex": 6,
-      "hierarchy": []
+      "hierarchy": [],
+      "etc": "yyyy-MM-dd"
     }
   },
   "sociology": {
@@ -49,7 +50,8 @@
     },
     "dateMeta": {
       "tdIndex": 4,
-      "hierarchy": []
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
     }
   },
   "cse": {
@@ -78,7 +80,8 @@
     },
     "dateMeta": {
       "tdIndex": 4,
-      "hierarchy": []
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
     }
   }
 }
