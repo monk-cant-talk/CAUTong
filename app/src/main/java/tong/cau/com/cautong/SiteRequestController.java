@@ -28,19 +28,17 @@ public class SiteRequestController {
     private static final String ENCODE = "EUC-KR";
     private static final String USER_AGENT = "Mozilla/5.0";
     private static String cookies = "";
-    private static boolean session = false;
 
 
-    public static void requestSSO(String url) {
+    public static void requestSSO(String ssoUrl, String requestUrl) {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("retURL", url);
+        parameters.put("retURL", requestUrl);
         parameters.put("ssosite", "www.cau.ac.kr");
         parameters.put("AUTHERR", "0");
         parameters.put("mode", "set");
-        parameters.put("NCAUPOLICYNUM", "67");
 
         try {
-            sendPost(url, parameters, true);
+            sendPost(ssoUrl, parameters, true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,6 +55,8 @@ public class SiteRequestController {
         //add request header
         con.setRequestProperty("User-Agent", USER_AGENT);
         con.setRequestProperty("Cookie", cookies);
+        con.addRequestProperty("Connection", "keep-alive");
+        con.setRequestProperty("Keep-Alive", "header");
 
         int responseCode = con.getResponseCode();
 
@@ -74,6 +74,7 @@ public class SiteRequestController {
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
         }
+
         in.close();
 
         //print result
@@ -125,9 +126,6 @@ public class SiteRequestController {
             for (int i = 0; i < lString.size(); i++) {
                 cookies += lString.get(i);
             }
-            session = true;
-        } else {
-            session = false;
         }
     }
 

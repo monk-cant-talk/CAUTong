@@ -14,6 +14,7 @@ public class Site {
     private String bbsBaseUrl;
 
     private String bbsListParams;
+    private String pageParam;
     private String encode;
     private BbsInfo bbsInfo;
     private Board[] boardList;
@@ -26,14 +27,10 @@ public class Site {
         this.bbsInfo = new BbsInfo();
     }
 
-    public String getBoardUrl(int index) {
-        return getBaseUrl() + getBbsListParams() + boardList[index].getCategory();
-    }
-
-    public String getBoardUrl(String boardName) {
+    public String getBoardUrl(String boardName, int pageNum) {
         for (Board board : boardList) {
             if (board.getName().equals(boardName)) {
-                return getBaseUrl() + getBbsListParams() + board.getCategory();
+                return getBaseUrl() + getBbsListParams() + board.getCategory() + getPageParam(pageNum);
 
             }
         }
@@ -118,6 +115,19 @@ public class Site {
 
     public void setBbsListParams(String bbsListParams) {
         this.bbsListParams = bbsListParams;
+    }
+
+    public String getPageParam(int pageNum) {
+        if (pageParam == null)
+            return "";
+        else if (pageNum == 0) {
+            return pageParam;
+        } else
+            return pageParam + pageNum;
+    }
+
+    public void setPageParam(String pageParam) {
+        this.pageParam = pageParam;
     }
 
     public String getEncodeType() {

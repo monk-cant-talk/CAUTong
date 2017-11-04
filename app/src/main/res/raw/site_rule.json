@@ -1,4 +1,24 @@
 {
+  "cau": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableAttrs": {
+      "id": "bbs",
+      "class": "bbslist"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 2,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    }
+  },
   "ie": {
     "tag": "table",
     "rowSpaced": true,

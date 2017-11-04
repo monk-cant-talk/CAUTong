@@ -1,24 +1,20 @@
 [
   {
-    "enabled": true,
+    "enabled": false,
     "name": "중앙대학교",
     "id": "cau",
     "ssoEnabled": true,
     "parseType": "json",
     "ssoUrl": "https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx",
     "baseUrl": "https://www.cau.ac.kr",
-    "bbsListParams": "/ajax/bbs_list.php?bbsId=cau_notice&pageSize=30&category1=",
-    "bbsBaseUrl": "/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice",
+    "bbsListParams": "/ajax/bbs_list.php?bbsId=cau_notice&category1=",
+    "bbsBaseUrl": "/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice&category1=",
     "encodeType": "EUC_KR",
     "bbsInfo": {
       "page": "page",
       "author": "author"
     },
     "boardList": [
-      {
-        "name": "전체",
-        "category": ""
-      },
       {
         "name": "학사",
         "category": "학사"
@@ -56,6 +52,7 @@
     "baseUrl": "http://ie.cau.ac.kr",
     "bbsListParams": "/20141101/sub07/",
     "bbsBaseUrl": "",
+    "pageParam": "&gotoPage=",
     "encodeType": "UTF-8",
     "bbsInfo": {
       "page": "page",
@@ -64,11 +61,11 @@
     "boardList": [
       {
         "name": "공지사항",
-        "category": "sub01.php"
+        "category": "sub01.php?"
       },
       {
         "name": "취업정보게시판",
-        "category": "sub03.php"
+        "category": "sub03.php?"
       }
     ],
     "testUrl": "http://ie.cau.ac.kr/20141101/sub07/sub01.php"
@@ -83,6 +80,7 @@
     "baseUrl": "http://sociology.cau.ac.kr",
     "bbsListParams": "/bbs/board.php?bo_table=",
     "bbsBaseUrl": "",
+    "pageParam": "&page=",
     "encodeType": "euc-kr",
     "bbsInfo": {
       "page": "page",
@@ -122,6 +120,7 @@
     "baseUrl": "http://cse.cau.ac.kr",
     "bbsListParams": "/20141201/sub05/",
     "bbsBaseUrl": "",
+    "pageParam": "&offset=",
     "encodeType": "utf-8",
     "bbsInfo": {
       "page": "page",
@@ -130,11 +129,11 @@
     "boardList": [
       {
         "name": "공지사항&뉴스",
-        "category": "sub0501.php"
+        "category": "sub0501.php?"
       },
       {
         "name": "취업정보",
-        "category": "sub0503.php"
+        "category": "sub0503.php?"
       }
     ],
     "testUrl": "http://cse.cau.ac.kr/20141201/sub05/sub0501.php"
@@ -149,6 +148,7 @@
     "baseUrl": "http://e3home.cau.ac.kr",
     "bbsListParams": "/20141201/sub08/",
     "bbsBaseUrl": "",
+    "pageParam": "&cpage=",
     "encodeType": "utf-8",
     "bbsInfo": {
       "page": "page",
@@ -157,11 +157,11 @@
     "boardList": [
       {
         "name": "공지사항",
-        "category": "sub01.php"
+        "category": "sub01.php?"
       },
       {
         "name": "자료실",
-        "category": "sub02.php"
+        "category": "sub02.php?"
       }
     ],
     "testUrl": "http://e3home.cau.ac.kr/20141201/sub08/sub01.php"
@@ -176,6 +176,7 @@
     "baseUrl": "http://biz.cau.ac.kr",
     "bbsListParams": "/2016/sub06/",
     "bbsBaseUrl": "",
+    "pageParam": "&gotoPage=",
     "encodeType": "utf-8",
     "bbsInfo": {
       "page": "page",
@@ -184,7 +185,7 @@
     "boardList": [
       {
         "name": "공지사항",
-        "category": "sub06_01_list.php"
+        "category": "sub06_01_list.php?"
       }
     ],
     "testUrl": "http://biz.cau.ac.kr/2016/sub06/sub06_01_list.php"

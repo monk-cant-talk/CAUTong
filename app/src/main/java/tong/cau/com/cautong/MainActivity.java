@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -62,7 +64,15 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // 게시물 시간 순으로 정렬
+        // 링크 주소를 기준으로 중복 제거
+//        Map<String, WindowInfo> map = new LinkedHashMap<>();
+//        for (WindowInfo wf : finalList) {
+//            map.put(wf.getLink(), wf);
+//        }
+//        finalList.clear();
+//        finalList.addAll(map.values());
+
+        // 게시물 시간 순으로 내림차순 정렬
         Collections.sort(finalList, new Comparator<WindowInfo>() {
             @Override
             public int compare(WindowInfo o1, WindowInfo o2) {
@@ -70,13 +80,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Collections.reverse(finalList);
+        Log.d(TAG, "number: " + finalList.size());
 
+        // 키워드로 필터링
         if (searchKey.equals("")) {
             for (WindowInfo wf : finalList) {
                 MainActivity.instance.addWindow(wf);
             }
-        }
-        else {
+        } else {
             for (WindowInfo wf : finalList) {
                 if (wf.getTitle().toLowerCase().contains(searchKey.toLowerCase())) {
                     MainActivity.instance.addWindow(wf);

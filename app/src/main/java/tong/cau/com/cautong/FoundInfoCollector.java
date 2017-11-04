@@ -28,7 +28,7 @@ public class FoundInfoCollector {
     }
 
     public ArrayList<WindowInfo> findInfo(Site site, String boardName) {
-        JsonArray dataList = BoardMapper.getArticleInfo(site, boardName);
+        JsonArray dataList = BoardMapper.getArticleInfo(site, boardName, 0);
         ArrayList<WindowInfo> list = null;
 
         if (dataList != null) {
