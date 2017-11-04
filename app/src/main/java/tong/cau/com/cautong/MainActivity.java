@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -20,8 +19,8 @@ import tong.cau.com.cautong.alarm.AlarmService;
 import tong.cau.com.cautong.model.Board;
 import tong.cau.com.cautong.model.Site;
 import tong.cau.com.cautong.model.WindowInfo;
-import tong.cau.com.cautong.utility.SiteXmlParser;
 import tong.cau.com.cautong.start.StartActivity;
+import tong.cau.com.cautong.utility.SiteParser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,10 +47,13 @@ public class MainActivity extends AppCompatActivity {
     //이전 액티비티(StartActivity) 에서 검색키워드를 넣게 되면 자동으로 이 액티비티로 넘어오면서 이 함수가 실행된다.
     private void startActivity(String search_key) {
 
-        Map<String, Site> siteMap = SiteXmlParser.parseSiteMap(getResources());
-        Site site = null;
+        Map<String, Site> siteMap = SiteParser.getSiteMap(getResources());
+        ArrayList<Site> siteList = new ArrayList<>();
         for (String key : siteMap.keySet()) {
-            site = siteMap.get(key);
+            siteList.add(siteMap.get(key));
+        }
+
+        for (Site site : siteList) {
             getRequestSite(site);
         }
 
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getFavoriteSite() {
         //TODO 유저의 즐겨찾기 리스트에 등록되어 있는 사이트 리스트를 받아옴
-        Map<String, Site> siteMap = SiteXmlParser.parseSiteMap(getResources());
+//        Map<String, Site> siteMap = SiteParser.parseSiteMap(getResources());
 
     }
 
@@ -104,7 +106,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            FoundInfoCollector.getInstance().findInfo(site, boardName);
+            ArrayList<WindowInfo> foundList = FoundInfoCollector.getInstance().findInfo(site, boardName);
+            if (foundList != null) {
+                for (WindowInfo wf : foundList) {
+                    MainActivity.instance.addWindow(wf);
+                }
+            }
         }
     }
 
@@ -121,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            main_layout.addView(info.getLayout());
+            main_layout.addView(info.getLayout(MainActivity.instance));
         }
     }
 }

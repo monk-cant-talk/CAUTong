@@ -2,33 +2,26 @@
 package tong.cau.com.cautong;
 
 
-import android.app.Activity;
-
 import com.google.gson.JsonArray;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import tong.cau.com.cautong.model.MyDate;
 import tong.cau.com.cautong.model.Site;
 import tong.cau.com.cautong.model.WindowInfo;
 import tong.cau.com.cautong.utility.BoardMapper;
 
-//찾은 정보들을 다 갖고있을 클래스
-//단 하나만 존재해야 하므로 싱글턴패턴 사용
+// 웹에서 긁어온 raw 데이터를 WindowsInfo 형태로 변환해서 반환하는 클래스
+// 여러 스레드에서 동시에 불릴 수 있으므로 "정보를 가지고 있지는 않는다."
 public class FoundInfoCollector {
     public static final int INITIAL_WINDOW_SIZE = 50;
-    private static ArrayList<WindowInfo> list;
     private final String TAG = "FoundInfoCollector";
+
     private static FoundInfoCollector instance = null;
 
     public static FoundInfoCollector getInstance() {
         if (instance == null) {
             instance = new FoundInfoCollector();
-            list = new ArrayList<>();
-            for (int i = 0; i < INITIAL_WINDOW_SIZE; ++i) {
-                list.add(new WindowInfo());
-            }
         }
         return instance;
     }
@@ -37,35 +30,27 @@ public class FoundInfoCollector {
 
     }
 
-    public WindowInfo getInfo(int index) throws NullPointerException {
-        if (index < getInfoSize())
-            return list.get(index);
-        else return null;
-    }
-
-    public void findInfo(Site site, String boardName) {
+    public ArrayList<WindowInfo> findInfo(Site site, String boardName) {
         JsonArray dataList = BoardMapper.getArticleInfo(site, boardName);
+        ArrayList<WindowInfo> list = null;
 
         if (dataList != null) {
-            int minSize = Math.min(dataList.size(), getInfoSize());
-            for (int i = 0; i < minSize; ++i) {
-                WindowInfo wf = new WindowInfo();
-                wf.init(WindowInfo.Logo.caucse,
+            list = new ArrayList<>(dataList.size());
+            for (int i = 0; i < INITIAL_WINDOW_SIZE; ++i) {
+                list.add(new WindowInfo());
+            }
+
+            for (int i = 0; i < dataList.size(); ++i) {
+                list.get(i).init(WindowInfo.Logo.caucse,
                         dataList.get(i).getAsJsonObject().get("TITLE").getAsString(),
                         "준비중입니다",
                         "https://www.cau.ac.kr",
                         new MyDate(dataList.get(i).getAsJsonObject().get("REGDATE").getAsLong()),
                         dataList.get(i).getAsJsonObject().get("NAME").getAsString());
-                list.add(wf);
-                MainActivity.instance.addWindow(wf);
             }
         }
+
+        return list;
     }
-
-
-    public int getInfoSize() {
-        return list.size();
-    }
-
 }
 

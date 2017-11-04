@@ -1,10 +1,15 @@
 package tong.cau.com.cautong.model;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static android.content.ContentValues.TAG;
+
 public class MyDate {
+    private final String TAG = "MyDate";
 
     private Date ret;
 	private String ss = null;
@@ -24,7 +29,7 @@ public class MyDate {
 
 	public MyDate(long numberDate){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        ss = format.format(new Date(numberDate));
+        ss = format.format(new Date(numberDate*1000));
     }
 
     @Override
