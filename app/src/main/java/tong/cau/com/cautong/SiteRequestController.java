@@ -31,7 +31,6 @@ public class SiteRequestController {
     private static boolean session = false;
 
 
-
     public static void requestSSO(String url) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("retURL", url);
@@ -60,14 +59,12 @@ public class SiteRequestController {
         con.setRequestProperty("Cookie", cookies);
 
         int responseCode = con.getResponseCode();
-        Log.d(TAG, "\nSending 'GET' request to URL : " + url);
-        Log.d(TAG, "Response Code : " + responseCode);
 
-        if(url == null){
+        if (url == null) {
             throw new NullPointerException("url is null");
         }
-        if(encodeType == null){
-            throw new NullPointerException("encode Type is null : " +url);
+        if (encodeType == null) {
+            throw new NullPointerException("encode Type is null : " + url);
         }
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream(), encodeType));
@@ -79,7 +76,6 @@ public class SiteRequestController {
         }
         in.close();
 
-        Log.d(TAG, "Response : " + response);
         //print result
         return response.toString();
     }
@@ -106,9 +102,6 @@ public class SiteRequestController {
         out.close();
 
         int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'POST' request to URL : " + url);
-        System.out.println("Post parameters : " + parameters.toString());
-        System.out.println("Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
@@ -132,7 +125,6 @@ public class SiteRequestController {
             for (int i = 0; i < lString.size(); i++) {
                 cookies += lString.get(i);
             }
-            Log.e("zdg", cookies);
             session = true;
         } else {
             session = false;

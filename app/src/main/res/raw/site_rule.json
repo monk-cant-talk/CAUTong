@@ -1,0 +1,84 @@
+{
+  "ie": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableAttrs": {
+      "width": "718",
+      "border": "0",
+      "cellspacing": "0",
+      "style": "background:url(/images/SUBS_LAYOUT_000/top_bar.gif) no-repeat;font-size:12px",
+      "summary": "공지사항입니다."
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 2,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 4,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 6,
+      "hierarchy": []
+    }
+  },
+  "sociology": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "class": "board_list"
+    },
+    "firstRowIndex": 1,
+    "titleMeta": {
+      "tdIndex": 2,
+      "hierarchy": [
+        "nobr",
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 3,
+      "hierarchy": [
+        "span"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 4,
+      "hierarchy": []
+    }
+  },
+  "cse": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "width": "850",
+      "border": "0",
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "class": "nlist"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 2,
+      "hierarchy": [
+        "nobr",
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 3,
+      "hierarchy": [
+        "span"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 4,
+      "hierarchy": []
+    }
+  }
+}

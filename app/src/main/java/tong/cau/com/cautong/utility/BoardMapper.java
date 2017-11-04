@@ -13,6 +13,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import tong.cau.com.cautong.SiteRequestController;
+import tong.cau.com.cautong.model.ParseRule;
 import tong.cau.com.cautong.model.Site;
 
 /**
@@ -24,71 +25,21 @@ public class BoardMapper {
     private static final String TAG = "BoardMapper";
 
     public static JsonArray getArticleInfo(Site site, String boardName) {
-        Log.d(TAG, "board: " + boardName);
         if (site.getSsoEnabled()) {
 
             SiteRequestController.requestSSO(site.getBaseUrl());
         }
         try {
-            Log.d(TAG, site.getBoardUrl(boardName));
-            Log.d(TAG, site.getEncodeType());
             String response = SiteRequestController.sendGet(site.getBoardUrl(boardName), site.getEncodeType());
-            Log.d("BoardMapper", response);
-            Log.d("BoardMapper", "FLAG");
             if (site.getParseType().equals("json"))
                 return parseData(response);
             else {
-                return htmlToJson(response);
+                return parseHtml(site.getName(), response);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.d(TAG, "null response : " + boardName);
         return null;
-    }
-
-    private static JsonArray htmlToJson(String response) {
-        Log.d("BoardMapper", "htmlToJsonStart");
-        Log.d("BoardMapper", response);
-        Document doc = Jsoup.parse(response);
-        Element content = doc.getElementById("cont_right");
-        Element table = content.select("table").get(2);
-        Element tbody = table.select("tbody").get(0);
-        Elements tr = tbody.getElementsByAttributeValue("width", "718");
-        tr = tr.select("tbody");
-        tr = tr.select("tr");
-        Elements tr2 = new Elements();
-        int count = 0;
-        for (int i = 0; i < tr.size(); i = i + 2) {
-            tr2.add(tr.get(i));
-            count++;
-        }
-        Log.d("whywhy", tr2.text());
-        Log.d("wer", Integer.toString(count));
-        JsonArray parentJsonObject = new JsonArray();
-        for (Element row : tr2) {
-            Log.d("wer", "rnenene");
-            Log.d("wer", row.text());
-            JsonObject jsonObject = new JsonObject();
-            Elements tds = row.select("td");
-            String number = tds.get(0).text();
-            String title = tds.get(2).getElementsByTag("a").get(0).text();
-            String author = tds.get(4).text();
-            String date = tds.get(6).text();
-            Log.d("whywhy", date);
-            jsonObject.addProperty("number", number);
-            jsonObject.addProperty("TITLE", title);
-            jsonObject.addProperty("NAME", author);
-            jsonObject.addProperty("REGDATE", 20171102);
-            //jsonObject.addProperty("REGDATE",date);
-            parentJsonObject.add(jsonObject);
-            Gson gson = new Gson();
-            String print = gson.toJson(parentJsonObject);
-            Log.d("BoardMapper2", print);
-        }
-
-        return parentJsonObject;
-
     }
 
     private static JsonArray parseData(String jsonString) {
@@ -97,6 +48,56 @@ public class BoardMapper {
         JsonArray data = element.get("data").getAsJsonArray();
 
         return data;
+    }
+
+    private static JsonArray parseHtml(String siteName, String response) {
+        Document doc = Jsoup.parse(response);
+        JsonArray parentJsonObject = new JsonArray();
+
+        ParseRule rule = MapDataParser.getSiteRule(siteName);
+        Site site = MapDataParser.getSite(siteName);
+
+        Elements tableCandidates = doc.getElementsByTag(rule.getTag());
+        Elements found = null;
+        for (String key : rule.getTableAttrs().keySet()) {
+            found = tableCandidates.select(rule.getTableQuery(key));
+        }
+
+        if (found != null && found.size() != 0) {
+            Element targetTable = found.first();
+            Element tableBody = targetTable.getElementsByTag("tbody").first();
+            Elements rows = getFilteredRow(tableBody, rule);
+
+            for (Element row : rows) {
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("TITLE", parseMeta(row, rule.getTitleMeta()));
+                jsonObject.addProperty("NAME", parseMeta(row, rule.getAuthorMeta()));
+                jsonObject.addProperty("REGDATE", 20171102); //parseMeta(row, rule.getDateMeta())
+
+                parentJsonObject.add(jsonObject);
+            }
+        }
+
+        return parentJsonObject;
+    }
+
+    private static Elements getFilteredRow(Element tableBody, ParseRule rule) {
+        Elements rows = new Elements();
+
+        int adder = (rule.isRowSpaced()) ? 2 : 1;
+        for (int i = rule.getFirstRowIndex(); i < tableBody.children().size(); i += adder) {
+            rows.add(tableBody.child(i));
+        }
+
+        return rows;
+    }
+
+    private static String parseMeta(Element row, ParseRule.Meta meta) {
+        Element td = row.child(meta.getTdIndex());
+        for (String childTag : meta.getHierarchy()) {
+            td = td.tagName(childTag);
+        }
+        return td.text();
     }
 
 }

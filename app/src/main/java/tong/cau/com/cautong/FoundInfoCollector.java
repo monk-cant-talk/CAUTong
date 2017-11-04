@@ -26,17 +26,13 @@ public class FoundInfoCollector {
         return instance;
     }
 
-    private FoundInfoCollector() {
-
-    }
-
     public ArrayList<WindowInfo> findInfo(Site site, String boardName) {
         JsonArray dataList = BoardMapper.getArticleInfo(site, boardName);
         ArrayList<WindowInfo> list = null;
 
         if (dataList != null) {
             list = new ArrayList<>(dataList.size());
-            for (int i = 0; i < INITIAL_WINDOW_SIZE; ++i) {
+            for (int i = 0; i < dataList.size(); ++i) {
                 list.add(new WindowInfo());
             }
 

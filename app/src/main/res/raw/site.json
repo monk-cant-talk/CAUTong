@@ -1,6 +1,7 @@
 [
   {
-    "name": "CAU",
+    "enabled": false,
+    "name": "cau",
     "ssoEnabled": true,
     "parseType": "json",
     "ssoUrl": "https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx",
@@ -45,7 +46,8 @@
     "testUrl": "https://www.cau.ac.kr/ajax/bbs_list.php?isNoti=Y&pageSize=50&bbsId=cau_notice"
   },
   {
-    "name": "Integrative",
+    "enabled": false,
+    "name": "ie",
     "ssoEnabled": false,
     "parseType": "html",
     "ssoUrl": "",
@@ -63,10 +65,74 @@
         "category": "sub01.php"
       },
       {
-        "name":"취업정보게시판",
-        "category":"sub03.php"
+        "name": "취업정보게시판",
+        "category": "sub03.php"
       }
     ],
     "testUrl": "http://ie.cau.ac.kr/20141101/sub07/sub01.php"
+  },
+  {
+    "enabled": false,
+    "name": "sociology",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "ssoUrl": "",
+    "baseUrl": "http://sociology.cau.ac.kr",
+    "bbsListParams": "/bbs/board.php?bo_table=",
+    "bbsBaseUrl": "",
+    "encodeType": "euc-kr",
+    "bbsInfo": {
+      "page": "page",
+      "author": "author"
+    },
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "sub3_1"
+      },
+      {
+        "name": "학생회",
+        "category": "sub3_2"
+      },
+      {
+        "name": "자유게시판",
+        "category": "sub3_3"
+      },
+      {
+        "name": "대학원",
+        "category": "sub3_4"
+      },
+      {
+        "name": "동문회",
+        "category": "sub3_5"
+      }
+    ],
+    "testUrl": "http://sociology.cau.ac.kr/bbs/board.php?bo_table=sub3_1"
+  },
+  {
+    "enabled": true,
+    "name": "cse",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "ssoUrl": "",
+    "baseUrl": "http://cse.cau.ac.kr",
+    "bbsListParams": "/20141201/sub05/",
+    "bbsBaseUrl": "",
+    "encodeType": "utf-8",
+    "bbsInfo": {
+      "page": "page",
+      "author": "author"
+    },
+    "boardList": [
+      {
+        "name": "공지사항&뉴스",
+        "category": "sub0501.php"
+      },
+      {
+        "name": "취업정보",
+        "category": "sub0503.php"
+      }
+    ],
+    "testUrl": "http://cse.cau.ac.kr/20141201/sub05/sub0501.php"
   }
 ]

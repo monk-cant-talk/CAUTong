@@ -12,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import tong.cau.com.cautong.alarm.AlarmService;
@@ -20,7 +19,7 @@ import tong.cau.com.cautong.model.Board;
 import tong.cau.com.cautong.model.Site;
 import tong.cau.com.cautong.model.WindowInfo;
 import tong.cau.com.cautong.start.StartActivity;
-import tong.cau.com.cautong.utility.SiteParser;
+import tong.cau.com.cautong.utility.MapDataParser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,20 +40,21 @@ public class MainActivity extends AppCompatActivity {
         testbutton = (RelativeLayout) findViewById(R.id.test_button);
 
         startActivity(StartActivity.search_key);
-
     }
 
     //이전 액티비티(StartActivity) 에서 검색키워드를 넣게 되면 자동으로 이 액티비티로 넘어오면서 이 함수가 실행된다.
     private void startActivity(String search_key) {
 
-        Map<String, Site> siteMap = SiteParser.getSiteMap(getResources());
+        Map<String, Site> siteMap = MapDataParser.getSiteMap();
         ArrayList<Site> siteList = new ArrayList<>();
         for (String key : siteMap.keySet()) {
             siteList.add(siteMap.get(key));
         }
 
         for (Site site : siteList) {
-            getRequestSite(site);
+            if (site.isEnabled()) {
+                getRequestSite(site);
+            }
         }
 
         testbutton.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getFavoriteSite() {
         //TODO 유저의 즐겨찾기 리스트에 등록되어 있는 사이트 리스트를 받아옴
-//        Map<String, Site> siteMap = SiteParser.parseSiteMap(getResources());
+//        Map<String, Site> siteMap = MapDataParser.parseSiteMap(getResources());
 
     }
 

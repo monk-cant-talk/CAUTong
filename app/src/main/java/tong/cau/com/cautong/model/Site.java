@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 
 public class Site {
+    private boolean enabled;
     private String name;
     private boolean ssoEnabled;
     private String ssoUrl;
@@ -24,7 +25,7 @@ public class Site {
     private String parseType;
     private String testUrl;
 
-    public Site(){
+    public Site() {
         this.bbsInfo = new BbsInfo();
     }
 
@@ -40,6 +41,14 @@ public class Site {
             }
         }
         return null;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getName() {
