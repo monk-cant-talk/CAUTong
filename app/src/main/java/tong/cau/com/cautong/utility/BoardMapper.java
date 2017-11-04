@@ -1,8 +1,5 @@
 package tong.cau.com.cautong.utility;
 
-import android.util.Log;
-
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -12,7 +9,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -38,7 +34,7 @@ public class BoardMapper {
             if (site.getParseType().equals("json"))
                 return parseData(response);
             else {
-                return parseHtml(site.getName(), response);
+                return parseHtml(site.getId(), response);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,7 +71,8 @@ public class BoardMapper {
             for (Element row : rows) {
                 JsonObject jsonObject = new JsonObject();
                 jsonObject.addProperty("TITLE", parseMeta(row, rule.getTitleMeta()));
-                jsonObject.addProperty("NAME", parseMeta(row, rule.getAuthorMeta()));
+                String author = (rule.getAuthorMeta() == null)? site.getName() : parseMeta(row, rule.getAuthorMeta());
+                jsonObject.addProperty("NAME", author);
                 try {
                     SimpleDateFormat sdf = new SimpleDateFormat(rule.getDateMeta().getEtc());
                     long val = sdf.parse(parseMeta(row, rule.getDateMeta())).getTime();

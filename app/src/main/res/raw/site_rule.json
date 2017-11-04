@@ -68,18 +68,62 @@
     "titleMeta": {
       "tdIndex": 2,
       "hierarchy": [
-        "nobr",
         "a"
       ]
     },
     "authorMeta": {
       "tdIndex": 3,
-      "hierarchy": [
-        "span"
-      ]
+      "hierarchy": []
     },
     "dateMeta": {
       "tdIndex": 4,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    }
+  },
+  "eee": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "width": "800",
+      "border": "0",
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "class": "nlist"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    }
+  },
+  "biz": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 3,
       "hierarchy": [],
       "etc": "yyyy.MM.dd"
     }

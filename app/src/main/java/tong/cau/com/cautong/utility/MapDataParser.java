@@ -1,10 +1,8 @@
 package tong.cau.com.cautong.utility;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
@@ -83,7 +81,7 @@ public class MapDataParser {
 
         map = new HashMap<>();
         for (Site site : siteList) {
-            map.put(site.getName(), site);
+            map.put(site.getId(), site);
         }
 
         return map;

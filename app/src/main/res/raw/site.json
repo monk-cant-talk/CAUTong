@@ -1,7 +1,8 @@
 [
   {
-    "enabled": false,
-    "name": "cau",
+    "enabled": true,
+    "name": "중앙대학교",
+    "id": "cau",
     "ssoEnabled": true,
     "parseType": "json",
     "ssoUrl": "https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx",
@@ -46,8 +47,9 @@
     "testUrl": "https://www.cau.ac.kr/ajax/bbs_list.php?isNoti=Y&pageSize=50&bbsId=cau_notice"
   },
   {
-    "enabled": false,
-    "name": "ie",
+    "enabled": true,
+    "name": "융합공학부",
+    "id": "ie",
     "ssoEnabled": false,
     "parseType": "html",
     "ssoUrl": "",
@@ -72,8 +74,9 @@
     "testUrl": "http://ie.cau.ac.kr/20141101/sub07/sub01.php"
   },
   {
-    "enabled": false,
-    "name": "sociology",
+    "enabled": true,
+    "name": "사회학과",
+    "id": "sociology",
     "ssoEnabled": false,
     "parseType": "html",
     "ssoUrl": "",
@@ -111,7 +114,8 @@
   },
   {
     "enabled": true,
-    "name": "cse",
+    "name": "컴퓨터공학부",
+    "id": "cse",
     "ssoEnabled": false,
     "parseType": "html",
     "ssoUrl": "",
@@ -134,5 +138,55 @@
       }
     ],
     "testUrl": "http://cse.cau.ac.kr/20141201/sub05/sub0501.php"
+  },
+  {
+    "enabled": true,
+    "name": "전자전기공학부",
+    "id": "eee",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "ssoUrl": "",
+    "baseUrl": "http://e3home.cau.ac.kr",
+    "bbsListParams": "/20141201/sub08/",
+    "bbsBaseUrl": "",
+    "encodeType": "utf-8",
+    "bbsInfo": {
+      "page": "page",
+      "author": "author"
+    },
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "sub01.php"
+      },
+      {
+        "name": "자료실",
+        "category": "sub02.php"
+      }
+    ],
+    "testUrl": "http://e3home.cau.ac.kr/20141201/sub08/sub01.php"
+  },
+  {
+    "enabled": true,
+    "name": "경영학부",
+    "id": "biz",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "ssoUrl": "",
+    "baseUrl": "http://biz.cau.ac.kr",
+    "bbsListParams": "/2016/sub06/",
+    "bbsBaseUrl": "",
+    "encodeType": "utf-8",
+    "bbsInfo": {
+      "page": "page",
+      "author": "author"
+    },
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "sub06_01_list.php"
+      }
+    ],
+    "testUrl": "http://biz.cau.ac.kr/2016/sub06/sub06_01_list.php"
   }
 ]

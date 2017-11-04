@@ -1,9 +1,5 @@
 package tong.cau.com.cautong.model;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-
 /**
  * Created by Velmont on 2017-10-30.
  */
@@ -11,6 +7,7 @@ import java.util.ArrayList;
 public class Site {
     private boolean enabled;
     private String name;
+    private String id;
     private boolean ssoEnabled;
     private String ssoUrl;
     private String baseUrl;
@@ -57,6 +54,14 @@ public class Site {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public boolean isSsoEnabled() {
