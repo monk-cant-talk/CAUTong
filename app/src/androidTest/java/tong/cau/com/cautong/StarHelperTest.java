@@ -34,9 +34,9 @@ public class StarHelperTest {
 
     @Before
     public void setUp() {
+        activity = mActivityRule.getActivity();
         PlayerPrefs.getTestInstance(activity).removeKey("star");
         PlayerPrefs.getInstance().save();
-        activity = mActivityRule.getActivity();
     }
 
     @Test

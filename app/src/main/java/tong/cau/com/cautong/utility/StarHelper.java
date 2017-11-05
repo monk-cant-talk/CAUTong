@@ -27,8 +27,8 @@ public class StarHelper {
         }else{
             idList = new ArrayList<>();
         }
-
         idList.add(windowInfo);
+        Log.d("yama", gson.toJson(idList));
         PlayerPrefs.getInstance().setString("star", gson.toJson(idList));
         PlayerPrefs.getInstance().save();
     }
