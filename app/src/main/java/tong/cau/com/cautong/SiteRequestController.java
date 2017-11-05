@@ -19,9 +19,6 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-/**
- * Created by Velmont on 2017-10-30.
- */
 
 public class SiteRequestController {
     private static final String TAG = "SiteRequestController";
