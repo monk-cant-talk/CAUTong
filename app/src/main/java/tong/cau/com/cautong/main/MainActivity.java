@@ -50,12 +50,14 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.main_activity_view_pager);
         viewPager.setAdapter(adapter);
 
+        LoadingStart();
+
         new Thread(new Runnable() {
             @Override
             public void run() {
 
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -141,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
         });
         */
         startAlarmService();
+
+        LoadingEnd();
     }
 
     private void startAlarmService() {
@@ -224,5 +228,24 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             adapter.star.layout.addView(info.getLayout(MainActivity.instance));
         }
+    }
+
+    public void LoadingStart(){        runOnUiThread(new Runnable() {
+        @Override
+        public void run() {
+                RelativeLayout loading = (RelativeLayout) findViewById(R.id.loading);
+                loading.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    public void LoadingEnd(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                RelativeLayout loading = (RelativeLayout)findViewById(R.id.loading);
+                loading.setVisibility(View.GONE);
+            }
+        });
     }
 }
