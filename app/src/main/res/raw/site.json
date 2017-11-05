@@ -5,7 +5,6 @@
     "id": "ie",
     "ssoEnabled": false,
     "parseType": "html",
-    "ssoUrl": "",
     "baseUrl": "http://ie.cau.ac.kr/20141101/sub07/",
     "pageParam": "&gotoPage=",
     "articleParam": "?bbsIdx=",
@@ -30,7 +29,6 @@
     "id": "sociology",
     "ssoEnabled": false,
     "parseType": "html",
-    "ssoUrl": "",
     "baseUrl": "http://sociology.cau.ac.kr/bbs/board.php?",
     "pageParam": "&page=",
     "encodeType": "euc-kr",
@@ -64,7 +62,6 @@
     "id": "cse",
     "ssoEnabled": false,
     "parseType": "html",
-    "ssoUrl": "",
     "baseUrl": "http://cse.cau.ac.kr/20141201/sub05/",
     "pageParam": "&offset=",
     "encodeType": "utf-8",
@@ -86,7 +83,6 @@
     "id": "eee",
     "ssoEnabled": false,
     "parseType": "html",
-    "ssoUrl": "",
     "baseUrl": "http://e3home.cau.ac.kr/20141201/sub08/",
     "pageParam": "&cpage=",
     "encodeType": "utf-8",
@@ -108,7 +104,6 @@
     "id": "biz",
     "ssoEnabled": false,
     "parseType": "html",
-    "ssoUrl": "",
     "baseUrl": "http://biz.cau.ac.kr/2016/sub06/",
     "pageParam": "&gotoPage=",
     "encodeType": "utf-8",
@@ -126,7 +121,6 @@
     "id": "korean",
     "ssoEnabled": false,
     "parseType": "html",
-    "ssoUrl": "",
     "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=caukorean&pageType=BBS&",
     "pageParam": "&page=",
     "articleParam": "",
@@ -141,45 +135,596 @@
   },
   {
     "enabled": false,
-    "name": "중앙대학교",
-    "id": "cau",
-    "ssoEnabled": true,
-    "parseType": "json",
-    "ssoUrl": "https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx",
-    "baseUrl": "https://www.cau.ac.kr",
-    "bbsListParams": "/ajax/bbs_list.php?bbsId=cau_notice&category1=",
-    "bbsBaseUrl": "/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice&category1=",
-    "encodeType": "EUC_KR",
-    "bbsInfo": {
-      "page": "page",
-      "author": "author"
-    },
+    "name": "영어영문학과",
+    "id": "english",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://caueng.net/home/cauboard/bbs/board.php?",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
     "boardList": [
       {
-        "name": "학사",
-        "category": "학사"
-      },
-      {
-        "name": "학점교류",
-        "category": "학점교류"
-      },
-      {
-        "name": "모집",
-        "category": "모집"
-      },
-      {
-        "name": "장학",
-        "category": "장학"
-      },
-      {
-        "name": "행사",
-        "category": "행사"
-      },
-      {
-        "name": "일반",
-        "category": "일반"
+        "name": "공지사항",
+        "category": "cateKey=M2U&",
+        "view": "bo_table=kor_news_re"
       }
-    ],
-    "testUrl": "https://www.cau.ac.kr/ajax/bbs_list.php?isNoti=Y&pageSize=50&bbsId=cau_notice"
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "불어불문",
+    "id": "france",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=caufrance&pageType=BBS&",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "cateKey=K4N&",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "일어일문",
+    "id": "japan",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://cajj.net/zeroboard/zboard.php?",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "id=notice&",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "중어중문",
+    "id": "chinese",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=Chinese&pageType=BBS&",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "cateKey=U2W",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "철학과",
+    "id": "philosophy",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://cauphilos.cafe24.com/tt/site/ttboard.cgi?",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "db=notice",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "역사학과",
+    "id": "history",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=history&pageType=BBS&",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "cateKey=G2Z",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "물리학과",
+    "id": "physics",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=physics&pageType=BBS&",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "화학과",
+    "id": "chem",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://chem.cau.ac.kr/index.php/ko/s3/s31/?",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "board_name=Notice&",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "생명과학과",
+    "id": "bio",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=lifescience&pageType=BBS&",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "cateKey=D6M&",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "수학과",
+    "id": "math",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=math&pageType=BBS&",
+    "pageParam": "&gotoPage=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "cateKey=K2Y&",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "정치국제학과",
+    "id": "politic",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://politics.cau.ac.kr/20120619/sub01/",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "01_06.php?",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "공공인재학부",
+    "id": "public",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "https://public.cau.ac.kr/college/index.php?",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "mid=notice&",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "심리학과",
+    "id": "psychology",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://psyche.cau.ac.kr/notice/sub01.asp?",
+    "pageParam": "&start=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "tb=notice_major&",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "문헌정보학과",
+    "id": "bookinfo",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://lis.cau.ac.kr/gnuboard4/bbs/board.php?",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "bo_table=notice1&",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "사회복지학부",
+    "id": "welfare",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=welfare&pageType=BBS&",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "cateKey=E2L&",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "미디어커뮤니케이션학부",
+    "id": "mcc",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://cmc.cau.ac.kr/20121210/sub06/",
+    "pageParam": "&gotoPage=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "sub0601.php?",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "도시계획부동산학과",
+    "id": "simcity",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://planning.cau.ac.kr/bbs/board.php?",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "tbl=notice",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "교육학과",
+    "id": "edu",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://education.cau.ac.kr/bbs/board.php?",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "bo_table=s0301&",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "유아교육과",
+    "id": "kidedu",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://cauece.cau.ac.kr/bbs/board.php?",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "bo_table=s0406&",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "영어교육과",
+    "id": "engedu",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://englishedu.cau.ac.kr/?r=home&",
+    "pageParam": "&p=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "c=board&",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "체육교육과",
+    "id": "bodyedu",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://cau0physical0edu.cafe24.com/?",
+    "pageParam": "&pageid=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "page_id=38",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "생명공학대학",
+    "id": "biotech",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://cobiotech.cau.ac.kr/20140924/sub05/",
+    "pageParam": "&cpage=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "sub0501.php?",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "사회기반시스템공학부",
+    "id": "sse",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://infra.cau.ac.kr/bbs/board.php?",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "bo_table=sub05_01",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "건축학부",
+    "id": "architecture",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://archicau.com/wordpress/",
+    "pageParam": "&pageid=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "공지사항/?",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "화학신소재공학부",
+    "id": "newmaterial",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://chemeng.cau.ac.kr/bbs/board.php?",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "bo_table=sub07_01",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "에너지시스템공학부",
+    "id": "energy",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://ese.cau.ac.kr/wordpress/?",
+    "pageParam": "&paged=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "cat=11",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "경제학부",
+    "id": "economy",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://www.economics.cau.ac.kr/new/graduate/",
+    "pageParam": "&offset=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "notice_list.php?",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "응용통계학과",
+    "id": "statistics",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://stat.cau.ac.kr/community/",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "community01_list.php?",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "국제물류학과",
+    "id": "logistics",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://log.cau.ac.kr/graduate/",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "notice_list.php?",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "산업보안학과",
+    "id": "security",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://security.cau.ac.kr/board.htm?",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "",
+        "view": "bbsid=notice&"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "의과대학",
+    "id": "medical",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://med.cau.ac.kr/2010/total_board/",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "",
+        "view": "board_list.asp?"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "약학대학",
+    "id": "pharmacy",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://pharm.cau.ac.kr/151127/page/sub05/",
+    "pageParam": "&gotoPage=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "sub05_01_list.php?",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "적십자간호대학",
+    "id": "nursing",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "baseUrl": "http://nursing.cau.ac.kr/life/",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "notice_list.php?",
+        "view": "bo_table=kor_news_re"
+      }
+    ]
   }
 ]
