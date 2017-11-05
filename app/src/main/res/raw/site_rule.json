@@ -30,7 +30,6 @@
       "summary": "공지사항입니다."
     },
     "firstRowIndex": 0,
-    "contentId" : "idContents",
     "titleMeta": {
       "tdIndex": 2,
       "hierarchy": [
@@ -45,6 +44,11 @@
       "tdIndex": 6,
       "hierarchy": [],
       "etc": "yyyy-MM-dd"
+    },
+    "contentParseType": "id",
+    "contentTag": "div",
+    "properties": {
+      "id": "idContents"
     }
   },
   "sociology": {
@@ -73,6 +77,10 @@
       "tdIndex": 4,
       "hierarchy": [],
       "etc": "yyyy.MM.dd"
+    },
+    "contentTdAttrs": {
+      "height": "150",
+      "style": "word-break:break-all; padding:10px;"
     }
   },
   "cse": {
@@ -100,6 +108,11 @@
       "tdIndex": 4,
       "hierarchy": [],
       "etc": "yyyy.MM.dd"
+    },
+    "contentParseType": "class",
+    "contentTag": "table",
+    "properties": {
+      "class": "viewtext"
     }
   },
   "eee": {
@@ -147,6 +160,36 @@
       "tdIndex": 3,
       "hierarchy": [],
       "etc": "yyyy.MM.dd"
+    },
+    "contentParseType": "class",
+    "contentTag": "td",
+    "properties": {
+      "class": "text_wrap"
+    }
+  },
+  "korean": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    },
+    "contentParseType": "class",
+    "contentTag": "td",
+    "properties": {
+      "class": "text_wrap"
     }
   }
 }

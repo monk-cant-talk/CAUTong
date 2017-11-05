@@ -11,27 +11,19 @@ public class Site {
     private boolean ssoEnabled;
     private String ssoUrl;
     private String baseUrl;
-    private String bbsBaseUrl;
-
-    private String bbsListParams;
     private String pageParam;
+    private String articleParam;
     private String encode;
-    private BbsInfo bbsInfo;
     private Board[] boardList;
 
     private String encodeType;
     private String parseType;
     private String testUrl;
 
-    public Site() {
-        this.bbsInfo = new BbsInfo();
-    }
-
     public String getBoardUrl(String boardName, int pageNum) {
         for (Board board : boardList) {
             if (board.getName().equals(boardName)) {
-                return getBaseUrl() + getBbsListParams() + board.getCategory() + getPageParam(pageNum);
-
+                return getBaseUrl() + board.getCategory() + getPageParam(pageNum);
             }
         }
         return null;
@@ -101,22 +93,6 @@ public class Site {
         this.baseUrl = baseUrl;
     }
 
-    public String getBbsBaseUrl() {
-        return bbsBaseUrl;
-    }
-
-    public void setBbsBaseUrl(String bbsBaseUrl) {
-        this.bbsBaseUrl = bbsBaseUrl;
-    }
-
-    public String getBbsListParams() {
-        return bbsListParams;
-    }
-
-    public void setBbsListParams(String bbsListParams) {
-        this.bbsListParams = bbsListParams;
-    }
-
     public String getPageParam(int pageNum) {
         if (pageParam == null)
             return "";
@@ -130,20 +106,20 @@ public class Site {
         this.pageParam = pageParam;
     }
 
+    public String getArticleParam() {
+        return articleParam;
+    }
+
+    public void setArticleParam(String articleParam) {
+        this.articleParam = articleParam;
+    }
+
     public String getEncodeType() {
         return encodeType;
     }
 
     public void setEncodeType(String encodeType) {
         this.encodeType = encodeType;
-    }
-
-    public BbsInfo getBbsInfo() {
-        return bbsInfo;
-    }
-
-    public void setBbsInfo(BbsInfo bbsInfo) {
-        this.bbsInfo = bbsInfo;
     }
 
     public Board getBoard(int index) {
