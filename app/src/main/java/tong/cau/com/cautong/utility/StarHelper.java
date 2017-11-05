@@ -15,10 +15,6 @@ import java.util.List;
 import tong.cau.com.cautong.PlayerPrefs;
 import tong.cau.com.cautong.model.WindowInfo;
 
-/**
- * Created by Velmont on 2017-10-31.
- */
-
 public class StarHelper {
     // 별표하기
     public static void starWindowInfo(WindowInfo windowInfo){
@@ -34,8 +30,6 @@ public class StarHelper {
 
         idList.add(windowInfo);
         PlayerPrefs.getInstance().setString("star", gson.toJson(idList));
-        String s =gson.toJson(idList, new TypeToken<List<WindowInfo>>(){}.getType());
-
         PlayerPrefs.getInstance().save();
     }
 

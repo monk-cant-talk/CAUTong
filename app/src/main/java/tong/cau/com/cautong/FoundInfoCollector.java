@@ -2,13 +2,11 @@
 package tong.cau.com.cautong;
 
 
-import android.app.Activity;
-
 import com.google.gson.JsonArray;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import tong.cau.com.cautong.main.MainActivity;
 import tong.cau.com.cautong.model.MyDate;
 import tong.cau.com.cautong.model.Site;
 import tong.cau.com.cautong.model.WindowInfo;

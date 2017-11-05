@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 
-import tong.cau.com.cautong.MainActivity;
+import tong.cau.com.cautong.main.MainActivity;
 import tong.cau.com.cautong.R;
 
 public class AlarmService extends Service {
@@ -25,7 +25,7 @@ public class AlarmService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Notifi_M = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		AlaermHandler handler = new AlaermHandler();
+		AlarmHandler handler = new AlarmHandler();
 		thread = new ServiceThread(handler);
 		thread.start();
 		return START_STICKY;
@@ -38,7 +38,7 @@ public class AlarmService extends Service {
 		thread = null;//쓰레기 값을 만들어서 빠르게 회수하라고 null을 넣어줌.
 	}
 
-	private class AlaermHandler extends Handler {
+	private class AlarmHandler extends Handler {
 
 		@Override
 		public void handleMessage(android.os.Message msg) {
@@ -71,10 +71,10 @@ public class AlarmService extends Service {
 	}
 
 	private class ServiceThread extends Thread{
-		AlaermHandler handler;
+		AlarmHandler handler;
 		boolean isRun = true;
 
-		public ServiceThread(AlaermHandler handler){
+		public ServiceThread(AlarmHandler handler){
 			this.handler = handler;
 		}
 

@@ -1,21 +1,22 @@
-package tong.cau.com.cautong;
+package tong.cau.com.cautong.main;
 
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
+import tong.cau.com.cautong.FoundInfoCollector;
+import tong.cau.com.cautong.R;
 import tong.cau.com.cautong.alarm.AlarmService;
 import tong.cau.com.cautong.model.Board;
 import tong.cau.com.cautong.model.Site;
@@ -26,7 +27,8 @@ import tong.cau.com.cautong.start.StartActivity;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    LinearLayout main_layout;
+    ViewPager viewPager;
+    MainViewAdapter adapter;
     RelativeLayout button;
     RelativeLayout testbutton;
     public static MainActivity instance;
@@ -37,7 +39,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity);
         instance = this;
 
-        main_layout = (LinearLayout) findViewById(R.id.main_linear_layout);
+
+        adapter = new MainViewAdapter(this);
+        viewPager = (ViewPager) findViewById(R.id.main_activity_view_pager);
+        viewPager.setAdapter(adapter);
+
         button = (RelativeLayout) findViewById(R.id.requestButton);
         testbutton = (RelativeLayout) findViewById(R.id.test_button);
 
@@ -121,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            main_layout.addView(info.getLayout());
+            adapter.main.addView(info.getLayout());
         }
     }
 }

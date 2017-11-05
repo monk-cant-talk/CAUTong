@@ -1,13 +1,8 @@
 package tong.cau.com.cautong;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.LinearLayout;
 
-import com.google.gson.Gson;
+import tong.cau.com.cautong.main.MainActivity;
 
 public class PlayerPrefs {
 
