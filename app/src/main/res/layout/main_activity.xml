@@ -1,80 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tong.cau.com.cautong.MainActivity">
+    tools:context="tong.cau.com.cautong.main.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_height="wrap_content"
-        android:id="@+id/main_appbar"
-        android:layout_width="match_parent">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
-
-            <android.support.v7.widget.Toolbar
-
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                app:contentInsetLeft="0dp"
-                app:layout_collapseMode="pin">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="This is Appbar"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp"/>
-
-                    <RelativeLayout
-                        android:id="@+id/requestButton"
-                        android:background="#FFFFFF"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:text="Button" />
-
-                    <RelativeLayout
-                        android:id="@+id/test_button"
-                        android:background="#FFFFFF"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="60dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:text="Button" />
-                </RelativeLayout>
-
-            </android.support.v7.widget.Toolbar>
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_activity_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#aaaabf"
-        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+        android:background="#88000000">
 
-
-        <LinearLayout
-            android:id="@+id/main_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="10dp">
-
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.view.ViewPager>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -92,7 +31,9 @@
                 android:layout_centerInParent="true"
                 android:background="@drawable/c"/>
         </RelativeLayout>
-        
+
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
+
+

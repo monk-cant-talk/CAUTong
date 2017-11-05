@@ -3,12 +3,12 @@ package tong.cau.com.cautong;
 
 
 import android.util.Log;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
+import tong.cau.com.cautong.main.MainActivity;
 import tong.cau.com.cautong.model.MyDate;
 import tong.cau.com.cautong.model.Site;
 import tong.cau.com.cautong.model.WindowInfo;

@@ -2,7 +2,6 @@ package tong.cau.com.cautong.start;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import tong.cau.com.cautong.MainActivity;
+import tong.cau.com.cautong.main.MainActivity;
 import tong.cau.com.cautong.R;
 
 public class StartActivity extends AppCompatActivity{

@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import tong.cau.com.cautong.MainActivity;
+import tong.cau.com.cautong.main.MainActivity;
 import tong.cau.com.cautong.R;
 import tong.cau.com.cautong.WindowMenuDialog;
 

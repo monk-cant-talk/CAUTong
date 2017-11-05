@@ -1,7 +1,5 @@
 package tong.cau.com.cautong;
 
-import android.app.Activity;
-import android.support.design.widget.BaseTransientBottomBar;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
@@ -14,10 +12,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import tong.cau.com.cautong.main.MainActivity;
 import tong.cau.com.cautong.model.MyDate;
 import tong.cau.com.cautong.model.WindowInfo;
 import tong.cau.com.cautong.utility.StarHelper;

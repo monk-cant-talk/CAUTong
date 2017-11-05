@@ -17,7 +17,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
-import tong.cau.com.cautong.MainActivity;
+import tong.cau.com.cautong.main.MainActivity;
 import tong.cau.com.cautong.R;
 import tong.cau.com.cautong.model.ParseRule;
 import tong.cau.com.cautong.model.Site;
