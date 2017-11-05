@@ -54,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
         //testbutton = (RelativeLayout) findViewById(R.id.test_button);
 
         startActivity(StartActivity.search_key);
+        makeStarPage();
+    }
+
+
+    private void makeStarPage(){
+
+        //// TODO: 2017-11-06 여기에 WindowInfo 리스트를 순서대로 채워 넣으면 댐 
+        addStarWindow();
     }
 
     //이전 액티비티(StartActivity) 에서 검색키워드를 넣게 되면 자동으로 이 액티비티로 넘어오면서 이 함수가 실행된다.
@@ -188,6 +196,23 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             adapter.main.layout.addView(info.getLayout(MainActivity.instance));
+        }
+    }
+
+    public void addStarWindow(WindowInfo info) {
+        runOnUiThread(new AddStarWindowInfo(info));
+    }
+
+    private class AddStarWindowInfo implements Runnable {
+        WindowInfo info;
+
+        public AddStarWindowInfo(WindowInfo info) {
+            this.info = info;
+        }
+
+        @Override
+        public void run() {
+            adapter.star.layout.addView(info.getLayout(MainActivity.instance));
         }
     }
 }
