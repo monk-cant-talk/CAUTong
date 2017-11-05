@@ -15,6 +15,10 @@ import org.jsoup.select.Elements;
 import tong.cau.com.cautong.SiteRequestController;
 import tong.cau.com.cautong.model.Site;
 
+/**
+ * Created by Velmont on 2017-10-30.
+ */
+
 public class BoardMapper {
 
     private static final String TAG = "BoardMapper";

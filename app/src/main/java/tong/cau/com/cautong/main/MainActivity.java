@@ -40,12 +40,12 @@ public class MainActivity extends AppCompatActivity {
         instance = this;
 
 
-        adapter = new MainViewAdapter(this);
+        adapter = new MainViewAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.main_activity_view_pager);
         viewPager.setAdapter(adapter);
 
-        button = (RelativeLayout) findViewById(R.id.requestButton);
-        testbutton = (RelativeLayout) findViewById(R.id.test_button);
+        //button = (RelativeLayout) findViewById(R.id.requestButton);
+        //testbutton = (RelativeLayout) findViewById(R.id.test_button);
 
         startActivity(StartActivity.search_key);
 
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             getRequestSite(site);
         }
 
+        /*
         testbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "fdsa", Toast.LENGTH_SHORT).show();
             }
         });
-
+        */
         startAlarmService();
     }
 
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            adapter.main.addView(info.getLayout());
+            adapter.main.layout.addView(info.getLayout());
         }
     }
 }

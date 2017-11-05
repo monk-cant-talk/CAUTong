@@ -1,30 +1,27 @@
 package tong.cau.com.cautong.main;
 
 
-import android.content.Intent;
-import android.net.Uri;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import tong.cau.com.cautong.R;
-import tong.cau.com.cautong.WindowMenuDialog;
-import tong.cau.com.cautong.model.WindowInfo;
 
-public class MainViewAdapter extends PagerAdapter {
+public class MainViewAdapter extends FragmentPagerAdapter {
 
-	MainActivity activity;
-	public LinearLayout main;
-	public LinearLayout star;
-	private boolean init = false;
+	public MainActivityMainList main;
+	public MainActivityStarList star;
 
-	public MainViewAdapter(MainActivity activity) {
-		this.activity = activity;
-		main = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_activity_main_list, null);
-		star = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_activity_main_list, null);
+	public MainViewAdapter(FragmentManager fm) {
+		super(fm);
+		main = new MainActivityMainList();
+		star = new MainActivityStarList();
 	}
 
 	@Override
@@ -32,24 +29,13 @@ public class MainViewAdapter extends PagerAdapter {
 		return 2;
 	}
 
-	@Override
-	public boolean isViewFromObject(View view, Object object) {
-		return false;
-	}
 
 	@Override
-	public Object instantiateItem(ViewGroup container, int position) {
-		if(!init){
-			Toast.makeText(activity, "fdsa", Toast.LENGTH_SHORT).show();
-			((ViewPager) container).addView(main, 0);
-			((ViewPager) container).addView(star, 0);
-			init = true;
-		}
+	public Fragment getItem(int position) {
 		if(position == 0)
 			return main;
 		else
 			return star;
-
 	}
 
 }
