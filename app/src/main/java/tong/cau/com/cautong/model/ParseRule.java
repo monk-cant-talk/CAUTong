@@ -1,6 +1,5 @@
 package tong.cau.com.cautong.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,11 +13,13 @@ public class ParseRule {
     private Map<String, String> tableAttrs;
     private int firstRowIndex;
 
-    private String contentId;
-
     private Meta titleMeta;
     private Meta authorMeta;
     private Meta dateMeta;
+
+    private String contentParseType;
+    private String contentTag;
+    private Map<String, String> properties;
 
     public class Meta {
         private int tdIndex;
@@ -54,6 +55,18 @@ public class ParseRule {
         return "[" + key + "=" + tableAttrs.get(key) + "]";
     }
 
+    public String getContentQuery(String key, String parseType) {
+        if (parseType.equals("attrs")) {
+            return String.format("[%s=%s]", key, properties.get(key));
+        } else if (parseType.equals("class")) {
+            return String.format(".%s", properties.get(key));
+        } else if (parseType.equals("id")) {
+            return String.format("#%s", properties.get(key));
+        } else {
+            return null;
+        }
+    }
+
     public String getTag() {
         return tag;
     }
@@ -86,14 +99,6 @@ public class ParseRule {
         this.firstRowIndex = firstRowIndex;
     }
 
-    public String getContentId() {
-        return contentId;
-    }
-
-    public void setContentId(String contentId) {
-        this.contentId = contentId;
-    }
-
     public Meta getTitleMeta() {
         return titleMeta;
     }
@@ -116,5 +121,29 @@ public class ParseRule {
 
     public void setDateMeta(Meta dateMeta) {
         this.dateMeta = dateMeta;
+    }
+
+    public String getContentParseType() {
+        return contentParseType;
+    }
+
+    public void setContentParseType(String contentParseType) {
+        this.contentParseType = contentParseType;
+    }
+
+    public String getContentTag() {
+        return contentTag;
+    }
+
+    public void setContentTag(String contentTag) {
+        this.contentTag = contentTag;
+    }
+
+    public Map<String, String> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Map<String, String> properties) {
+        this.properties = properties;
     }
 }
