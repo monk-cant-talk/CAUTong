@@ -27,7 +27,7 @@ public class SiteRequestController {
     private static final String TAG = "SiteRequestController";
     private static final String ENCODE = "EUC-KR";
     private static final String USER_AGENT = "Mozilla/5.0";
-    private static final int MAXIMUM_RETRY_COUNT = 10;
+    private static final int MAXIMUM_RETRY_COUNT = 20;
     private static String cookies = "";
 
 

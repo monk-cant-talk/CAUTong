@@ -7,6 +7,7 @@ package tong.cau.com.cautong.model;
 public class Board {
     private String name;
     private String category;
+    private String viewUrl;
 
     public String getName() {
         return name;
@@ -22,5 +23,13 @@ public class Board {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getViewUrl() {
+        return viewUrl;
+    }
+
+    public void setViewUrl(String viewUrl) {
+        this.viewUrl = viewUrl;
     }
 }
