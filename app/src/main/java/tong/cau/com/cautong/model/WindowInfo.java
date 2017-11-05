@@ -41,7 +41,6 @@ public class WindowInfo {
     transient LinearLayout info_window;
     transient RelativeLayout info_logo;
     transient RelativeLayout info_title_board;
-    transient TextView info_content;
     transient TextView info_writer;
     transient TextView info_title;
     transient TextView info_date;
@@ -80,7 +79,6 @@ public class WindowInfo {
             public void run() {
                 info_logo.setBackgroundResource(getLogoImage());
                 info_title.setText(WindowInfo.this.title);
-                info_content.setText(WindowInfo.this.content);
                 info_date.setText(WindowInfo.this.date.toString());
                 info_writer.setText(WindowInfo.this.author);
             }
@@ -117,16 +115,6 @@ public class WindowInfo {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public void updateContent(Activity activity, String content) {
-        this.content = content;
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                info_content.setText(WindowInfo.this.content);
-            }
-        });
     }
 
     public void setDate(Activity activity, MyDate date) {
@@ -174,7 +162,6 @@ public class WindowInfo {
     //변수값이 변했으면 적용한다.
     public void print() {
         info_title.setText(title);
-        info_content.setText(content);
         info_writer.setText(author);
         info_date.setText(date.toString());
         info_logo.setBackgroundResource(getLogoImage());
@@ -188,7 +175,6 @@ public class WindowInfo {
         info_window = ret.findViewById(R.id.window_info_window);
         info_logo = ret.findViewById(R.id.window_info_logo);
         info_title_board = ret.findViewById(R.id.window_info_title_board);
-        info_content = ret.findViewById(R.id.window_info_content);
         info_writer = ret.findViewById(R.id.window_info_writer);
         info_title = ret.findViewById(R.id.window_info_title);
         info_date = ret.findViewById(R.id.window_info_date);

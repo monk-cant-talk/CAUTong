@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="195dp">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:id="@+id/window_info_window"
             android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             <RelativeLayout
                 android:id="@+id/window_info_title_board"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="100dp"
                 android:background="@drawable/window_board_title_unknown">
 
                 <Button
@@ -31,21 +31,39 @@
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/ham"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="5dp">
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp">
 
                 </Button>
 
+                <TextView
+                    android:id="@+id/window_info_logo_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:lines="1"
+                    android:text="CAU CSE"
+                    android:textSize="30dp"
+                    android:textColor="#77ffffff"
+                    android:textStyle="bold"/>
 
                 <RelativeLayout
                     android:id="@+id/window_info_logo"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
                     android:background="@drawable/logo_cau"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp">
+                    android:backgroundTint="#77ffffff"
+                    android:backgroundTintMode="src_in"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginRight="30dp">
 
                 </RelativeLayout>
+
+
 
                 <TextView
                     android:id="@+id/window_info_title"
@@ -60,68 +78,60 @@
                     android:textColor="#ffffff"
                     android:textStyle="bold"/>
 
+                <RelativeLayout
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/clock"/>
+
+                    <TextView
+                        android:id="@+id/window_info_date"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="27dp"
+                        android:layout_marginTop="4dp"
+                        android:lines="1"
+                        android:text="yyyy-MM-dd-hh-mm"
+                        android:textSize="11dp"
+                        android:textColor="#ffffff"/>
+
+
+                    <View
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/writer"/>
+
+                    <TextView
+                        android:id="@+id/window_info_writer"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="170dp"
+                        android:layout_marginTop="2dp"
+                        android:lines="1"
+                        android:text="writer"
+                        android:textSize="13dp"
+                        android:textColor="#ffffff"/>
+
+                </RelativeLayout>
+
+
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/window_info_content"
-                android:layout_width="match_parent"
-                android:layout_height="95dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:lines="5"
-                android:text="empty content"
-                android:textSize="16dp"
-                android:textColor="#115588"/>
 
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
-                <View
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/clock"/>
-
-                <TextView
-                    android:id="@+id/window_info_date"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="4dp"
-                    android:lines="1"
-                    android:text="yyyy-MM-dd-hh-mm"
-                    android:textSize="11dp"
-                    android:textColor="#777777"/>
-
-
-                <View
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginLeft="150dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/writer"/>
-
-                <TextView
-                    android:id="@+id/window_info_writer"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="170dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="2dp"
-                    android:lines="1"
-                    android:text="writer"
-                    android:textSize="13dp"
-                    android:textColor="#777777"/>
-
-            </RelativeLayout>
 
         </LinearLayout>
 
