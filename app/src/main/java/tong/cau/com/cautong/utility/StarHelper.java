@@ -34,7 +34,7 @@ public class StarHelper {
     }
 
     // 별표된 것 가져오기
-    public static List<WindowInfo> getStarredWindowInfo(Activity activity){
+    public static List<WindowInfo> getStarredWindowInfo(){
         String starredWindowInfoList = PlayerPrefs.getInstance().getString("star");
         Gson gson = new Gson();
         List<WindowInfo> windowInfoList = gson.fromJson(starredWindowInfoList, new TypeToken<List<WindowInfo>>(){}.getType());
