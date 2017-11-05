@@ -1,9 +1,5 @@
 package tong.cau.com.cautong.model;
 
-/**
- * Created by Velmont on 2017-10-30.
- */
-
 public class Site {
     private boolean enabled;
     private String name;

@@ -15,6 +15,7 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/main_appbar"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
 
             <android.support.v7.widget.Toolbar
@@ -26,12 +27,61 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <TextView
+
+                    <RelativeLayout
+                        android:id="@+id/main_activity_list_button"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/ham">
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="검색"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp"/>
+                        android:layout_height="35dp"
+                        android:background="@drawable/edit_text"
+                        android:layout_marginRight="80dp"
+                        android:layout_marginLeft="50dp">
+
+
+
+                        <EditText
+                            android:id="@+id/main_activity_search_edit_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="33dp"
+                            android:layout_marginRight="10dp"
+                            android:lines="1"
+                            android:background="@drawable/window_board"/>
+
+                        <View
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/icon_search"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/main_activity_search_button"
+                        android:layout_width="60dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/edit_text_button">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="찾기"
+                            android:textSize="20dp"
+                            android:textColor="#222244"
+                            android:layout_centerInParent="true"/>
+
+                    </RelativeLayout>
                 </RelativeLayout>
 
             </android.support.v7.widget.Toolbar>
@@ -42,7 +92,6 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#aaaabf"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="jni.ndk.com.myapplication.ScrollingActivity">
 
@@ -50,7 +99,8 @@
             android:id="@+id/view_pager_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="20dp">
 
         </LinearLayout>
 
