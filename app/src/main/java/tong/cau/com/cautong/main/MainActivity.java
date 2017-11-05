@@ -53,11 +53,21 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.main_activity_view_pager);
         viewPager.setAdapter(adapter);
 
-        //button = (RelativeLayout) findViewById(R.id.requestButton);
-        //testbutton = (RelativeLayout) findViewById(R.id.test_button);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-        startActivity(StartActivity.search_key);
-        makeStarPage();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                startActivity(StartActivity.search_key);
+                makeStarPage();
+            }
+        }).start();
+
     }
 
 
