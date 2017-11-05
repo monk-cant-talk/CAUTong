@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void makeStarPage(){
 
-        //// TODO: 2017-11-06 여기에 WindowInfo 리스트를 순서대로 채워 넣으면 댐 
-        addStarWindow();
+        //// TODO: 2017-11-06 여기에 WindowInfo 리스트를 순서대로 채워 넣으면 댐
+        //addStarWindow();
     }
 
     //이전 액티비티(StartActivity) 에서 검색키워드를 넣게 되면 자동으로 이 액티비티로 넘어오면서 이 함수가 실행된다.

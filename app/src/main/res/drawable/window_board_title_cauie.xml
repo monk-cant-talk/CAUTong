@@ -8,10 +8,14 @@
         </shape>
     </item>
 
-    <item android:top="10dp">
+    <item>
         <shape android:shape="rectangle">
-            <solid android:color="#3ebb5c"/>
+            <gradient android:angle="315"
+                android:startColor="#ccffffff"
+                android:centerColor="#00ffffff"/>
+            <corners android:radius="5dp"/>
         </shape>
     </item>
+
 
 </layer-list>
