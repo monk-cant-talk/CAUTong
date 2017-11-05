@@ -71,7 +71,7 @@
     "testUrl": "http://ie.cau.ac.kr/20141101/sub07/sub01.php"
   },
   {
-    "enabled": true,
+    "enabled": false,
     "name": "사회학과",
     "id": "sociology",
     "ssoEnabled": false,
@@ -111,7 +111,7 @@
     "testUrl": "http://sociology.cau.ac.kr/bbs/board.php?bo_table=sub3_1"
   },
   {
-    "enabled": true,
+    "enabled": false,
     "name": "컴퓨터공학부",
     "id": "cse",
     "ssoEnabled": false,
@@ -139,7 +139,7 @@
     "testUrl": "http://cse.cau.ac.kr/20141201/sub05/sub0501.php"
   },
   {
-    "enabled": true,
+    "enabled": false,
     "name": "전자전기공학부",
     "id": "eee",
     "ssoEnabled": false,
@@ -167,7 +167,7 @@
     "testUrl": "http://e3home.cau.ac.kr/20141201/sub08/sub01.php"
   },
   {
-    "enabled": true,
+    "enabled": false,
     "name": "경영학부",
     "id": "biz",
     "ssoEnabled": false,

@@ -27,6 +27,7 @@ public class SiteRequestController {
     private static final String TAG = "SiteRequestController";
     private static final String ENCODE = "EUC-KR";
     private static final String USER_AGENT = "Mozilla/5.0";
+    private static final int MAXIMUM_RETRY_COUNT = 10;
     private static String cookies = "";
 
 
@@ -45,40 +46,53 @@ public class SiteRequestController {
     }
 
     // HTTP GET request
-    public static String sendGet(String url, String encodeType) throws Exception {
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+    public static String sendGet(String url, String encodeType) {
+        int tryCount = 0;
+        while (tryCount < MAXIMUM_RETRY_COUNT) {
+            try {
+                URL obj = new URL(url);
+                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-        // optional default is GET
-        con.setRequestMethod("GET");
+                // optional default is GET
+                con.setRequestMethod("GET");
 
-        //add request header
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        con.setRequestProperty("Cookie", cookies);
-        con.addRequestProperty("Connection", "keep-alive");
-        con.setRequestProperty("Keep-Alive", "header");
+                //add request header
+                con.setRequestProperty("User-Agent", USER_AGENT);
+                con.setRequestProperty("Cookie", cookies);
+                con.addRequestProperty("Connection", "keep-alive");
+                con.setRequestProperty("Keep-Alive", "header");
 
-        int responseCode = con.getResponseCode();
 
-        if (url == null) {
-            throw new NullPointerException("url is null");
+                StringBuffer response = new StringBuffer();
+
+
+                int responseCode = con.getResponseCode();
+
+                if (url == null) {
+                    throw new NullPointerException("url is null");
+                }
+                if (encodeType == null) {
+                    throw new NullPointerException("encode Type is null : " + url);
+                }
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(con.getInputStream(), encodeType));
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+
+                return response.toString();
+            } catch (Exception e) {
+                Log.d(TAG, tryCount + ") retrying get to " + url);
+                tryCount++;
+            }
         }
-        if (encodeType == null) {
-            throw new NullPointerException("encode Type is null : " + url);
-        }
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), encodeType));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-
-        in.close();
 
         //print result
-        return response.toString();
+        return null;
     }
 
     // HTTP POST request

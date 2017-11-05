@@ -2,6 +2,8 @@
 package tong.cau.com.cautong;
 
 
+import android.util.Log;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -39,9 +41,12 @@ public class FoundInfoCollector {
 
             for (int i = 0; i < dataList.size(); ++i) {
                 JsonObject dataObject = dataList.get(i).getAsJsonObject();
+                if(dataObject == null) {
+                    Log.e(TAG, "문제발생 ERROR!!!");
+                }
                 list.get(i).init(WindowInfo.Logo.caucse,
                         dataObject.get("TITLE").getAsString(),
-                        "준비중입니다",
+                        dataObject.get("CONTENT").getAsString(),
                         "https://www.cau.ac.kr",
                         new MyDate(dataObject.get("REGDATE").getAsLong()),
                         dataObject.get("NAME").getAsString());

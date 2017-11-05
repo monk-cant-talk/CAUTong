@@ -32,29 +32,16 @@ public class BoardMapper {
             SiteRequestController.requestSSO(site.getSsoUrl(), site.getBaseUrl() + site.getBbsListParams());
         }
 
-        int tryCount = 0;
-        Exception occuredException = null;
-
-        while (tryCount < MAXIMUM_GET_RETRY) {
-            try {
-                String response = SiteRequestController.sendGet(site.getBoardUrl(boardName, pageNum), site.getEncodeType());
-                if (site.getParseType().equals("json"))
-                    return parseData(response);
-                else {
-                    return parseHtml(site.getId(), response);
-                }
-            } catch (Exception e) {
-                Log.d(TAG, "retrying(" + tryCount + "): " + site.getBoardUrl(boardName, pageNum));
-                occuredException = e;
-                tryCount++;
-            }
+        String response = SiteRequestController.sendGet(site.getBoardUrl(boardName, pageNum), site.getEncodeType());
+        if (response == null) {
+            Log.e(TAG, "Error get " + site.getBoardUrl(boardName, pageNum));
+            return null;
         }
-
-        if (occuredException != null) {
-            occuredException.printStackTrace();
+        else if (site.getParseType().equals("json"))
+            return parseData(response);
+        else {
+            return parseHtml(site.getId(), response);
         }
-
-        return null;
     }
 
     private static JsonArray parseData(String jsonString) {
@@ -99,6 +86,8 @@ public class BoardMapper {
                         e.printStackTrace();
                     }
                     jsonObject.addProperty("LINK", parseLink(row, rule.getTitleMeta()));
+                    final String testLink = "http://ie.cau.ac.kr/20141101/sub07/sub03_view.php?bbsIdx=41&searchBbsCategoryNo=&searchKind=&searchStr=?bbsIdx=41&gotoPage=1&searchBbsCategoryNo=&searchKind=&searchStr=";
+                    jsonObject.addProperty("CONTENT", extractContent(site, testLink, rule));
 
                     parentJsonObject.add(jsonObject);
                 }
@@ -133,5 +122,26 @@ public class BoardMapper {
             td = td.tagName(childTag);
         }
         return td.attr("href");
+    }
+
+    final static String NOT_READY_MSG = "준비중입니다.";
+
+    public static String extractContent(Site site, String url, ParseRule rule) {
+        if (site.getSsoEnabled()) {
+            SiteRequestController.requestSSO(site.getBaseUrl(), site.getEncodeType());
+        }
+        try {
+            String response = SiteRequestController.sendGet(url, site.getEncodeType());
+            if (site.getParseType().equals("json"))
+                return null;
+            else {
+                Document doc = Jsoup.parse(response);
+                Element content = doc.getElementById(rule.getContentId());
+                return (content != null) ? content.text() : NOT_READY_MSG;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return NOT_READY_MSG;
     }
 }

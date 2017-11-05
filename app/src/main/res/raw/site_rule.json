@@ -30,6 +30,7 @@
       "summary": "공지사항입니다."
     },
     "firstRowIndex": 0,
+    "contentId" : "idContents",
     "titleMeta": {
       "tdIndex": 2,
       "hierarchy": [

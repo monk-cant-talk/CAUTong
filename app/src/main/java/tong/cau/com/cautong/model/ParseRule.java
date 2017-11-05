@@ -14,6 +14,8 @@ public class ParseRule {
     private Map<String, String> tableAttrs;
     private int firstRowIndex;
 
+    private String contentId;
+
     private Meta titleMeta;
     private Meta authorMeta;
     private Meta dateMeta;
@@ -82,6 +84,14 @@ public class ParseRule {
 
     public void setFirstRowIndex(int firstRowIndex) {
         this.firstRowIndex = firstRowIndex;
+    }
+
+    public String getContentId() {
+        return contentId;
+    }
+
+    public void setContentId(String contentId) {
+        this.contentId = contentId;
     }
 
     public Meta getTitleMeta() {
