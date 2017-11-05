@@ -12,9 +12,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.net.URLDecoder;
 import java.util.Map;
 
+import tong.cau.com.cautong.main.MainActivity;
 import tong.cau.com.cautong.model.Site;
 import tong.cau.com.cautong.utility.BoardMapper;
 import tong.cau.com.cautong.utility.SiteXmlParser;
@@ -43,7 +43,7 @@ public class FindInfoCollectorTest {
         Site site = siteMap.get("Integrative");
         assertThat(site.getParseType(), is("html"));
 
-        JsonArray dataList = BoardMapper.getArticleInfo(site);
+        JsonArray dataList = BoardMapper.getArticleInfo(site, site.getBoard(0).getName());
         if (dataList != null) {
             int minSize = dataList.size();
             for (int i = 0; i < minSize; ++i) {

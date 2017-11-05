@@ -1,22 +1,160 @@
 [
   {
-    "name": "CAU",
+    "enabled": true,
+    "name": "융합공학부",
+    "id": "ie",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "ssoUrl": "",
+    "baseUrl": "http://ie.cau.ac.kr/20141101/sub07/",
+    "pageParam": "&gotoPage=",
+    "articleParam": "?bbsIdx=",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "sub01.php?",
+        "view": "sub01_view.php?"
+      },
+      {
+        "name": "취업정보게시판",
+        "category": "sub03.php?",
+        "view": "sub03_view.php?"
+      }
+    ],
+    "testUrl": "http://ie.cau.ac.kr/20141101/sub07/sub01.php"
+  },
+  {
+    "enabled": true,
+    "name": "사회학과",
+    "id": "sociology",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "ssoUrl": "",
+    "baseUrl": "http://sociology.cau.ac.kr/bbs/board.php?",
+    "pageParam": "&page=",
+    "encodeType": "euc-kr",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "bo_table=sub3_1&"
+      },
+      {
+        "name": "학생회",
+        "category": "bo_table=sub3_2&"
+      },
+      {
+        "name": "자유게시판",
+        "category": "bo_table=sub3_3&"
+      },
+      {
+        "name": "대학원",
+        "category": "bo_table=sub3_4&"
+      },
+      {
+        "name": "동문회",
+        "category": "bo_table=sub3_5&"
+      }
+    ],
+    "testUrl": "http://sociology.cau.ac.kr/bbs/board.php?bo_table=sub3_1"
+  },
+  {
+    "enabled": true,
+    "name": "컴퓨터공학부",
+    "id": "cse",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "ssoUrl": "",
+    "baseUrl": "http://cse.cau.ac.kr/20141201/sub05/",
+    "pageParam": "&offset=",
+    "encodeType": "utf-8",
+    "boardList": [
+      {
+        "name": "공지사항&뉴스",
+        "category": "sub0501.php?"
+      },
+      {
+        "name": "취업정보",
+        "category": "sub0503.php?"
+      }
+    ],
+    "testUrl": "http://cse.cau.ac.kr/20141201/sub05/sub0501.php"
+  },
+  {
+    "enabled": true,
+    "name": "전자전기공학부",
+    "id": "eee",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "ssoUrl": "",
+    "baseUrl": "http://e3home.cau.ac.kr/20141201/sub08/",
+    "pageParam": "&cpage=",
+    "encodeType": "utf-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "sub01.php?"
+      },
+      {
+        "name": "자료실",
+        "category": "sub02.php?"
+      }
+    ],
+    "testUrl": "http://e3home.cau.ac.kr/20141201/sub08/sub01.php"
+  },
+  {
+    "enabled": true,
+    "name": "경영학부",
+    "id": "biz",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "ssoUrl": "",
+    "baseUrl": "http://biz.cau.ac.kr/2016/sub06/",
+    "pageParam": "&gotoPage=",
+    "encodeType": "utf-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "sub06_01_list.php?"
+      }
+    ],
+    "testUrl": "http://biz.cau.ac.kr/2016/sub06/sub06_01_list.php"
+  },
+  {
+    "enabled": false,
+    "name": "국어국문학과",
+    "id": "korean",
+    "ssoEnabled": false,
+    "parseType": "html",
+    "ssoUrl": "",
+    "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=caukorean&pageType=BBS&",
+    "pageParam": "&page=",
+    "articleParam": "",
+    "encodeType": "UTF-8",
+    "boardList": [
+      {
+        "name": "공지사항",
+        "category": "cateKey=M2U&",
+        "view": "sub01_view.php?"
+      }
+    ]
+  },
+  {
+    "enabled": false,
+    "name": "중앙대학교",
+    "id": "cau",
     "ssoEnabled": true,
     "parseType": "json",
     "ssoUrl": "https://sso2.cau.ac.kr/SSO/AuthWeb/NACookieManage.aspx",
     "baseUrl": "https://www.cau.ac.kr",
-    "bbsListParams": "/ajax/bbs_list.php?bbsId=cau_notice&pageSize=30&category1=",
-    "bbsBaseUrl": "/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice",
+    "bbsListParams": "/ajax/bbs_list.php?bbsId=cau_notice&category1=",
+    "bbsBaseUrl": "/04_ulife/causquare/notice/notice_list.php?bbsId=cau_notice&category1=",
     "encodeType": "EUC_KR",
     "bbsInfo": {
       "page": "page",
       "author": "author"
     },
     "boardList": [
-      {
-        "name": "전체",
-        "category": ""
-      },
       {
         "name": "학사",
         "category": "학사"
@@ -43,30 +181,5 @@
       }
     ],
     "testUrl": "https://www.cau.ac.kr/ajax/bbs_list.php?isNoti=Y&pageSize=50&bbsId=cau_notice"
-  },
-  {
-    "name": "Integrative",
-    "ssoEnabled": false,
-    "parseType": "html",
-    "ssoUrl": "",
-    "baseUrl": "http://ie.cau.ac.kr",
-    "bbsListParams": "/20141101/sub07/",
-    "bbsBaseUrl": "",
-    "encodeType": "UTF-8",
-    "bbsInfo": {
-      "page": "page",
-      "author": "author"
-    },
-    "boardList": [
-      {
-        "name": "공지사항",
-        "category": "sub01.php"
-      },
-      {
-        "name":"취업정보게시판",
-        "category":"sub03.php"
-      }
-    ],
-    "testUrl": "http://ie.cau.ac.kr/20141101/sub07/sub01.php"
   }
 ]

@@ -1,0 +1,195 @@
+{
+  "cau": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableAttrs": {
+      "id": "bbs",
+      "class": "bbslist"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 2,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    }
+  },
+  "ie": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableAttrs": {
+      "width": "718",
+      "border": "0",
+      "cellspacing": "0",
+      "style": "background:url(/images/SUBS_LAYOUT_000/top_bar.gif) no-repeat;font-size:12px",
+      "summary": "공지사항입니다."
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 2,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 4,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 6,
+      "hierarchy": [],
+      "etc": "yyyy-MM-dd"
+    },
+    "contentParseType": "id",
+    "contentTag": "div",
+    "properties": {
+      "id": "idContents"
+    }
+  },
+  "sociology": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "class": "board_list"
+    },
+    "firstRowIndex": 1,
+    "titleMeta": {
+      "tdIndex": 2,
+      "hierarchy": [
+        "nobr",
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 3,
+      "hierarchy": [
+        "span"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 4,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    },
+    "contentTdAttrs": {
+      "height": "150",
+      "style": "word-break:break-all; padding:10px;"
+    }
+  },
+  "cse": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "width": "850",
+      "border": "0",
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "class": "nlist"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 2,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 3,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 4,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    },
+    "contentParseType": "class",
+    "contentTag": "table",
+    "properties": {
+      "class": "viewtext"
+    }
+  },
+  "eee": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "width": "800",
+      "border": "0",
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "class": "nlist"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    }
+  },
+  "biz": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    },
+    "contentParseType": "class",
+    "contentTag": "td",
+    "properties": {
+      "class": "text_wrap"
+    }
+  },
+  "korean": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    },
+    "contentParseType": "class",
+    "contentTag": "td",
+    "properties": {
+      "class": "text_wrap"
+    }
+  }
+}
