@@ -19,17 +19,22 @@ public class StarHelper {
     // 별표하기
     public static void starWindowInfo(WindowInfo windowInfo){
         Gson gson = new Gson();
-        List<WindowInfo> idList;
+        WindowInfo[] idList;
         if(PlayerPrefs.getInstance().hasKey("star")) {
             String starredWindowInfoListStr = PlayerPrefs.getInstance().getString("star");
-            idList = gson.fromJson(starredWindowInfoListStr, new TypeToken<List<WindowInfo>>() {
-            }.getType());
+            WindowInfo[] buf = gson.fromJson(starredWindowInfoListStr, WindowInfo[].class);
+            idList = new WindowInfo[buf.length + 1];
+            for(int i = 0 ; i < buf.length ; i ++){
+                idList[i] = buf[i];
+            }
+            idList[buf.length] = windowInfo;
         }else{
-            idList = new ArrayList<>();
+            idList = new WindowInfo[1];
+            idList[0] = windowInfo;
         }
-        idList.add(windowInfo);
-        Log.d("yama", gson.toJson(idList));
-        PlayerPrefs.getInstance().setString("star", gson.toJson(idList));
+
+        String str = gson.toJson(idList);
+        PlayerPrefs.getInstance().setString("star", str);
         PlayerPrefs.getInstance().save();
     }
 

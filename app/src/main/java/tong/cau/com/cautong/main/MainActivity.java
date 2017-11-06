@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -38,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     ViewPager viewPager;
     MainViewAdapter adapter;
-    RelativeLayout button;
-    RelativeLayout testbutton;
     public static MainActivity instance;
 
     @Override
@@ -53,12 +52,15 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.main_activity_view_pager);
         viewPager.setAdapter(adapter);
 
+
+        LoadingStart();
+
         new Thread(new Runnable() {
             @Override
             public void run() {
 
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -84,6 +86,22 @@ public class MainActivity extends AppCompatActivity {
         List<WindowInfo> infoList = StarHelper.getStarredWindowInfo();
         for(WindowInfo info : infoList) {
             addStarWindow(info);
+        }
+    }
+
+    public void keywordFilter(String searchKey){
+        cleanWindow();
+        // 키워드로 필터링
+        if (searchKey.equals("")) {
+            for (WindowInfo wf : finalList) {
+                MainActivity.instance.addWindow(wf);
+            }
+        } else {
+            for (WindowInfo wf : finalList) {
+                if (wf.getTitle().toLowerCase().contains(searchKey.toLowerCase())) {
+                    MainActivity.instance.addWindow(wf);
+                }
+            }
         }
     }
 
@@ -121,39 +139,11 @@ public class MainActivity extends AppCompatActivity {
         });
         Collections.reverse(finalList);
         Log.d(TAG, "number: " + finalList.size());
+        keywordFilter(searchKey);
 
-        // 키워드로 필터링
-        if (searchKey.equals("")) {
-            for (WindowInfo wf : finalList) {
-                MainActivity.instance.addWindow(wf);
-            }
-        } else {
-            for (WindowInfo wf : finalList) {
-                if (wf.getTitle().toLowerCase().contains(searchKey.toLowerCase())) {
-                    MainActivity.instance.addWindow(wf);
-                }
-            }
-        }
-
-        /*
-        testbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                Notification notifi = new Notification.Builder(getApplicationContext())
-                        .setContentTitle("Content Title")
-                        .setContentText("Content Text")
-                        .setSmallIcon(R.drawable.c)
-                        .setTicker("알림!!!")
-                        //.setContentIntent(intent)
-                        .build();
-
-                nm.notify(10, notifi);
-                Toast.makeText(MainActivity.this, "fdsa", Toast.LENGTH_SHORT).show();
-            }
-        });
-        */
         startAlarmService();
+
+        LoadingEnd();
     }
 
     private void startAlarmService() {
@@ -209,6 +199,10 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new AddWindowInfo(info));
     }
 
+    public void cleanWindow(){
+        adapter.main.layout.removeAllViewsInLayout();
+    }
+
     private class AddWindowInfo implements Runnable {
         WindowInfo info;
 
@@ -237,5 +231,24 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             adapter.star.layout.addView(info.getLayout(MainActivity.instance));
         }
+    }
+
+    public void LoadingStart(){        runOnUiThread(new Runnable() {
+        @Override
+        public void run() {
+                RelativeLayout loading = (RelativeLayout) findViewById(R.id.loading);
+                loading.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    public void LoadingEnd(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                RelativeLayout loading = (RelativeLayout)findViewById(R.id.loading);
+                loading.setVisibility(View.GONE);
+            }
+        });
     }
 }

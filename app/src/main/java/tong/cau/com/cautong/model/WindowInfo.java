@@ -17,9 +17,14 @@ import java.text.SimpleDateFormat;
 import tong.cau.com.cautong.main.MainActivity;
 import tong.cau.com.cautong.R;
 import tong.cau.com.cautong.WindowMenuDialog;
+import tong.cau.com.cautong.utility.StarHelper;
 
 //전체 뷰 중에서 기사를 하나 찾게 되면 기사에 관련한 윈도우를 띄워야 하는데 그 정보를 아래에 채워 넣는다.
 public class WindowInfo {
+
+    public WindowInfo() {
+    }
+
     //윈도우에 띄울 로고 이미지
     private Logo logo;
 
@@ -37,6 +42,9 @@ public class WindowInfo {
 
     //작성자
     private String author;
+
+
+    transient Activity activity;
 
     transient LinearLayout info_window;
     transient RelativeLayout info_logo;
@@ -150,15 +158,6 @@ public class WindowInfo {
         this.author = author;
     }
 
-    public WindowInfo() {
-        logo = Logo.ict;
-        title = "no title";
-        content = "no content";
-        link = "https://www.cau.ac.kr";
-        date = new MyDate(new SimpleDateFormat("yyyy-MM-dd-HH-mm"), "2017-03-09-09-40");
-        author = "cauTong";
-    }
-
     //변수값이 변했으면 적용한다.
     public void print() {
         info_title.setText(title);
@@ -167,10 +166,8 @@ public class WindowInfo {
         info_logo.setBackgroundResource(getLogoImage());
         info_title_board.setBackgroundResource(getLogoColor());
     }
-
-    public LinearLayout getLayout(Activity _activity) {
-        final Activity activity = _activity;
-
+    public LinearLayout getLayout(Activity activity) {
+        this.activity = activity;
         ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
         info_window = ret.findViewById(R.id.window_info_window);
         info_logo = ret.findViewById(R.id.window_info_logo);
@@ -184,12 +181,12 @@ public class WindowInfo {
             @Override
             public void onClick(View view) {
                 if (WindowInfo.this.link != null) {
-                    if (activity != null) {
-                        activity.runOnUiThread(new Runnable() {
+                    if (WindowInfo.this.activity != null) {
+                        WindowInfo.this.activity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(WindowInfo.this.link));
-                                activity.startActivity(intent);
+                                WindowInfo.this.activity.startActivity(intent);
                             }
                         });
                     }
@@ -200,21 +197,22 @@ public class WindowInfo {
         info_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WindowMenuDialog dialog = new WindowMenuDialog(activity,
+                WindowMenuDialog dialog = new WindowMenuDialog(WindowInfo.this.activity,
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Toast.makeText(activity, "첫번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                                StarHelper.starWindowInfo(WindowInfo.this);
+                                Toast.makeText(WindowInfo.this.activity, "즐겨찾기에 추가되었습니다", Toast.LENGTH_SHORT).show();
                             }
                         }, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(activity, "두번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WindowInfo.this.activity, "더이상 알림을 받지 않습니다", Toast.LENGTH_SHORT).show();
                     }
                 }, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(activity, "세번째 버튼 터치", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WindowInfo.this.activity, "더이상 같은 게시판의 알림을 받지 않습니다", Toast.LENGTH_SHORT).show();
                     }
                 });
                 dialog.show();
@@ -273,4 +271,6 @@ public class WindowInfo {
             return 0;
         }
     }
+
+
 }

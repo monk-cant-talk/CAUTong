@@ -7,11 +7,34 @@
     tools:context="tong.cau.com.cautong.main.MainActivity">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/main_background"/>
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/c"/>
+
+        <View
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_centerInParent="true"
+            android:background="#aaffffff"/>
+
+    </RelativeLayout>
+
+
     <android.support.v4.view.ViewPager
         android:id="@+id/main_activity_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#88000000">
+        android:layout_height="match_parent">
 
     </android.support.v4.view.ViewPager>
 
