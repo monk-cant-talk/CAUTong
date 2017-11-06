@@ -100,19 +100,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             for (WindowInfo wf : finalList) {
                 if (wf.getTitle().toLowerCase().contains(searchKey.toLowerCase())) {
-                    MainActivity.instance.addWindow(wf);
+                    if (siteMap.get(wf.getSiteId()).isEnabled()) {
+                        getRequestSite(siteMap.get(wf.getSiteId()));
+                        MainActivity.instance.addWindow(wf);
+                    }
                 }
-            }
-        }
-    }
-
-    public void refreshWindowInfo() {
-        cleanWindow();
-
-        for(WindowInfo wf : finalList) {
-            if (siteMap.get(wf.getSiteId()).isEnabled()) {
-                getRequestSite(siteMap.get(wf.getSiteId()));
-                MainActivity.instance.addWindow(wf);
             }
         }
     }
@@ -154,8 +146,6 @@ public class MainActivity extends AppCompatActivity {
         Collections.reverse(finalList);
         Log.d(TAG, "number: " + finalList.size());
         keywordFilter(searchKey);
-
-        refreshWindowInfo();
 
         startAlarmService();
 

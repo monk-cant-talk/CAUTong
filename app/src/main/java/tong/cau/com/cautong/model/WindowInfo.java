@@ -269,7 +269,7 @@ public class WindowInfo {
 			public void onClick(View view) {
 				Toast.makeText(WindowInfo.this.activity, "더이상 같은 게시판의 알림을 받지 않습니다", Toast.LENGTH_SHORT).show();
 				MainActivity.siteMap.get(WindowInfo.this.siteId).setEnabled(false);
-				MainActivity.instance.refreshWindowInfo();
+				MainActivity.instance.keywordFilter(MainActivity.instance.adapter.main.searchText.getText().toString());
 			}
 		});
 		dialog.show();
