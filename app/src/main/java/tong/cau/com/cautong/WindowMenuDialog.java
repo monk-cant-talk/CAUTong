@@ -27,7 +27,6 @@ public class WindowMenuDialog extends Dialog{
 
 		LinearLayout layout1 = findViewById(R.id.main_window_menu_dialog_layout_1);
 
-
 		Button button1 = findViewById(R.id.main_window_menu_dialog_button_1);
 		Button button2 = findViewById(R.id.main_window_menu_dialog_button_2);
 		Button button3 = findViewById(R.id.main_window_menu_dialog_button_3);

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import tong.cau.com.cautong.main.MainActivity;
 import tong.cau.com.cautong.R;
@@ -21,6 +22,10 @@ import tong.cau.com.cautong.utility.StarHelper;
 
 //전체 뷰 중에서 기사를 하나 찾게 되면 기사에 관련한 윈도우를 띄워야 하는데 그 정보를 아래에 채워 넣는다.
 public class WindowInfo {
+
+    public WindowInfo() {
+    }
+
     //윈도우에 띄울 로고 이미지
     private Logo logo;
 
@@ -39,6 +44,9 @@ public class WindowInfo {
     //작성자
     private String author;
 
+
+    transient Activity activity;
+
     transient LinearLayout info_window;
     transient RelativeLayout info_logo;
     transient RelativeLayout info_title_board;
@@ -47,6 +55,12 @@ public class WindowInfo {
     transient TextView info_date;
     transient Button info_menu;
     transient LinearLayout ret;
+
+    @Override
+    public boolean equals(Object o){
+        WindowInfo windowInfo = (WindowInfo)o;
+        return windowInfo.getTitle().equals(this.getTitle()) && windowInfo.getDate().toString().equals(this.getDate().toString());
+    }
 
 
     public Logo getLogo() {
@@ -151,9 +165,6 @@ public class WindowInfo {
         this.author = author;
     }
 
-    public WindowInfo() {
-    }
-
     //변수값이 변했으면 적용한다.
     public void print() {
         info_title.setText(title);
@@ -162,9 +173,6 @@ public class WindowInfo {
         info_logo.setBackgroundResource(getLogoImage());
         info_title_board.setBackgroundResource(getLogoColor());
     }
-
-    Activity activity;
-
     public LinearLayout getLayout(Activity activity) {
         this.activity = activity;
         ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
@@ -200,8 +208,10 @@ public class WindowInfo {
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                StarHelper.starWindowInfo(WindowInfo.this);
-                                Toast.makeText(WindowInfo.this.activity, "즐겨찾기에 추가되었습니다", Toast.LENGTH_SHORT).show();
+                                if(StarHelper.starWindowInfo(WindowInfo.this))
+                                    Toast.makeText(WindowInfo.this.activity, "즐겨찾기에 추가되었습니다", Toast.LENGTH_SHORT).show();
+                                else
+                                    Toast.makeText(WindowInfo.this.activity, "이미 즐겨찾기에 있는 게시물입니다", Toast.LENGTH_SHORT).show();
                             }
                         }, new View.OnClickListener() {
                     @Override
@@ -212,6 +222,15 @@ public class WindowInfo {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(WindowInfo.this.activity, "더이상 같은 게시판의 알림을 받지 않습니다", Toast.LENGTH_SHORT).show();
+
+                        //임시 삭제 로직
+                        StarHelper.removedStarredWindowInfo(WindowInfo.this);
+
+                        //TODO 즐겨찾기 갱신 필요
+                        MainActivity.instance.adapter.star.layout.removeAllViewsInLayout();
+                        List<WindowInfo> windowInfoList = StarHelper.getStarredWindowInfo();
+                        for(WindowInfo windowInfo : windowInfoList)
+                            MainActivity.instance.adapter.star.layout.addView(windowInfo.getLayout(MainActivity.instance));
                     }
                 });
                 dialog.show();

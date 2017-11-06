@@ -17,12 +17,21 @@ import tong.cau.com.cautong.model.WindowInfo;
 
 public class StarHelper {
     // 별표하기
-    public static void starWindowInfo(WindowInfo windowInfo){
+    public static boolean starWindowInfo(WindowInfo windowInfo){
         Gson gson = new Gson();
         WindowInfo[] idList;
         if(PlayerPrefs.getInstance().hasKey("star")) {
             String starredWindowInfoListStr = PlayerPrefs.getInstance().getString("star");
             WindowInfo[] buf = gson.fromJson(starredWindowInfoListStr, WindowInfo[].class);
+
+            //중복 게시물은 허용하지 않는다.
+            for(int i=0;i<buf.length;i++){
+                WindowInfo sInfo = buf[i];
+                if(sInfo.equals(windowInfo)){
+                    return false;
+                }
+            }
+
             idList = new WindowInfo[buf.length + 1];
             for(int i = 0 ; i < buf.length ; i ++){
                 idList[i] = buf[i];
@@ -36,13 +45,32 @@ public class StarHelper {
         String str = gson.toJson(idList);
         PlayerPrefs.getInstance().setString("star", str);
         PlayerPrefs.getInstance().save();
+        return true;
     }
 
     // 별표된 것 가져오기
-    public static List<WindowInfo> getStarredWindowInfo(Activity activity){
+    public static List<WindowInfo> getStarredWindowInfo(){
         String starredWindowInfoList = PlayerPrefs.getInstance().getString("star");
-        Gson gson = new Gson();
-        List<WindowInfo> windowInfoList = gson.fromJson(starredWindowInfoList, new TypeToken<List<WindowInfo>>(){}.getType());
+        List<WindowInfo> windowInfoList = new Gson().fromJson(starredWindowInfoList, new TypeToken<List<WindowInfo>>(){}.getType());
         return windowInfoList;
     }
+
+    public static void removedStarredWindowInfo(WindowInfo windowInfo){
+        List<WindowInfo> windowInfoList = getStarredWindowInfo();
+        for(WindowInfo searchedWindowInfo : windowInfoList){
+            Log.d("StarHelper", windowInfo.getTitle());
+            Log.d("StarHelper", searchedWindowInfo.getTitle());
+
+            Log.d("StarHelper", windowInfo.getDate().toString());
+            Log.d("StarHelper", searchedWindowInfo.getDate().toString());
+            if(windowInfo.getTitle().equals(searchedWindowInfo.getTitle()) && windowInfo.getDate().toString().equals(searchedWindowInfo.getDate().toString())){
+                windowInfoList.remove(searchedWindowInfo);
+                break;
+            }
+        }
+        String str = new Gson().toJson(windowInfoList);
+        PlayerPrefs.getInstance().setString("star", str);
+        PlayerPrefs.getInstance().save();
+    }
+
 }
