@@ -21,6 +21,10 @@ import tong.cau.com.cautong.utility.StarHelper;
 
 //전체 뷰 중에서 기사를 하나 찾게 되면 기사에 관련한 윈도우를 띄워야 하는데 그 정보를 아래에 채워 넣는다.
 public class WindowInfo {
+
+    public WindowInfo() {
+    }
+
     //윈도우에 띄울 로고 이미지
     private Logo logo;
 
@@ -38,6 +42,9 @@ public class WindowInfo {
 
     //작성자
     private String author;
+
+
+    transient Activity activity;
 
     transient LinearLayout info_window;
     transient RelativeLayout info_logo;
@@ -151,9 +158,6 @@ public class WindowInfo {
         this.author = author;
     }
 
-    public WindowInfo() {
-    }
-
     //변수값이 변했으면 적용한다.
     public void print() {
         info_title.setText(title);
@@ -162,9 +166,6 @@ public class WindowInfo {
         info_logo.setBackgroundResource(getLogoImage());
         info_title_board.setBackgroundResource(getLogoColor());
     }
-
-    Activity activity;
-
     public LinearLayout getLayout(Activity activity) {
         this.activity = activity;
         ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
