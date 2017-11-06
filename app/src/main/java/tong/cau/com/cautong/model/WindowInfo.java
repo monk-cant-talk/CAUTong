@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import tong.cau.com.cautong.WindowMenuStarDialog;
 import tong.cau.com.cautong.main.MainActivity;
 import tong.cau.com.cautong.R;
 import tong.cau.com.cautong.WindowMenuDialog;
@@ -25,6 +26,9 @@ public class WindowInfo {
 
     public WindowInfo() {
     }
+
+    //즐겨찾기인가
+	public boolean star = false;
 
     //윈도우에 띄울 로고 이미지
     private Logo logo;
@@ -165,6 +169,7 @@ public class WindowInfo {
         this.author = author;
     }
 
+
     //변수값이 변했으면 적용한다.
     public void print() {
         info_title.setText(title);
@@ -204,42 +209,60 @@ public class WindowInfo {
         info_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WindowMenuDialog dialog = new WindowMenuDialog(WindowInfo.this.activity,
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                if(StarHelper.starWindowInfo(WindowInfo.this))
-                                    Toast.makeText(WindowInfo.this.activity, "즐겨찾기에 추가되었습니다", Toast.LENGTH_SHORT).show();
-                                else
-                                    Toast.makeText(WindowInfo.this.activity, "이미 즐겨찾기에 있는 게시물입니다", Toast.LENGTH_SHORT).show();
-                            }
-                        }, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(WindowInfo.this.activity, "더이상 알림을 받지 않습니다", Toast.LENGTH_SHORT).show();
-                    }
-                }, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(WindowInfo.this.activity, "더이상 같은 게시판의 알림을 받지 않습니다", Toast.LENGTH_SHORT).show();
-
-                        //임시 삭제 로직
-                        StarHelper.removedStarredWindowInfo(WindowInfo.this);
-
-                        //TODO 즐겨찾기 갱신 필요
-                        MainActivity.instance.adapter.star.layout.removeAllViewsInLayout();
-                        List<WindowInfo> windowInfoList = StarHelper.getStarredWindowInfo();
-                        for(WindowInfo windowInfo : windowInfoList)
-                            MainActivity.instance.adapter.star.layout.addView(windowInfo.getLayout(MainActivity.instance));
-                    }
-                });
-                dialog.show();
+				if(star)
+					ShowWindowMenuStarDialog();
+				else
+					ShowWindowMenuDialog();
             }
         });
 
         print();
         return ret;
     }
+
+	private void ShowWindowMenuStarDialog(){
+		WindowMenuStarDialog dialog = new WindowMenuStarDialog(WindowInfo.this.activity,
+				new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				//임시 삭제 로직
+				StarHelper.removedStarredWindowInfo(WindowInfo.this);
+
+				//TODO 즐겨찾기 갱신 필요
+				MainActivity.instance.adapter.star.layout.removeAllViewsInLayout();
+				List<WindowInfo> windowInfoList = StarHelper.getStarredWindowInfo();
+				for(WindowInfo windowInfo : windowInfoList) {
+					windowInfo.star = true;
+					MainActivity.instance.adapter.star.layout.addView(windowInfo.getLayout(MainActivity.instance));
+				}
+			}
+		});
+		dialog.show();
+	}
+
+	private void ShowWindowMenuDialog(){
+		WindowMenuDialog dialog = new WindowMenuDialog(WindowInfo.this.activity,
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						if(StarHelper.starWindowInfo(WindowInfo.this))
+							Toast.makeText(WindowInfo.this.activity, "즐겨찾기에 추가되었습니다", Toast.LENGTH_SHORT).show();
+						else
+							Toast.makeText(WindowInfo.this.activity, "이미 즐겨찾기에 있는 게시물입니다", Toast.LENGTH_SHORT).show();
+					}
+				}, new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Toast.makeText(WindowInfo.this.activity, "더이상 알림을 받지 않습니다", Toast.LENGTH_SHORT).show();
+			}
+		}, new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Toast.makeText(WindowInfo.this.activity, "더이상 같은 게시판의 알림을 받지 않습니다", Toast.LENGTH_SHORT).show();
+			}
+		});
+		dialog.show();
+	}
 
     public enum Logo {
         notice, unknown, social, caucse, ict, cauie

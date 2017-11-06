@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:id="@+id/main_window_menu_dialog_layout_1"
+    android:background="#88000000">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:id="@+id/main_window_menu_dialog_layout_2"
+        android:layout_marginBottom="30dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/window_board_big_round"
+            android:elevation="15dp"
+            android:layout_centerVertical="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/main_window_menu_dialog_button_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/button_round_sky"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginTop="30dp"
+                    android:elevation="10dp"
+                    android:text="즐겨찾기에서 삭제하기"
+                    android:textSize="15dp"
+                    android:textColor="#333333">
+                </Button>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#5588ff">
+
+                </View>
+
+                <RelativeLayout
+                    android:id="@+id/main_window_menu_dialog_button_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="#00ffffff">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BACK"
+                        android:textSize="15dp"
+                        android:textColor="#5588ff"
+                        android:textStyle="bold"
+                        android:layout_centerInParent="true"/>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

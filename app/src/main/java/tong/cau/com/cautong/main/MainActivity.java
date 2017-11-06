@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<WindowInfo> infoList = StarHelper.getStarredWindowInfo();
         for(WindowInfo info : infoList) {
+            info.star = true;
             addStarWindow(info);
         }
     }
