@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import tong.cau.com.cautong.main.MainActivity;
 import tong.cau.com.cautong.R;
@@ -54,6 +55,12 @@ public class WindowInfo {
     transient TextView info_date;
     transient Button info_menu;
     transient LinearLayout ret;
+
+    @Override
+    public boolean equals(Object o){
+        WindowInfo windowInfo = (WindowInfo)o;
+        return windowInfo.getTitle().equals(this.getTitle()) && windowInfo.getDate().toString().equals(this.getDate().toString());
+    }
 
 
     public Logo getLogo() {
@@ -201,8 +208,10 @@ public class WindowInfo {
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                StarHelper.starWindowInfo(WindowInfo.this);
-                                Toast.makeText(WindowInfo.this.activity, "즐겨찾기에 추가되었습니다", Toast.LENGTH_SHORT).show();
+                                if(StarHelper.starWindowInfo(WindowInfo.this))
+                                    Toast.makeText(WindowInfo.this.activity, "즐겨찾기에 추가되었습니다", Toast.LENGTH_SHORT).show();
+                                else
+                                    Toast.makeText(WindowInfo.this.activity, "이미 즐겨찾기에 있는 게시물입니다", Toast.LENGTH_SHORT).show();
                             }
                         }, new View.OnClickListener() {
                     @Override
@@ -213,6 +222,15 @@ public class WindowInfo {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(WindowInfo.this.activity, "더이상 같은 게시판의 알림을 받지 않습니다", Toast.LENGTH_SHORT).show();
+
+                        //임시 삭제 로직
+                        StarHelper.removedStarredWindowInfo(WindowInfo.this);
+
+                        //TODO 즐겨찾기 갱신 필요
+                        MainActivity.instance.adapter.star.layout.removeAllViewsInLayout();
+                        List<WindowInfo> windowInfoList = StarHelper.getStarredWindowInfo();
+                        for(WindowInfo windowInfo : windowInfoList)
+                            MainActivity.instance.adapter.star.layout.addView(windowInfo.getLayout(MainActivity.instance));
                     }
                 });
                 dialog.show();

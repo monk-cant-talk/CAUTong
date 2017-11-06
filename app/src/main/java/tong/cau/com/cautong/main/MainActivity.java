@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     ViewPager viewPager;
-    MainViewAdapter adapter;
+    public MainViewAdapter adapter;
     public static MainActivity instance;
 
     @Override
