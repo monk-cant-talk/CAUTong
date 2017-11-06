@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void siteFilter() {
+    public void refreshWindowInfo() {
         cleanWindow();
 
         for(WindowInfo wf : finalList) {

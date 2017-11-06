@@ -3,15 +3,11 @@ package tong.cau.com.cautong;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import tong.cau.com.cautong.main.MainActivity;
@@ -40,7 +36,7 @@ public class WindowListDialog extends Dialog{
 		okButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				MainActivity.instance.siteFilter();
+				MainActivity.instance.refreshWindowInfo();
 				dismiss();
 			}
 		});
