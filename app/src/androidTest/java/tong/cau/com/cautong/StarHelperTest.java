@@ -55,4 +55,18 @@ public class StarHelperTest {
         assertThat(windowInfoList.get(0).getTitle(), is("유홍석 찐따"));
         assertThat(windowInfoList.get(0).getContent(), is("준비중입니다"));
     }
+
+    @Test
+    public void removeStarWindowInfo(){
+        WindowInfo sampleWindowInfo = new WindowInfo();
+        sampleWindowInfo.init(WindowInfo.Logo.caucse, "유홍석 찐따", "준비중입니다", "www.naver.com", new MyDate("20171031"), "운영자");
+        StarHelper.starWindowInfo(sampleWindowInfo);
+
+        assertThat(StarHelper.getStarredWindowInfo().size(), is(1));
+
+        StarHelper.removedStarredWindowInfo(sampleWindowInfo);
+
+        assertThat(StarHelper.getStarredWindowInfo().size(), is(0));
+    }
+
 }
