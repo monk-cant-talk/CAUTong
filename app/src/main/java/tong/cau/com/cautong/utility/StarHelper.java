@@ -34,9 +34,9 @@ public class StarHelper {
 
             idList = new WindowInfo[buf.length + 1];
             for(int i = 0 ; i < buf.length ; i ++){
-                idList[i] = buf[i];
+                idList[i+1] = buf[i];
             }
-            idList[buf.length] = windowInfo;
+            idList[0] = windowInfo;
         }else{
             idList = new WindowInfo[1];
             idList[0] = windowInfo;

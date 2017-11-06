@@ -208,9 +208,14 @@ public class WindowInfo {
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                if(StarHelper.starWindowInfo(WindowInfo.this))
+                                if(StarHelper.starWindowInfo(WindowInfo.this)) {
                                     Toast.makeText(WindowInfo.this.activity, "즐겨찾기에 추가되었습니다", Toast.LENGTH_SHORT).show();
-                                else
+                                    List<WindowInfo> windowInfoList = StarHelper.getStarredWindowInfo();
+                                    //갱신
+                                    MainActivity.instance.adapter.star.layout.removeAllViewsInLayout();
+                                    for(WindowInfo windowInfo : windowInfoList)
+                                        MainActivity.instance.adapter.star.layout.addView(windowInfo.getLayout(MainActivity.instance));
+                                }else
                                     Toast.makeText(WindowInfo.this.activity, "이미 즐겨찾기에 있는 게시물입니다", Toast.LENGTH_SHORT).show();
                             }
                         }, new View.OnClickListener() {
@@ -226,8 +231,9 @@ public class WindowInfo {
                         //임시 삭제 로직
                         StarHelper.removedStarredWindowInfo(WindowInfo.this);
 
-                        //TODO 즐겨찾기 갱신 필요
                         MainActivity.instance.adapter.star.layout.removeAllViewsInLayout();
+
+                        //즐겨찾기 타임라인 갱신
                         List<WindowInfo> windowInfoList = StarHelper.getStarredWindowInfo();
                         for(WindowInfo windowInfo : windowInfoList)
                             MainActivity.instance.adapter.star.layout.addView(windowInfo.getLayout(MainActivity.instance));
