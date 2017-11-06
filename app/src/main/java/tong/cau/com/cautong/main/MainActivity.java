@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
             for (WindowInfo wf : finalList) {
                 if (wf.getTitle().toLowerCase().contains(searchKey.toLowerCase())) {
                     if (siteMap.get(wf.getSiteId()).isEnabled()) {
-                        getRequestSite(siteMap.get(wf.getSiteId()));
                         MainActivity.instance.addWindow(wf);
                     }
                 }
