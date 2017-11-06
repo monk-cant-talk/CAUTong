@@ -209,49 +209,10 @@ public class WindowInfo {
         info_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
 				if(star)
 					ShowWindowMenuStarDialog();
 				else
 					ShowWindowMenuDialog();
-=======
-                WindowMenuDialog dialog = new WindowMenuDialog(WindowInfo.this.activity,
-                        new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                if(StarHelper.starWindowInfo(WindowInfo.this)) {
-                                    Toast.makeText(WindowInfo.this.activity, "즐겨찾기에 추가되었습니다", Toast.LENGTH_SHORT).show();
-                                    List<WindowInfo> windowInfoList = StarHelper.getStarredWindowInfo();
-                                    //갱신
-                                    MainActivity.instance.adapter.star.layout.removeAllViewsInLayout();
-                                    for(WindowInfo windowInfo : windowInfoList)
-                                        MainActivity.instance.adapter.star.layout.addView(windowInfo.getLayout(MainActivity.instance));
-                                }else
-                                    Toast.makeText(WindowInfo.this.activity, "이미 즐겨찾기에 있는 게시물입니다", Toast.LENGTH_SHORT).show();
-                            }
-                        }, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(WindowInfo.this.activity, "더이상 알림을 받지 않습니다", Toast.LENGTH_SHORT).show();
-                    }
-                }, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(WindowInfo.this.activity, "더이상 같은 게시판의 알림을 받지 않습니다", Toast.LENGTH_SHORT).show();
-
-                        //임시 삭제 로직
-                        StarHelper.removedStarredWindowInfo(WindowInfo.this);
-
-                        MainActivity.instance.adapter.star.layout.removeAllViewsInLayout();
-
-                        //즐겨찾기 타임라인 갱신
-                        List<WindowInfo> windowInfoList = StarHelper.getStarredWindowInfo();
-                        for(WindowInfo windowInfo : windowInfoList)
-                            MainActivity.instance.adapter.star.layout.addView(windowInfo.getLayout(MainActivity.instance));
-                    }
-                });
-                dialog.show();
->>>>>>> 3772c7cd30923534e3f03f8c8e0e9e3c042626af
             }
         });
 
