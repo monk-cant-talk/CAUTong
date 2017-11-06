@@ -15,8 +15,8 @@
             android:elevation="8dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="11dp"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -49,6 +49,8 @@
                     android:textColor="#77ffffff"
                     android:textStyle="bold"/>
 
+
+                <!--
                 <RelativeLayout
                     android:id="@+id/window_info_logo"
                     android:layout_width="70dp"
@@ -62,6 +64,8 @@
                     android:layout_marginRight="30dp">
 
                 </RelativeLayout>
+
+                -->
 
 
 

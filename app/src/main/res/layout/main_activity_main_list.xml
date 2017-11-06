@@ -42,7 +42,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:background="@drawable/edit_text"
-                        android:layout_marginRight="80dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginLeft="50dp">
 
 
@@ -54,6 +54,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="33dp"
                             android:layout_marginRight="10dp"
+                            android:inputType="text"
                             android:lines="1"
                             android:background="@drawable/window_board"/>
 
@@ -65,23 +66,6 @@
                             android:background="@drawable/icon_search"/>
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:id="@+id/main_activity_search_button"
-                        android:layout_width="60dp"
-                        android:layout_height="35dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/edit_text_button">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="찾기"
-                            android:textSize="20dp"
-                            android:textColor="#222244"
-                            android:layout_centerInParent="true"/>
-
-                    </RelativeLayout>
                 </RelativeLayout>
 
             </android.support.v7.widget.Toolbar>

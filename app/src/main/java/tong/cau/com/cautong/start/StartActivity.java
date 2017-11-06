@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import tong.cau.com.cautong.main.MainActivity;
@@ -33,6 +34,14 @@ public class StartActivity extends AppCompatActivity{
 		this.overridePendingTransition(anim_start_enter, anim_start_exit);
 		instance = this;
 		editText = (EditText)findViewById(R.id.edit_text_search);
+		RelativeLayout wholeButton = (RelativeLayout)findViewById(R.id.button_search);
+		wholeButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				search_key = "";
+				startActivity(new Intent(StartActivity.this, MainActivity.class));
+			}
+		});
 
 		setEditTextExit(editText, new View.OnClickListener() {
 			@Override

@@ -52,7 +52,7 @@ public class WindowInfo {
     transient Activity activity;
 
     transient LinearLayout info_window;
-    transient RelativeLayout info_logo;
+    //transient RelativeLayout info_logo;
     transient RelativeLayout info_title_board;
     transient TextView info_writer;
     transient TextView info_title;
@@ -96,7 +96,7 @@ public class WindowInfo {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                info_logo.setBackgroundResource(getLogoImage());
+                //info_logo.setBackgroundResource(getLogoImage());
                 info_title.setText(WindowInfo.this.title);
                 info_date.setText(WindowInfo.this.date.toString());
                 info_writer.setText(WindowInfo.this.author);
@@ -113,7 +113,7 @@ public class WindowInfo {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                info_logo.setBackgroundResource(getLogoImage());
+                //info_logo.setBackgroundResource(getLogoImage());
             }
         });
     }
@@ -175,14 +175,14 @@ public class WindowInfo {
         info_title.setText(title);
         info_writer.setText(author);
         info_date.setText(date.toString());
-        info_logo.setBackgroundResource(getLogoImage());
+        //info_logo.setBackgroundResource(getLogoImage());
         info_title_board.setBackgroundResource(getLogoColor());
     }
     public LinearLayout getLayout(Activity activity) {
         this.activity = activity;
         ret = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.main_window_info, null);
         info_window = ret.findViewById(R.id.window_info_window);
-        info_logo = ret.findViewById(R.id.window_info_logo);
+        //info_logo = ret.findViewById(R.id.window_info_logo);
         info_title_board = ret.findViewById(R.id.window_info_title_board);
         info_writer = ret.findViewById(R.id.window_info_writer);
         info_title = ret.findViewById(R.id.window_info_title);
