@@ -124,7 +124,7 @@
     "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=caukorean&pageType=BBS&",
     "pageParam": "&page=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
@@ -160,7 +160,7 @@
     "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=caufrance&pageType=BBS&",
     "pageParam": "&page=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
@@ -196,7 +196,7 @@
     "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=Chinese&pageType=BBS&",
     "pageParam": "&page=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
@@ -214,7 +214,7 @@
     "baseUrl": "http://cauphilos.cafe24.com/tt/site/ttboard.cgi?",
     "pageParam": "&page=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
@@ -232,7 +232,7 @@
     "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=history&pageType=BBS&",
     "pageParam": "&page=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
@@ -286,7 +286,7 @@
     "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=lifescience&pageType=BBS&",
     "pageParam": "&page=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
@@ -304,7 +304,7 @@
     "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=math&pageType=BBS&",
     "pageParam": "&gotoPage=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
@@ -376,7 +376,7 @@
     "baseUrl": "http://lis.cau.ac.kr/gnuboard4/bbs/board.php?",
     "pageParam": "&page=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
@@ -394,7 +394,7 @@
     "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=welfare&pageType=BBS&",
     "pageParam": "&page=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
@@ -430,7 +430,7 @@
     "baseUrl": "http://planning.cau.ac.kr/bbs/board.php?",
     "pageParam": "&page=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
@@ -520,7 +520,7 @@
     "baseUrl": "http://infra.cau.ac.kr/bbs/board.php?",
     "pageParam": "&page=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
@@ -574,7 +574,7 @@
     "baseUrl": "http://www.economics.cau.ac.kr/new/graduate/",
     "pageParam": "&offset=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
@@ -592,7 +592,7 @@
     "baseUrl": "http://stat.cau.ac.kr/community/",
     "pageParam": "&page=",
     "articleParam": "",
-    "encodeType": "UTF-8",
+    "encodeType": "euc-kr",
     "boardList": [
       {
         "name": "공지사항",
