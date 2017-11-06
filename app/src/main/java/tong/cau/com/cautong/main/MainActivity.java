@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,10 +27,12 @@ import tong.cau.com.cautong.FoundInfoCollector;
 import tong.cau.com.cautong.R;
 import tong.cau.com.cautong.alarm.AlarmService;
 import tong.cau.com.cautong.model.Board;
+import tong.cau.com.cautong.model.MyDate;
 import tong.cau.com.cautong.model.Site;
 import tong.cau.com.cautong.model.WindowInfo;
 import tong.cau.com.cautong.start.StartActivity;
 import tong.cau.com.cautong.utility.MapDataParser;
+import tong.cau.com.cautong.utility.StarHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,9 +74,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void makeStarPage(){
+        //테스트용 StarWindow객체 생성
+        WindowInfo testWindowInfo1 = new WindowInfo();
+        WindowInfo testWindowInfo2 = new WindowInfo();
+        testWindowInfo1.init(WindowInfo.Logo.caucse, "효빈바보", "효빈이의 바보에 대하여", "https://cau.ac.kr", new MyDate(20171105), "노효빈");
+        testWindowInfo2.init(WindowInfo.Logo.caucse, "홍석바보", "홍석이의 바보에 대하여", "http://minus-one.co.kr", new MyDate(20171106), "유홍석");
 
-        //// TODO: 2017-11-06 여기에 WindowInfo 리스트를 순서대로 채워 넣으면 댐
-        //addStarWindow();
+        StarHelper.starWindowInfo(testWindowInfo1);
+        StarHelper.starWindowInfo(testWindowInfo2);
+
+        List<WindowInfo> infoList = StarHelper.getStarredWindowInfo();
+        for(WindowInfo info : infoList) {
+            addStarWindow(info);
+        }
     }
 
     public void keywordFilter(String searchKey){
@@ -92,11 +105,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void siteFilter() {
+        cleanWindow();
+
+        for(WindowInfo wf : finalList) {
+            if (siteMap.get(wf.getSiteId()).isEnabled()) {
+                MainActivity.instance.addWindow(wf);
+            }
+        }
+    }
+
+    public static Map<String, Site> siteMap = null;
+
     //이전 액티비티(StartActivity) 에서 검색키워드를 넣게 되면 자동으로 이 액티비티로 넘어오면서 이 함수가 실행된다.
     private void startActivity(String searchKey) {
 
         // 크롤링 할 정보 로드
-        Map<String, Site> siteMap = MapDataParser.getSiteMap();
+        siteMap = MapDataParser.getSiteMap();
         ArrayList<Site> siteList = new ArrayList<>();
         for (String key : siteMap.keySet()) {
             siteList.add(siteMap.get(key));
@@ -162,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    final List<WindowInfo> finalList = Collections.synchronizedList(new ArrayList<WindowInfo>());
+    final static List<WindowInfo> finalList = Collections.synchronizedList(new ArrayList<WindowInfo>());
 
     private class FavoriteRunnable implements Runnable {
         Site site;

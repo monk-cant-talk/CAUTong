@@ -5,13 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MyDate {
-    private final String TAG = "MyDate";
+    transient private final String TAG = "MyDate";
 
-    final long DATE_CRITERIA = 1000000000000L;
+    transient final long DATE_CRITERIA = 1000000000000L;
 
     private Date ret;
     private String ss = null;
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    transient private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public MyDate(SimpleDateFormat yyyy_MM_dd_HH_mm, String date) {
         try {
