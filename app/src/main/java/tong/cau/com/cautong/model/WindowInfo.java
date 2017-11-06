@@ -43,6 +43,9 @@ public class WindowInfo {
     //작성자
     private String author;
 
+    //게시글이 속한 사이트
+    private String siteId;
+
 
     transient Activity activity;
 
@@ -80,6 +83,13 @@ public class WindowInfo {
         return author;
     }
 
+    public String getSiteId() {
+        return siteId;
+    }
+
+    public void setSiteId(String siteId) {
+        this.siteId = siteId;
+    }
 
     public void rePrint(Activity activity) {
         activity.runOnUiThread(new Runnable() {
