@@ -11,6 +11,7 @@ public class ParseRule {
     private String tag;
     private boolean rowSpaced;
     private Map<String, String> tableAttrs;
+    private int tableIndex;
     private int firstRowIndex;
 
     private Meta titleMeta;
@@ -89,6 +90,14 @@ public class ParseRule {
 
     public void setTableAttrs(Map<String, String> tableAttrs) {
         this.tableAttrs = tableAttrs;
+    }
+
+    public int getTableIndex() {
+        return tableIndex;
+    }
+
+    public void setTableIndex(int tableIndex) {
+        this.tableIndex = tableIndex;
     }
 
     public int getFirstRowIndex() {

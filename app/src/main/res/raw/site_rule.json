@@ -169,8 +169,630 @@
   },
   "korean": {
     "tag": "table",
+    "rowSpaced": true,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0"
+    },
+    "tableIndex": 1,
+    "firstRowIndex": 3,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yy.MM.dd"
+    },
+    "contentParseType": "class",
+    "contentTag": "td",
+    "properties": {
+      "class": "text_wrap"
+    }
+  },
+  "english": {
+    "tag": "table",
     "rowSpaced": false,
     "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "class": "tableBC_list board"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy-MM-dd"
+    }
+  },
+  "french": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableIndex": 1,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "border": "0"
+    },
+    "firstRowIndex": 3,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yy.MM.dd"
+    }
+  },
+  "japanese": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "border": "0",
+      "style": "table-layout:fixed;border-width:1 0 1 0;border-color:AAAAAA;border-style:solid;"
+    },
+    "firstRowIndex": 1,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    }
+  },
+  "chinese": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableIndex": 1,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "border": "0"
+    },
+    "firstRowIndex": 3,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yy.MM.dd"
+    }
+  },
+  "philosophy": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "border": "0",
+      "style": "border-layout:fixed; border-collapse:collapse;"
+    },
+    "firstRowIndex": 3,
+    "titleMeta": {
+      "tdIndex": 4,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 5,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 6,
+      "hierarchy": [],
+      "etc": "yyyy/MM/dd"
+    }
+  },
+  "history": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableIndex": 1,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "border": "0"
+    },
+    "firstRowIndex": 3,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yy.MM.dd"
+    }
+  },
+  "physics": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableIndex": 1,
+    "tableAttrs": {
+      "cellspacing": "0",
+      "cellpadding": "0",
+      "border": "0"
+    },
+    "firstRowIndex": 3,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yy.MM.dd"
+    }
+  },
+  "chem": {
+    "tag": "tbody",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "id": "Notice_board_body"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy-MM-dd"
+    }
+  },
+  "biology": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableIndex": 1,
+    "tableAttrs": {
+      "cellpadding": "0",
+      "cellspacing": "0",
+      "border": "0"
+    },
+    "firstRowIndex": 3,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yy.MM.dd"
+    }
+  },
+  "math": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableIndex": 1,
+    "tableAttrs": {
+      "cellpadding": "0",
+      "cellspacing": "0",
+      "border": "0"
+    },
+    "firstRowIndex": 3,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yy.MM.dd"
+    }
+  },
+  "politic": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableIndex": 1,
+    "tableAttrs": {
+      "cellpadding": "0",
+      "cellspacing": "0",
+      "border": "0",
+      "width": "100%"
+    },
+    "firstRowIndex": 3,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 2,
+      "hierarchy": [],
+      "etc": "yyyy-MM-dd"
+    }
+  },
+  "public": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "class": "bd_lst bd_tb_lst bd_tb"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    }
+  },
+  "psychology": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "width": "736",
+      "cellpadding": "0",
+      "cellspacing": "0",
+      "class": "tbl-list_new"
+    },
+    "firstRowIndex": 1,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    }
+  },
+  "bookinfo": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "cellpadding": "0",
+      "cellspacing": "0",
+      "class": "board_list"
+    },
+    "firstRowIndex": 1,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "MM-dd"
+    }
+  },
+  "welfare": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableIndex": 1,
+    "tableAttrs": {
+      "cellpadding": "0",
+      "cellspacing": "0",
+      "border": "0"
+    },
+    "firstRowIndex": 3,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yy.MM.dd"
+    }
+  },
+  "mcc": {
+    "tag": "table",
+    "rowSpaced": true,
+    "tableIndex": 1,
+    "tableAttrs": {
+      "cellpadding": "0",
+      "cellspacing": "0",
+      "border": "0",
+      "width": "100%"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy-MM-dd"
+    }
+  },
+  "simcity": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "cellpadding": "0",
+      "cellspacing": "0",
+      "border": "0",
+      "width": "100%",
+      "class": "tbl-list_new"
+    },
+    "firstRowIndex": 1,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 2,
+      "hierarchy": [],
+      "etc": "yyyy-MM-dd"
+    }
+  },
+  "kidedu": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "class": "fz_board"
+    },
+    "firstRowIndex": 1,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "MM-dd"
+    }
+  },
+  "engedu": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "summary": "학과게시판 게시물리스트 입니다."
+    },
+    "firstRowIndex": 1,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 4,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd hh:mm"
+    }
+  },
+  "bodyedu": {
+    "tag": "div",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "class": "kboard-list"
+    },
+    "firstRowIndex": 1,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    }
+  },
+  "biotech": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "border": "0",
+      "cellpadding": "0",
+      "cellspacing": "0",
+      "class": "nlist"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    }
+  },
+  "sse": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "cellpadding": "0",
+      "cellspacing": "0",
+      "class": "board_list"
+    },
+    "firstRowIndex": 1,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "MM-dd"
+    }
+  },
+  "architecture": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {},
+    "tableIndex": 0,
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a",
+        "div"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy.MM.dd"
+    }
+  },
+  "newmaterial": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "width":"97%"
+    },
+    "firstRowIndex": 1,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "nobr",
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": [
+        "span"
+      ]
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "MM-dd"
+    }
+  },
+  "economy": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "class": "list overList",
       "cellspacing": "0",
       "cellpadding": "0"
     },
@@ -181,15 +803,134 @@
         "a"
       ]
     },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yy-MM-dd"
+    }
+  },
+  "statistics": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "class": "summary",
+      "cellspacing": "0",
+      "cellpadding": "0"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yy.MM.dd"
+    }
+  },
+  "logistics": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "class": "summary",
+      "cellspacing": "0",
+      "cellpadding": "0"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yy-MM-dd"
+    }
+  },
+  "security": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "class": "listTable"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
     "dateMeta": {
       "tdIndex": 3,
       "hierarchy": [],
       "etc": "yyyy.MM.dd"
+    }
+  },
+  "pharmacy": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "class": "board_list"
     },
-    "contentParseType": "class",
-    "contentTag": "td",
-    "properties": {
-      "class": "text_wrap"
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 2,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 1,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yyyy-MM-dd"
+    }
+  },
+  "nursing": {
+    "tag": "table",
+    "rowSpaced": false,
+    "tableAttrs": {
+      "class": "bbslist",
+      "border": "1"
+    },
+    "firstRowIndex": 0,
+    "titleMeta": {
+      "tdIndex": 1,
+      "hierarchy": [
+        "a"
+      ]
+    },
+    "authorMeta": {
+      "tdIndex": 2,
+      "hierarchy": []
+    },
+    "dateMeta": {
+      "tdIndex": 3,
+      "hierarchy": [],
+      "etc": "yy.MM.dd"
     }
   }
 }

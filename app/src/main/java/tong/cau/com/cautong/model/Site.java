@@ -19,7 +19,7 @@ public class Site {
     public String getBoardUrl(String boardName, int pageNum) {
         for (Board board : boardList) {
             if (board.getName().equals(boardName)) {
-                return getBaseUrl() + board.getCategory() + getPageParam(pageNum);
+                return getBaseUrl() + board.getCategory();// + getPageParam(pageNum);
             }
         }
         return null;

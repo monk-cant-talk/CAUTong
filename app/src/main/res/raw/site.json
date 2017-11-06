@@ -1,6 +1,6 @@
 [
   {
-    "enabled": true,
+    "enabled": false,
     "name": "융합공학부",
     "id": "ie",
     "ssoEnabled": false,
@@ -24,7 +24,7 @@
     "testUrl": "http://ie.cau.ac.kr/20141101/sub07/sub01.php"
   },
   {
-    "enabled": true,
+    "enabled": false,
     "name": "사회학과",
     "id": "sociology",
     "ssoEnabled": false,
@@ -57,7 +57,7 @@
     "testUrl": "http://sociology.cau.ac.kr/bbs/board.php?bo_table=sub3_1"
   },
   {
-    "enabled": true,
+    "enabled": false,
     "name": "컴퓨터공학부",
     "id": "cse",
     "ssoEnabled": false,
@@ -78,7 +78,7 @@
     "testUrl": "http://cse.cau.ac.kr/20141201/sub05/sub0501.php"
   },
   {
-    "enabled": true,
+    "enabled": false,
     "name": "전자전기공학부",
     "id": "eee",
     "ssoEnabled": false,
@@ -99,7 +99,7 @@
     "testUrl": "http://e3home.cau.ac.kr/20141201/sub08/sub01.php"
   },
   {
-    "enabled": true,
+    "enabled": false,
     "name": "경영학부",
     "id": "biz",
     "ssoEnabled": false,
@@ -154,7 +154,7 @@
   {
     "enabled": false,
     "name": "불어불문",
-    "id": "france",
+    "id": "french",
     "ssoEnabled": false,
     "parseType": "html",
     "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=caufrance&pageType=BBS&",
@@ -172,7 +172,7 @@
   {
     "enabled": false,
     "name": "일어일문",
-    "id": "japan",
+    "id": "japanese",
     "ssoEnabled": false,
     "parseType": "html",
     "baseUrl": "http://cajj.net/zeroboard/zboard.php?",
@@ -280,7 +280,7 @@
   {
     "enabled": false,
     "name": "생명과학과",
-    "id": "bio",
+    "id": "biology",
     "ssoEnabled": false,
     "parseType": "html",
     "baseUrl": "http://build.cau.ac.kr/bbs/bbs_list.php?bbsID=lifescience&pageType=BBS&",
@@ -337,7 +337,7 @@
     "id": "public",
     "ssoEnabled": false,
     "parseType": "html",
-    "baseUrl": "https://public.cau.ac.kr/college/index.php?",
+    "baseUrl": "http://public.cau.ac.kr/college/index.php?",
     "pageParam": "&page=",
     "articleParam": "",
     "encodeType": "UTF-8",
@@ -435,24 +435,6 @@
       {
         "name": "공지사항",
         "category": "tbl=notice",
-        "view": "bo_table=kor_news_re"
-      }
-    ]
-  },
-  {
-    "enabled": false,
-    "name": "교육학과",
-    "id": "edu",
-    "ssoEnabled": false,
-    "parseType": "html",
-    "baseUrl": "http://education.cau.ac.kr/bbs/board.php?",
-    "pageParam": "&page=",
-    "articleParam": "",
-    "encodeType": "UTF-8",
-    "boardList": [
-      {
-        "name": "공지사항",
-        "category": "bo_table=s0301&",
         "view": "bo_table=kor_news_re"
       }
     ]
@@ -585,24 +567,6 @@
   },
   {
     "enabled": false,
-    "name": "에너지시스템공학부",
-    "id": "energy",
-    "ssoEnabled": false,
-    "parseType": "html",
-    "baseUrl": "http://ese.cau.ac.kr/wordpress/?",
-    "pageParam": "&paged=",
-    "articleParam": "",
-    "encodeType": "UTF-8",
-    "boardList": [
-      {
-        "name": "공지사항",
-        "category": "cat=11",
-        "view": "bo_table=kor_news_re"
-      }
-    ]
-  },
-  {
-    "enabled": false,
     "name": "경제학부",
     "id": "economy",
     "ssoEnabled": false,
@@ -670,24 +634,6 @@
         "name": "공지사항",
         "category": "",
         "view": "bbsid=notice&"
-      }
-    ]
-  },
-  {
-    "enabled": false,
-    "name": "의과대학",
-    "id": "medical",
-    "ssoEnabled": false,
-    "parseType": "html",
-    "baseUrl": "http://med.cau.ac.kr/2010/total_board/",
-    "pageParam": "&page=",
-    "articleParam": "",
-    "encodeType": "UTF-8",
-    "boardList": [
-      {
-        "name": "공지사항",
-        "category": "",
-        "view": "board_list.asp?"
       }
     ]
   },

@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(WindowInfo wf : finalList) {
             if (siteMap.get(wf.getSiteId()).isEnabled()) {
+                getRequestSite(siteMap.get(wf.getSiteId()));
                 MainActivity.instance.addWindow(wf);
             }
         }
@@ -130,9 +131,9 @@ public class MainActivity extends AppCompatActivity {
 
         // 크롤링 시작
         for (Site site : siteList) {
-            if (site.isEnabled()) {
+//            if (site.isEnabled()) {
                 getRequestSite(site);
-            }
+//            }
         }
 
         // 링크 주소를 기준으로 중복 제거
@@ -153,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
         Collections.reverse(finalList);
         Log.d(TAG, "number: " + finalList.size());
         keywordFilter(searchKey);
+
+        refreshWindowInfo();
 
         startAlarmService();
 

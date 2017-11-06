@@ -60,6 +60,10 @@ public class BoardMapper {
         ParseRule rule = MapDataParser.getSiteRule(siteName);
         Site site = MapDataParser.getSite(siteName);
 
+        if (rule == null) {
+            Log.e(TAG, siteName + " rule is not exists");
+        }
+
         Elements tableCandidates = doc.getElementsByTag(rule.getTag());
         Elements found = null;
         for (String key : rule.getTableAttrs().keySet()) {
@@ -67,9 +71,8 @@ public class BoardMapper {
         }
 
         if (found != null && found.size() != 0) {
-            Element targetTable = found.first();
+            Element targetTable = found.get(rule.getTableIndex());
             Element tableBody = targetTable.getElementsByTag("tbody").first();
-
             if (tableBody == null || tableBody.children().size() == 0) {
 //                Log.d(TAG, siteName);
             } else {
@@ -80,25 +83,33 @@ public class BoardMapper {
 
                     // 제목
                     String title = parseMeta(row, rule.getTitleMeta());
-                    if (title == null) break;
+                    if (title == null) {
+                        Log.e(TAG,String.format("Parsing %s  failed. (%s)\n%s", siteName, url, tableBody.toString()));
+
+                        break;
+                    }
                     jsonObject.addProperty("TITLE", title);
 
                     // 작성자
                     String author = (rule.getAuthorMeta() == null) ? site.getName() : parseMeta(row, rule.getAuthorMeta());
-                    if (author == null) break;
+                    if (author == null){
+                        Log.e(TAG,String.format("Parsing %s  failed. (%s)\n%s", siteName, url, tableBody.toString()));
+                        break;
+                    }
                     jsonObject.addProperty("NAME", site.getName() + " - " + author);
 
+                    long val = 0;
                     if (rule.getDateMeta() != null) {
                         // 날짜
                         try {
                             SimpleDateFormat sdf = new SimpleDateFormat(rule.getDateMeta().getEtc());
-                            long val = sdf.parse(parseMeta(row, rule.getDateMeta())).getTime();
-                            jsonObject.addProperty("REGDATE", val);
+                            val = sdf.parse(parseMeta(row, rule.getDateMeta())).getTime();
                         } catch (ParseException e) {
 //                            e.printStackTrace();
                             break;
                         }
                     }
+                    jsonObject.addProperty("REGDATE", val);
 
                     // 게시물 링크
                     String link;
@@ -136,7 +147,7 @@ public class BoardMapper {
 
     private static String parseMeta(Element row, ParseRule.Meta meta) {
         if (meta.getTdIndex() >= row.children().size()) {
-            Log.e(TAG, "Table Data number is smaller than index: " + row.toString());
+            Log.e(TAG, String.format("Table Data number is smaller than index(%d/%d):\n%s", meta.getTdIndex(), row.children().size(), row.toString()));
             return null;
         }
         Element td = row.child(meta.getTdIndex());
@@ -148,7 +159,7 @@ public class BoardMapper {
 
     private static String parseLink(Element row, ParseRule.Meta meta) {
         if (meta.getTdIndex() >= row.children().size()) {
-            Log.e(TAG, "Table Data number is smaller than index: " + row.toString());
+            Log.e(TAG, String.format("Table Data number is smaller than index(%d/%d):\n%s", meta.getTdIndex(), row.children().size(), row.toString()));
             return null;
         }
         Element td = row.child(meta.getTdIndex());
