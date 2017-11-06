@@ -36,7 +36,7 @@ public class WindowListDialog extends Dialog{
 		okButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				MainActivity.instance.refreshWindowInfo();
+				MainActivity.instance.keywordFilter(MainActivity.instance.adapter.main.searchText.getText().toString());
 				dismiss();
 			}
 		});
