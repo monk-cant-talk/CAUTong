@@ -42,7 +42,7 @@ public class BoardMapper {
         else if (site.getParseType().equals("html")) {
             return parseHtml(url, site.getId(), response);
         }
-         return null;
+        return null;
     }
 
     private static JsonArray parseData(String jsonString) {
@@ -59,20 +59,25 @@ public class BoardMapper {
 
         ParseRule rule = MapDataParser.getSiteRule(siteName);
         Site site = MapDataParser.getSite(siteName);
-
         if (rule == null) {
-            Log.e(TAG, siteName + " rule is not exists");
+            Log.e(TAG, siteName + " rule does exists");
+            return null;
         }
 
-        Elements tableCandidates = doc.getElementsByTag(rule.getTag());
-        Elements found = null;
+        Elements found = doc.getElementsByTag(rule.getTag());
+
+        if (siteName.equals("security")) {
+//            Log.e(TAG, "contents:\n" + found.toString());
+        }
+
         for (String key : rule.getTableAttrs().keySet()) {
-            found = tableCandidates.select(rule.getTableQuery(key));
+            found = found.select(rule.getTableQuery(key));
         }
 
         if (found != null && found.size() != 0) {
             Element targetTable = found.get(rule.getTableIndex());
             Element tableBody = targetTable.getElementsByTag("tbody").first();
+
             if (tableBody == null || tableBody.children().size() == 0) {
 //                Log.d(TAG, siteName);
             } else {
@@ -84,7 +89,7 @@ public class BoardMapper {
                     // 제목
                     String title = parseMeta(row, rule.getTitleMeta());
                     if (title == null) {
-                        Log.e(TAG,String.format("Parsing %s  failed. (%s)\n%s", siteName, url, tableBody.toString()));
+                        Log.e(TAG, String.format("Parsing %s  failed. (%s)\n%s", siteName, url, tableBody.toString()));
 
                         break;
                     }
@@ -92,8 +97,8 @@ public class BoardMapper {
 
                     // 작성자
                     String author = (rule.getAuthorMeta() == null) ? site.getName() : parseMeta(row, rule.getAuthorMeta());
-                    if (author == null){
-                        Log.e(TAG,String.format("Parsing %s  failed. (%s)\n%s", siteName, url, tableBody.toString()));
+                    if (author == null) {
+                        Log.e(TAG, String.format("Parsing %s  failed. (%s)\n%s", siteName, url, tableBody.toString()));
                         break;
                     }
                     jsonObject.addProperty("NAME", site.getName() + " - " + author);
@@ -105,21 +110,23 @@ public class BoardMapper {
                             SimpleDateFormat sdf = new SimpleDateFormat(rule.getDateMeta().getEtc());
                             val = sdf.parse(parseMeta(row, rule.getDateMeta())).getTime();
                         } catch (ParseException e) {
-//                            e.printStackTrace();
+                            if (siteName.equals("bodyedu")) {
+                                e.printStackTrace();
+                            }
                             break;
                         }
                     }
                     jsonObject.addProperty("REGDATE", val);
 
                     // 게시물 링크
-                    String link;
-                    String parsedLink = parseLink(row, rule.getTitleMeta());
-                    if (parsedLink == null) break;
-                    if (isRequired(parsedLink)) {
-                        link = makeLinkForContent(url) + parsedLink;
-                    } else {
-                        link = url + parsedLink;
-                    }
+                    String link = "";
+//                    String parsedLink = parseLink(row, rule.getTitleMeta());
+//                    if (parsedLink == null) break;
+//                    if (isRequired(parsedLink)) {
+//                        link = makeLinkForContent(url) + parsedLink;
+//                    } else {
+//                        link = url + parsedLink;
+//                    }
                     jsonObject.addProperty("LINK", link);
 
                     // 게시물 내용

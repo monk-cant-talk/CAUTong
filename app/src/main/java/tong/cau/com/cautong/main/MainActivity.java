@@ -95,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
         // 키워드로 필터링
         if (searchKey.equals("")) {
             for (WindowInfo wf : finalList) {
-                MainActivity.instance.addWindow(wf);
+                if (siteMap.get(wf.getSiteId()).isEnabled()) {
+                    MainActivity.instance.addWindow(wf);
+                }
             }
         } else {
             for (WindowInfo wf : finalList) {

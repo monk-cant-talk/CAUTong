@@ -1,24 +1,4 @@
 {
-  "cau": {
-    "tag": "table",
-    "rowSpaced": true,
-    "tableAttrs": {
-      "id": "bbs",
-      "class": "bbslist"
-    },
-    "firstRowIndex": 0,
-    "titleMeta": {
-      "tdIndex": 1,
-      "hierarchy": [
-        "a"
-      ]
-    },
-    "dateMeta": {
-      "tdIndex": 2,
-      "hierarchy": [],
-      "etc": "yyyy.MM.dd"
-    }
-  },
   "ie": {
     "tag": "table",
     "rowSpaced": true,
@@ -201,8 +181,6 @@
     "tag": "table",
     "rowSpaced": false,
     "tableAttrs": {
-      "cellspacing": "0",
-      "cellpadding": "0",
       "class": "tableBC_list board"
     },
     "firstRowIndex": 0,
@@ -666,15 +644,15 @@
     }
   },
   "bodyedu": {
-    "tag": "div",
+    "tag": "table",
     "rowSpaced": false,
     "tableAttrs": {
-      "class": "kboard-list"
     },
     "firstRowIndex": 1,
     "titleMeta": {
       "tdIndex": 1,
       "hierarchy": [
+        "div",
         "a"
       ]
     },
@@ -766,7 +744,9 @@
     "tag": "table",
     "rowSpaced": false,
     "tableAttrs": {
-      "width":"97%"
+      "class":"board_list",
+      "cellspacing": "0",
+      "cellpadding": "0"
     },
     "firstRowIndex": 1,
     "titleMeta": {
@@ -817,7 +797,6 @@
     "tag": "table",
     "rowSpaced": false,
     "tableAttrs": {
-      "class": "summary",
       "cellspacing": "0",
       "cellpadding": "0"
     },
@@ -842,7 +821,6 @@
     "tag": "table",
     "rowSpaced": false,
     "tableAttrs": {
-      "class": "summary",
       "cellspacing": "0",
       "cellpadding": "0"
     },
