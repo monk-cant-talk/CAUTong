@@ -106,11 +106,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void refreshWindowInfo() {
+        cleanWindow();
+
+        for(WindowInfo wf : finalList) {
+            if (siteMap.get(wf.getSiteId()).isEnabled()) {
+                MainActivity.instance.addWindow(wf);
+            }
+        }
+    }
+
+    public static Map<String, Site> siteMap = null;
+
     //이전 액티비티(StartActivity) 에서 검색키워드를 넣게 되면 자동으로 이 액티비티로 넘어오면서 이 함수가 실행된다.
     private void startActivity(String searchKey) {
 
         // 크롤링 할 정보 로드
-        Map<String, Site> siteMap = MapDataParser.getSiteMap();
+        siteMap = MapDataParser.getSiteMap();
         ArrayList<Site> siteList = new ArrayList<>();
         for (String key : siteMap.keySet()) {
             siteList.add(siteMap.get(key));
@@ -176,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    final List<WindowInfo> finalList = Collections.synchronizedList(new ArrayList<WindowInfo>());
+    final static List<WindowInfo> finalList = Collections.synchronizedList(new ArrayList<WindowInfo>());
 
     private class FavoriteRunnable implements Runnable {
         Site site;

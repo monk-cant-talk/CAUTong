@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import tong.cau.com.cautong.WindowMenuStarDialog;
@@ -47,6 +46,9 @@ public class WindowInfo {
 
     //작성자
     private String author;
+
+    //게시글이 속한 사이트
+    private String siteId;
 
 
     transient Activity activity;
@@ -91,6 +93,13 @@ public class WindowInfo {
         return author;
     }
 
+    public String getSiteId() {
+        return siteId;
+    }
+
+    public void setSiteId(String siteId) {
+        this.siteId = siteId;
+    }
 
     public void rePrint(Activity activity) {
         activity.runOnUiThread(new Runnable() {
@@ -259,6 +268,8 @@ public class WindowInfo {
 			@Override
 			public void onClick(View view) {
 				Toast.makeText(WindowInfo.this.activity, "더이상 같은 게시판의 알림을 받지 않습니다", Toast.LENGTH_SHORT).show();
+				MainActivity.siteMap.get(WindowInfo.this.siteId).setEnabled(false);
+				MainActivity.instance.refreshWindowInfo();
 			}
 		});
 		dialog.show();

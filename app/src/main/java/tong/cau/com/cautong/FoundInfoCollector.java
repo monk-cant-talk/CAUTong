@@ -50,6 +50,7 @@ public class FoundInfoCollector {
                         "https://www.cau.ac.kr",
                         new MyDate(dataObject.get("REGDATE").getAsLong()),
                         dataObject.get("NAME").getAsString());
+                list.get(i).setSiteId(site.getId());
             }
         }
 
