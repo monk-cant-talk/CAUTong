@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     ViewPager viewPager;
-    MainViewAdapter adapter;
+    public MainViewAdapter adapter;
     public static MainActivity instance;
 
     @Override
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<WindowInfo> infoList = StarHelper.getStarredWindowInfo();
         for(WindowInfo info : infoList) {
+            info.star = true;
             addStarWindow(info);
         }
     }

@@ -17,17 +17,26 @@ import tong.cau.com.cautong.model.WindowInfo;
 
 public class StarHelper {
     // 별표하기
-    public static void starWindowInfo(WindowInfo windowInfo){
+    public static boolean starWindowInfo(WindowInfo windowInfo){
         Gson gson = new Gson();
         WindowInfo[] idList;
         if(PlayerPrefs.getInstance().hasKey("star")) {
             String starredWindowInfoListStr = PlayerPrefs.getInstance().getString("star");
             WindowInfo[] buf = gson.fromJson(starredWindowInfoListStr, WindowInfo[].class);
+
+            //중복 게시물은 허용하지 않는다.
+            for(int i=0;i<buf.length;i++){
+                WindowInfo sInfo = buf[i];
+                if(sInfo.equals(windowInfo)){
+                    return false;
+                }
+            }
+
             idList = new WindowInfo[buf.length + 1];
             for(int i = 0 ; i < buf.length ; i ++){
-                idList[i] = buf[i];
+                idList[i+1] = buf[i];
             }
-            idList[buf.length] = windowInfo;
+            idList[0] = windowInfo;
         }else{
             idList = new WindowInfo[1];
             idList[0] = windowInfo;
@@ -36,6 +45,7 @@ public class StarHelper {
         String str = gson.toJson(idList);
         PlayerPrefs.getInstance().setString("star", str);
         PlayerPrefs.getInstance().save();
+        return true;
     }
 
     // 별표된 것 가져오기
